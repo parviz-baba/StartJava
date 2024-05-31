@@ -1,6 +1,5 @@
 public class VariableNamesTheme {
     public static void main(String[]args) {
-        // ----------------------------------------------------------------------------------------
         // Разные переменные (Various Variable)
         System.out.println("\n1. Разные переменные (Various Variable)");
 
@@ -33,8 +32,8 @@ public class VariableNamesTheme {
         System.out.println("исходное число = " + originalNumber);
 
         // процент по вкладу
-        int depositPercentage = 5;
-        System.out.println("процент по вкладу = " + depositPercentage);
+        int rate = 5;
+        System.out.println("процент по вкладу = " + rate);
 
         // переменная хранит символ &
         char ampersandSymbol = '&';
@@ -61,8 +60,8 @@ public class VariableNamesTheme {
         System.out.println("случайное число = " + randomNumber);
 
         // математическое выражение
-        int mathExpressionResult = 11 * 5;
-        System.out.println("математическое выражение = " + mathExpressionResult);
+        int mathExpression = 11 * 5;
+        System.out.println("математическое выражение = " + mathExpression);
 
         // выбор
         boolean choice = true;
@@ -120,26 +119,24 @@ public class VariableNamesTheme {
         int numbersPerLine = 10;
         System.out.println("количество чисел в каждой строке = " + numbersPerLine);
 
-        // ----------------------------------------------------------------------------------------
-
         // boolean-переменные (Boolean Variables)
         System.out.println("\n2. Boolean-переменные (Boolean Variables)");
 
         // сотни равны?
-        boolean hundredsEqual = true;
-        System.out.println("\nсотни равны? = " + hundredsEqual);
+        boolean hasEqualhundreds = true;
+        System.out.println("\nсотни равны? = " + hasEqualhundreds);
 
         // компьютер включен?
-        boolean computerOn = true;
-        System.out.println("компьютер включен? = " + computerOn);
+        boolean isComputerOn = true;
+        System.out.println("компьютер включен? = " + isComputerOn);
 
         // ест равные цифры
         boolean hasEqualDigits = false;
         System.out.println("ест равные цифры? = " + hasEqualDigits);
 
         // создано?
-        boolean created = false;
-        System.out.println("создано? = " + created);
+        boolean isCreated = false;
+        System.out.println("создано? = " + isCreated);
 
         // пустое?
         boolean isEmpty = true;
@@ -154,21 +151,19 @@ public class VariableNamesTheme {
         System.out.println("новое? = " + isNew);
 
         // электронная почта действительное?
-        boolean isEmailValid = true;
-        System.out.println("электронная почта действительное? = " + isEmailValid);
+        boolean isValidEmail = true;
+        System.out.println("электронная почта действительное? = " + isValidEmail);
 
         // имеются уникальные строки?
         boolean hasUniqueStrings = true;
         System.out.println("имеются уникальные строки? = " + hasUniqueStrings);
 
-        // ----------------------------------------------------------------------------------------
-
         // Аббревиатуры (Abbreviations)
         System.out.println("\n3. Аббревиатуры (Abbreviations)");
 
         // старый universally unique identifier
-        String oldUUID = "123e4567-e89b-12d3-a456-426655440000";
-        System.out.println("\nстарый universally unique identifier = " + oldUUID);
+        String oldUuid = "123e4567-e89b-12d3-a456-426655440000";
+        System.out.println("\nстарый universally unique identifier = " + oldUuid);
 
         // производитель оперативной памяти
         String ramManufacturer = "HP";
@@ -179,19 +174,19 @@ public class VariableNamesTheme {
         System.out.println("емкост жесткого диска = " + hddCapacity);
 
         // протокол передачи гипертекста
-        String httpProtocol = "http";
-        System.out.println("протокол передачи гипертекста = " + httpProtocol);
+        String protocol = "http";
+        System.out.println("протокол передачи гипертекста = " + protocol);
 
         // сокращенный uniform resource locator
-        String urlShort = "https://ru.wikipedia.org";
-        System.out.println("сокращенный uniform resource locator = " + urlShort);
+        String shortUrl = "https://rb.gy/kuucnq";
+        System.out.println("сокращенный uniform resource locator = " + shortUrl);
 
         // новый идентификатор клиента
-        String newClientID = "123-456-789";
-        System.out.println("новый идентификатор клиента = " + newClientID);
+        String newCid = "123-456-789";
+        System.out.println("новый идентификатор клиента = " + newCid);
 
         // кодировка american standart code for information interchange
-        String asciiEncoding = "ASCII";
-        System.out.println("кодировка american standart code for information interchange = " + asciiEncoding);
+        String encoding = "ASCII";
+        System.out.println("кодировка american standart code for information interchange = " + encoding);
     }
 }
