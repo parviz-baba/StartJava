@@ -1,6 +1,6 @@
 public class VariableNamesTheme {
     public static void main(String[]args) {
-        System.out.println("\n1. Разные переменные (Various Variable)");
+        System.out.println("\n1. Разные переменные");
 
         // цифра
         int digit = 5;
