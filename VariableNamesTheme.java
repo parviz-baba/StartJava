@@ -1,6 +1,5 @@
 public class VariableNamesTheme {
     public static void main(String[]args) {
-        // Разные переменные (Various Variable)
         System.out.println("\n1. Разные переменные (Various Variable)");
 
         // цифра
@@ -119,8 +118,7 @@ public class VariableNamesTheme {
         int numbersPerLine = 10;
         System.out.println("количество чисел в каждой строке = " + numbersPerLine);
 
-        // boolean-переменные (Boolean Variables)
-        System.out.println("\n2. Boolean-переменные (Boolean Variables)");
+        System.out.println("\n2. Boolean-переменные");
 
         // сотни равны?
         boolean hasEqualhundreds = true;
@@ -158,8 +156,7 @@ public class VariableNamesTheme {
         boolean hasUniqueStrings = true;
         System.out.println("имеются уникальные строки? = " + hasUniqueStrings);
 
-        // Аббревиатуры (Abbreviations)
-        System.out.println("\n3. Аббревиатуры (Abbreviations)");
+        System.out.println("\n3. Аббревиатуры");
 
         // старый universally unique identifier
         String oldUuid = "123e4567-e89b-12d3-a456-426655440000";

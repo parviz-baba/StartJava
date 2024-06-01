@@ -37,7 +37,6 @@ public class VariablesTheme {
 
         // Задача 3: Вывод слова JAVA
         System.out.println("\nЗадача 3: Вывод слова JAVA\n");
-
         System.out.println("   J    a  v     v  a     ");
         System.out.println("   J   a a  v   v  a a    ");
         System.out.println("J  J  aaaaa  V V  aaaaa   ");
@@ -72,41 +71,41 @@ public class VariablesTheme {
 
         // Задача 5: Перестановка значений переменных
         System.out.println("\nЗадача 5: Перестановка значений переменных\n");
-        int num1 = 2;
-        int num2 = 5;
-        System.out.println("Изначальные значения: a = " + num1 + " b = " + num2);
+        int a = 2;
+        int b = 5;
+        System.out.println("Изначальные значения: a = " + a + " b = " + b);
         
         // с помощью третьей переменной
-        int swap = num1;
-        num1 = num2;
-        num2 = swap;
-        System.out.println("с помощью третьей переменной: a = " + num1 + " b " + num2);
+        int swap = a;
+        a = b;
+        b = swap;
+        System.out.println("с помощью третьей переменной: a = " + a + " b " + b);
 
         // с помощью арифметических операций
-        num2 = num1 + num2;
-        num1 = num2 - num1;
-        num2 = num2 - num1;
-        System.out.println("с помощью арифметических операций: a = " + num1 + " b = " + num2);
+        b += a;
+        a = b - a;
+        b -= a;
+        System.out.println("с помощью арифметических операций: a = " + a + " b = " + b);
 
         // с помощью побитовой операции ^
-        num1 = num1 ^ num2;
-        num2 = num1 ^ num2;
-        num1 = num1 ^ num2;
-        System.out.println("с помощью побитовой операции ^: a = " + num1 + " b = " + num2);
+        a ^= b;
+        b ^= a;
+        a ^= b;
+        System.out.println("с помощью побитовой операции ^: a = " + a + " b = " + b);
 
         // Задача 6: Вывод символов и их кодов
         System.out.println("\nЗадача 6: Вывод символов и их кодов\n");
-        char char36 = '$';
-        char char42 = '*';
-        char char64 = '@';
-        char char124 = '|';
-        char char126 = '~';
+        char dollar = '$';
+        char asterisk = '*';
+        char at = '@';
+        char verticalBar = '|';
+        char tilde = '~';
 
-        System.out.println((int) char36 + " - " + char36);
-        System.out.println((int) char42 + " - " + char42);
-        System.out.println((int) char64 + " - " + char64);
-        System.out.println((int) char124 + " - " + char124);
-        System.out.println((int) char126 + " - " + char126);
+        System.out.println((int) dollar + " - " + dollar);
+        System.out.println((int) asterisk + " - " + asterisk);
+        System.out.println((int) at + " - " + at);
+        System.out.println((int) verticalBar + " - " + verticalBar);
+        System.out.println((int) tilde + " - " + tilde);
 
         // Задача 7: Вывод в консоль ASCII-арт Дюка
         System.out.println("\nЗадача 7: Вывод в консоль ASCII-арт Дюка\n");
