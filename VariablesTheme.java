@@ -3,7 +3,7 @@ import java.math.RoundingMode;
 
 public class VariablesTheme {
     public static void main(String[]args) {
-        // Задача 1: Вывод характеристик компьютера
+
         System.out.println("\nЗадача 1: Вывод характеристик компьютера\n");
         int numberOfCores = 4;
         double cpuFrequency = 2.4;
@@ -22,7 +22,6 @@ public class VariablesTheme {
         System.out.println("Наличие Bluetooth: " + hasBluetooth);
         System.out.println("Класс компьютера: " + computerClass);
 
-        // Задача 2: Расчет стоимости товара со скидкой
         System.out.println("\nЗадача 2: Расчет стоимости товара со скидкой\n");
 
         double penPrice = 105.5;
@@ -35,14 +34,12 @@ public class VariablesTheme {
         System.out.println("сумму скидки: " + discountAmount);
         System.out.println("общую стоимость товаров со скидкой: " + discountPrice);
 
-        // Задача 3: Вывод слова JAVA
         System.out.println("\nЗадача 3: Вывод слова JAVA\n");
         System.out.println("   J    a  v     v  a     ");
         System.out.println("   J   a a  v   v  a a    ");
         System.out.println("J  J  aaaaa  V V  aaaaa   ");
         System.out.println(" JJ  a     a  V  a     a  ");
 
-        // Задача 4: Вывод min и max значений целых числовых типов
         System.out.println("\nЗадача 4: Вывод min и max значений целых числовых типов\n");
         byte maxByteValue = 127;
         short maxShortValue = 32_767;
@@ -69,7 +66,6 @@ public class VariablesTheme {
         System.out.println("Значение после инкремента: " + (++maxLongValue));
         System.out.println("Значение после декремента: " + (--maxLongValue));
 
-        // Задача 5: Перестановка значений переменных
         System.out.println("\nЗадача 5: Перестановка значений переменных\n");
         int a = 2;
         int b = 5;
@@ -93,7 +89,6 @@ public class VariablesTheme {
         a ^= b;
         System.out.println("с помощью побитовой операции ^: a = " + a + " b = " + b);
 
-        // Задача 6: Вывод символов и их кодов
         System.out.println("\nЗадача 6: Вывод символов и их кодов\n");
         char dollar = '$';
         char asterisk = '*';
@@ -107,11 +102,11 @@ public class VariablesTheme {
         System.out.println((int) verticalBar + " - " + verticalBar);
         System.out.println((int) tilde + " - " + tilde);
 
-        // Задача 7: Вывод в консоль ASCII-арт Дюка
         System.out.println("\nЗадача 7: Вывод в консоль ASCII-арт Дюка\n");
         char slash = '/';
         char backslash = '\\';
         char underscore = '_';
+        String underscore1 = "__";
         char leftParenthesis = '(';
         char rightParenthesis = ')';
 
@@ -119,10 +114,8 @@ public class VariablesTheme {
         System.out.println("   " + slash + "  " + backslash);
         System.out.println("  " + slash + underscore + leftParenthesis + " " + rightParenthesis + backslash);
         System.out.println(" " + slash + "      " + backslash);
-        System.out.println(slash + underscore + underscore + underscore + underscore + slash + 
-                backslash + underscore + underscore + backslash);
+        System.out.println(slash + underscore1 + underscore1 + slash + backslash + underscore1 + backslash);
 
-        // Задача 8: Вывод количества сотен, десятков и единиц числа
         System.out.println("\nЗадача 8: Вывод количества сотен, десятков и единиц числа\n");
         int number = 123;
         int hundreds = number / 100;
@@ -132,22 +125,20 @@ public class VariablesTheme {
         int product = hundreds * tens * ones;
 
         System.out.println("Число " + number + " содержит");
-        System.out.println("(сотен): " + hundreds);
-        System.out.println("(десятков): " + tens);
-        System.out.println("(единиц): " + ones);
-        System.out.println("(Сумма его цифр): " + sum);
-        System.out.println("(Произведение): " + product);
+        System.out.println("сотен: " + hundreds);
+        System.out.println("десятков: " + tens);
+        System.out.println("единиц: " + ones);
+        System.out.println("Сумма его цифр: " + sum);
+        System.out.println("Произведение: " + product);
 
-        // Задача 9: Вывод времени
         System.out.println("\nЗадача 9: Вывод времени\n");
         int totalSeconds = 86399;
-        int hh = (totalSeconds / 60) / 60;
-        int mm = (totalSeconds - (hh * 60 * 60)) / 60;
-        int ss = totalSeconds - (hh * 60 * 60 + mm * 60);
+        int hh = (totalSeconds / 3600);
+        int mm = (totalSeconds % 3600) / 60;
+        int ss = (totalSeconds % 3600) % 60;
 
-        System.out.println(hh + "/" + mm + "/" + ss);
+        System.out.println(hh + ":" + mm + ":" + ss);
 
-        // Расчет стоимости товара со скидкой (BigDecimal)
         System.out.println("\nЗадача 10: Расчет стоимости товара со скидкой (BigDecimal)\n");
 
         BigDecimal penPrice1 = new BigDecimal("105.5");
@@ -156,15 +147,14 @@ public class VariablesTheme {
 
         // Общая стоимость без скидки
         BigDecimal totalPrice = penPrice1.add(bookPrice1);
+        totalPrice = totalPrice.setScale(2, RoundingMode.HALF_UP);
 
         // Стоимость Скидка
         BigDecimal discountAmount1 = totalPrice.multiply(discountRate1);
+        discountAmount1 = discountAmount1.setScale(2, RoundingMode.HALF_UP);
 
         // Общая стоимость со скидкой
         BigDecimal discountedPrice = totalPrice.subtract(discountAmount1);
-
-        totalPrice = totalPrice.setScale(2, RoundingMode.HALF_UP);
-        discountAmount1 = discountAmount1.setScale(2, RoundingMode.HALF_UP);
         discountedPrice = discountedPrice.setScale(2, RoundingMode.HALF_UP);
 
         System.out.println("Общая стоимость без скидки: " + totalPrice);
