@@ -188,5 +188,6 @@ public class VariableNamesTheme {
         // кодировка american standart code for information interchange
         String encoding = "ASCII";
         System.out.println("кодировка american standart code for information interchange = " + encoding);
+        
     }
 }
