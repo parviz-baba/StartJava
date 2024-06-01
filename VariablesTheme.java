@@ -151,25 +151,25 @@ public class VariablesTheme {
         // Расчет стоимости товара со скидкой (BigDecimal)
         System.out.println("\nЗадача 10: Расчет стоимости товара со скидкой (BigDecimal)\n");
 
-        BigDecimal penPrices = new BigDecimal("105.5");
-        BigDecimal bookPrices = new BigDecimal("235.83");
-        BigDecimal discountRates = new BigDecimal("0.11");
+        BigDecimal penPrice1 = new BigDecimal("105.5");
+        BigDecimal bookPrice1 = new BigDecimal("235.83");
+        BigDecimal discountRate1 = new BigDecimal("0.11");
 
         // Общая стоимость без скидки
-        BigDecimal totalPrice = penPrices.add(bookPrices);
+        BigDecimal totalPrice = penPrice1.add(bookPrice1);
 
         // Стоимость Скидка
-        BigDecimal discountAmounts = totalPrice.multiply(discountRates);
+        BigDecimal discountAmount1 = totalPrice.multiply(discountRate1);
 
         // Общая стоимость со скидкой
-        BigDecimal discountedPrice = totalPrice.subtract(discountAmounts);
+        BigDecimal discountedPrice = totalPrice.subtract(discountAmount1);
 
         totalPrice = totalPrice.setScale(2, RoundingMode.HALF_UP);
-        discountAmounts = discountAmounts.setScale(2, RoundingMode.HALF_UP);
+        discountAmount1 = discountAmount1.setScale(2, RoundingMode.HALF_UP);
         discountedPrice = discountedPrice.setScale(2, RoundingMode.HALF_UP);
 
         System.out.println("Общая стоимость без скидки: " + totalPrice);
-        System.out.println("Стоимость Скидка: " + discountAmounts);
-        System.out.println("Общая стоимость со скидкой: " + discountAmounts);
+        System.out.println("Стоимость Скидка: " + discountAmount1);
+        System.out.println("Общая стоимость со скидкой: " + discountAmount1);
     }
 }
