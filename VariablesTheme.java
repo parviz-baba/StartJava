@@ -4,20 +4,20 @@ import java.math.RoundingMode;
 public class VariablesTheme {
     public static void main(String[]args) {
         System.out.println("\nЗадача 1: Вывод характеристик компьютера\n");
-        int numberOfCores = 4;
+        int numOfCores = 4;
         double cpuFrequency = 2.4;
         long ramSize = 4;
         short screenSize = 60;
-        byte numberOfUsbPorts = 2;
+        byte numOfUsbPorts = 2;
         boolean hasBluetooth = true;
         char computerClass = 'A';
         float storageCapacity = 256.75F;
 
-        System.out.println("Количество ядер: " + numberOfCores);
+        System.out.println("Количество ядер: " + numOfCores);
         System.out.println("Частота процессора: " + cpuFrequency + " GHz");
         System.out.println("Размер оперативной памяти: " + ramSize + " GB");
         System.out.println("Размер экрана: " + screenSize + " дюймов");
-        System.out.println("Количество USB-портов: " + numberOfUsbPorts);
+        System.out.println("Количество USB-портов: " + numOfUsbPorts);
         System.out.println("Наличие Bluetooth: " + hasBluetooth);
         System.out.println("Класс компьютера: " + computerClass);
 
@@ -113,14 +113,14 @@ public class VariablesTheme {
                 underscore + slash + backslash + underscore + "" + underscore + backslash);
 
         System.out.println("\nЗадача 8: Вывод количества сотен, десятков и единиц числа\n");
-        int number = 123;
-        int hundreds = number / 100;
-        int tens = number / 10 % 10;
-        int ones = number % 10;
+        int num = 123;
+        int hundreds = num / 100;
+        int tens = num / 10 % 10;
+        int ones = num % 10;
         int sum = hundreds + tens + ones;
         int product = hundreds * tens * ones;
 
-        System.out.println("Число " + number + " содержит");
+        System.out.println("Число " + num + " содержит");
         System.out.println("сотен: " + hundreds);
         System.out.println("десятков: " + tens);
         System.out.println("единиц: " + ones);
