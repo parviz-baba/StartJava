@@ -145,10 +145,10 @@ public class VariablesTheme {
 
         BigDecimal discountAmount1 = totalPrice.multiply(discountRate1).setScale(2, RoundingMode.HALF_UP);
 
-        BigDecimal discountedPrice = totalPrice.subtract(discountAmount1).setScale(2, RoundingMode.HALF_UP);
+        BigDecimal discountPrice1 = totalPrice.subtract(discountAmount1).setScale(2, RoundingMode.HALF_UP);
 
         System.out.println("Общая стоимость без скидки: " + totalPrice);
-        System.out.println("Стоимость Скидка: " + discountAmount1);
-        System.out.println("Общая стоимость со скидкой: " + discountAmount1);
+        System.out.println("Сумма скидки: " + discountAmount1);
+        System.out.println("Общая стоимость со скидкой: " + discountPrice1);
     }
 }
