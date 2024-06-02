@@ -3,7 +3,6 @@ import java.math.RoundingMode;
 
 public class VariablesTheme {
     public static void main(String[]args) {
-
         System.out.println("\nЗадача 1: Вывод характеристик компьютера\n");
         int numberOfCores = 4;
         double cpuFrequency = 2.4;
@@ -71,19 +70,16 @@ public class VariablesTheme {
         int b = 5;
         System.out.println("Изначальные значения: a = " + a + " b = " + b);
         
-        // с помощью третьей переменной
         int swap = a;
         a = b;
         b = swap;
         System.out.println("с помощью третьей переменной: a = " + a + " b " + b);
 
-        // с помощью арифметических операций
         b += a;
         a = b - a;
         b -= a;
         System.out.println("с помощью арифметических операций: a = " + a + " b = " + b);
 
-        // с помощью побитовой операции ^
         a ^= b;
         b ^= a;
         a ^= b;
@@ -106,7 +102,6 @@ public class VariablesTheme {
         char slash = '/';
         char backslash = '\\';
         char underscore = '_';
-        String underscore1 = "__";
         char leftParenthesis = '(';
         char rightParenthesis = ')';
 
@@ -114,7 +109,8 @@ public class VariablesTheme {
         System.out.println("   " + slash + "  " + backslash);
         System.out.println("  " + slash + underscore + leftParenthesis + " " + rightParenthesis + backslash);
         System.out.println(" " + slash + "      " + backslash);
-        System.out.println(slash + underscore1 + underscore1 + slash + backslash + underscore1 + backslash);
+        System.out.println(slash + "" + underscore + "" + underscore + "" + underscore + "" + 
+                underscore + slash + backslash + underscore + "" + underscore + backslash);
 
         System.out.println("\nЗадача 8: Вывод количества сотен, десятков и единиц числа\n");
         int number = 123;
@@ -134,8 +130,8 @@ public class VariablesTheme {
         System.out.println("\nЗадача 9: Вывод времени\n");
         int totalSeconds = 86399;
         int hh = (totalSeconds / 3600);
-        int mm = (totalSeconds % 3600) / 60;
-        int ss = (totalSeconds % 3600) % 60;
+        int mm = totalSeconds / 60 % 60;
+        int ss = totalSeconds % 60;
 
         System.out.println(hh + ":" + mm + ":" + ss);
 
@@ -145,17 +141,11 @@ public class VariablesTheme {
         BigDecimal bookPrice1 = new BigDecimal("235.83");
         BigDecimal discountRate1 = new BigDecimal("0.11");
 
-        // Общая стоимость без скидки
-        BigDecimal totalPrice = penPrice1.add(bookPrice1);
-        totalPrice = totalPrice.setScale(2, RoundingMode.HALF_UP);
+        BigDecimal totalPrice = penPrice1.add(bookPrice1).setScale(2, RoundingMode.HALF_UP);
 
-        // Стоимость Скидка
-        BigDecimal discountAmount1 = totalPrice.multiply(discountRate1);
-        discountAmount1 = discountAmount1.setScale(2, RoundingMode.HALF_UP);
+        BigDecimal discountAmount1 = totalPrice.multiply(discountRate1).setScale(2, RoundingMode.HALF_UP);
 
-        // Общая стоимость со скидкой
-        BigDecimal discountedPrice = totalPrice.subtract(discountAmount1);
-        discountedPrice = discountedPrice.setScale(2, RoundingMode.HALF_UP);
+        BigDecimal discountedPrice = totalPrice.subtract(discountAmount1).setScale(2, RoundingMode.HALF_UP);
 
         System.out.println("Общая стоимость без скидки: " + totalPrice);
         System.out.println("Стоимость Скидка: " + discountAmount1);
