@@ -7,7 +7,8 @@ public class VariablesTheme {
         int numberOfCores = 4;
         double cpuFrequency = 2.4;
         long ramSize = 4;
-        short screenSize = 60;
+        short screenSize = 60; 
+        System.out.println("сделал пробел, показал ошибку. но ");
         byte numberOfUsbPorts = 2;
         boolean hasBluetooth = true;
         char computerClass = 'A';
@@ -109,8 +110,8 @@ public class VariablesTheme {
         System.out.println("   " + slash + "  " + backslash);
         System.out.println("  " + slash + underscore + leftParenthesis + " " + rightParenthesis + backslash);
         System.out.println(" " + slash + "      " + backslash);
-        System.out.println(slash + "" + underscore + "" + underscore + "" + underscore + "" + 
-                underscore + slash + backslash + underscore + "" + underscore + backslash);
+        System.out.println("" + slash + underscore + underscore + underscore + 
+                underscore + slash + backslash + underscore + underscore + backslash);
 
         System.out.println("\nЗадача 8: Вывод количества сотен, десятков и единиц числа\n");
         int number = 123;
