@@ -6,19 +6,19 @@ public class IfElseStatementTheme {
         System.out.println("\n1. Перевод псевдокода на язык Java\n");
 
         boolean isMan = true;
-        int age = 18;
-        double height = 1.75;
         final String name = "Mamed";
         if (!isMan) {
             System.out.println("Пол: Женский");
         } else {
             System.out.println("Пол: Мужской");
         }
+        int age = 18;
         if (age > 18) {
             System.out.println("Возраст: Старше 18 лет");
         } else {
             System.out.println("Возраст: Меньше 18 лет");
         }
+        double height = 1.75;
         if (height < 1.8) {
             System.out.println("Рост: Меньше 1.8 метра");
         } else {
@@ -38,9 +38,9 @@ public class IfElseStatementTheme {
         int a = 152;
         int b = 205;
         if (a > b) {
-            System.out.println(a + " болше " + b); 
+            System.out.println(a + " больше " + b); 
         } else if (b > a) {
-            System.out.println(b + " болше " + a);
+            System.out.println(b + " больше " + a);
         } else {
             System.out.println("Оба числа равны: " + a);
         }
@@ -48,35 +48,39 @@ public class IfElseStatementTheme {
         System.out.println("\n3. Проверка числа\n");
 
         int number = 20;
-        if (number == 0) {
+        if (number != 0) {
+            if (number > 0 & number % 2 == 0) {
+                System.out.println(number + " является положительным и четным");
+            }
+            if (number > 0 & number % 2 != 0 & number % 1 == 0) {
+                System.out.println(number + " является положительным и нечетным");
+            }
+            if (number < 0 & number % 2 == 0) {
+                System.out.println(number + " является отрицательным  и четным");
+            }
+            if (number < 0 & number % 2 != 0 & number % 1 == 0) {
+                System.out.println(number + " является отрицательным  и нечетным");
+            }
+        } else {
             System.out.println(number + " является нулям");
-        } else if (number > 0 & number % 2 == 0) {
-            System.out.println(number + " является положительным и четным");
-        }
-        if (number > 0 & number % 2 != 0 & number % 1 == 0) {
-            System.out.println(number + " является положительным и нечетным");
-        }
-        if (number < 0 & number % 2 == 0) {
-            System.out.println(number + " является отрицательным  и четным");
-        }
-        if (number < 0 & number % 2 != 0 & number % 1 == 0) {
-            System.out.println(number + " является отрицательным  и нечетным");
         }
 
         System.out.println("\n4. Поиск одинаковых цифр в числах.\n");
 
         int numberA = 123;
-        int numberB = 223;
-        int hundredA = numberA / 100;
+        int hundredsA = numberA / 100;
         int tensA = numberA / 10 % 10;
         int onesA = numberA % 10;
-        int hundredB = numberB / 100;
+
+        int numberB = 223;
+        int hundredsB = numberB / 100;
         int tensB = numberB / 10 % 10;
         int onesB = numberB % 10;
-        if (hundredA == hundredB || tensA == tensB || onesA == onesB) {
+        
+        if (hundredsA == hundredsB || tensA == tensB || onesA == onesB) {
             System.out.println("Числа: " + numberA + " и " + numberB);
-            if (hundredA == hundredB) {
-                System.out.println("Одинаковые цифры в разряде сотен: " + hundredA);
+            if (hundredsA == hundredsB) {
+                System.out.println("Одинаковые цифры в разряде сотен: " + hundredsA);
             }
             if (tensA == tensB) {
                 System.out.println("Одинаковые цифры в разряде десятков: " + tensA);
@@ -105,7 +109,7 @@ public class IfElseStatementTheme {
 
         double depositAmount = 321_123.59;
         double interestRate = 0.1;
-        if (depositAmount <= 100_000 & depositAmount > 0) {
+        if (depositAmount > 0 && depositAmount <= 100_000) {
             interestRate = 0.05;
         } else if (depositAmount <= 300_000) {
             interestRate = 0.07;
@@ -119,27 +123,27 @@ public class IfElseStatementTheme {
         System.out.println("\n7. Определение оценки по предметам\n");
 
         int percentHistory = 59;
-        int historyGrade = 2;
-        if (91 < percentHistory & percentHistory <= 100) {
-            historyGrade = 5;
+        int gradeHistory = 2;
+        if (91 < percentHistory && percentHistory <= 100) {
+            gradeHistory = 5;
         } else if (percentHistory > 73) {
-            historyGrade = 4;
+            gradeHistory = 4;
         } else if (percentHistory > 60) {
-            historyGrade = 3;
+            gradeHistory = 3;
         }
         int percentProgramming = 92;
-        int programmingGrade = 5;
-        if (0 < percentProgramming & percentProgramming <= 60) {
-            programmingGrade = 2;
+        int gradeProgramming = 5;
+        if (0 < percentProgramming && percentProgramming <= 60) {
+            gradeProgramming = 2;
         } else if (percentProgramming < 73) {
-            programmingGrade = 3;
+            gradeProgramming = 3;
         } else if (percentProgramming < 91) {
-            programmingGrade = 2;
+            gradeProgramming = 2;
         }
-        double averageGrade = (historyGrade + programmingGrade) / 2;
+        double averageGrade = (gradeHistory + gradeProgramming) / 2;
         double averagePercent = (percentHistory + percentProgramming) / 2;
-        System.out.println("История: " + historyGrade);
-        System.out.println("Программирование: " + programmingGrade);
+        System.out.println("История: " + gradeHistory);
+        System.out.println("Программирование: " + gradeProgramming);
         System.out.println("Средний балл оценок по предметам: " + averageGrade);
         System.out.println("Средний % по предметам: " + averagePercent);
 
@@ -148,9 +152,7 @@ public class IfElseStatementTheme {
         double monthlySales = 13025.233;
         double monthlyRent = 5123.018;
         double monthlyProductionPrice = 9001.729;
-        double yearlyRevenue = monthlySales * 12;
-        double yearlyExpenses = (monthlyRent + monthlyProductionPrice) * 12;
-        double yearlyProfit = yearlyRevenue - yearlyExpenses;
+        double yearlyProfit = (monthlySales * 12) - ((monthlyRent + monthlyProductionPrice) * 12);
         if (yearlyProfit > 0) {
             System.out.printf("Прибыль за год: +" + yearlyProfit + " руб.\n");
         } else if (yearlyProfit < 0) {
