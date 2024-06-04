@@ -6,7 +6,6 @@ public class IfElseStatementTheme {
         System.out.println("\n1. Перевод псевдокода на язык Java\n");
 
         boolean isMan = true;
-        final String name = "Mamed";
         if (!isMan) {
             System.out.println("Пол: Женский");
         } else {
@@ -24,6 +23,7 @@ public class IfElseStatementTheme {
         } else {
             System.out.println("Рост: 1.8 метра или выше");
         }
+        final String name = "Mamed";
         char firstLetterOfName = name.charAt(0);
         if (firstLetterOfName == 'M') {
             System.out.println("Первая буква имени: M");
@@ -49,17 +49,21 @@ public class IfElseStatementTheme {
 
         int number = 20;
         if (number != 0) {
-            if (number > 0 & number % 2 == 0) {
-                System.out.println(number + " является положительным и четным");
+            if (number > 0) {
+                if (number % 2 == 0) {
+                    System.out.println(number + " является положительным и четным");
+                }
+                if (number % 2 != 0 && number % 1 == 0) {
+                    System.out.println(number + " является положительным и нечетным");
+                }
             }
-            if (number > 0 & number % 2 != 0 & number % 1 == 0) {
-                System.out.println(number + " является положительным и нечетным");
-            }
-            if (number < 0 & number % 2 == 0) {
-                System.out.println(number + " является отрицательным  и четным");
-            }
-            if (number < 0 & number % 2 != 0 & number % 1 == 0) {
-                System.out.println(number + " является отрицательным  и нечетным");
+            if (number < 0) {
+                if (number % 2 == 0) {
+                    System.out.println(number + " является отрицательным  и четным");
+                }
+                if (number % 2 != 0 && number % 1 == 0) {
+                    System.out.println(number + " является отрицательным  и нечетным");
+                }
             }
         } else {
             System.out.println(number + " является нулям");
@@ -124,7 +128,7 @@ public class IfElseStatementTheme {
 
         int percentHistory = 59;
         int gradeHistory = 2;
-        if (91 < percentHistory && percentHistory <= 100) {
+        if (percentHistory >= 91 && percentHistory <= 100) {
             gradeHistory = 5;
         } else if (percentHistory > 73) {
             gradeHistory = 4;
@@ -133,7 +137,7 @@ public class IfElseStatementTheme {
         }
         int percentProgramming = 92;
         int gradeProgramming = 5;
-        if (0 < percentProgramming && percentProgramming <= 60) {
+        if (percentProgramming >= 0 && percentProgramming <= 60) {
             gradeProgramming = 2;
         } else if (percentProgramming < 73) {
             gradeProgramming = 3;
@@ -152,26 +156,23 @@ public class IfElseStatementTheme {
         double monthlySales = 13025.233;
         double monthlyRent = 5123.018;
         double monthlyProductionPrice = 9001.729;
-        double yearlyProfit = (monthlySales * 12) - ((monthlyRent + monthlyProductionPrice) * 12);
+        double yearlyProfit = (monthlySales - (monthlyRent + monthlyProductionPrice)) * 12;
         if (yearlyProfit > 0) {
             System.out.printf("Прибыль за год: +" + yearlyProfit + " руб.\n");
-        } else if (yearlyProfit < 0) {
+        } else if (yearlyProfit <= 0) {
             System.out.printf("Прибыль за год: " + yearlyProfit + " руб.\n");
-        } else {
-            System.out.println("Прибыль за год: 0 руб.\n");
         }
 
         System.out.println("\n6. Подсчет начисленных банком % (BigDecimal)\n");
 
         BigDecimal depositAmount1 = new BigDecimal("321123.59");
         depositAmount1 = depositAmount1.setScale(2, RoundingMode.HALF_UP);
-        BigDecimal interestRate1 = BigDecimal.ZERO;
-        if (depositAmount1.compareTo(new BigDecimal("300000")) > 0) {
-            interestRate1 = new BigDecimal("0.10");
-        } else if (depositAmount1.compareTo(new BigDecimal("100000")) > 0) {
-            interestRate1 = new BigDecimal("0.07");
-        } else if (depositAmount1.compareTo(new BigDecimal("0")) > 0) {
+        BigDecimal interestRate1 = new BigDecimal("0.1");
+        if (depositAmount1.compareTo(new BigDecimal("0")) > 0 && 
+                depositAmount1.compareTo(new BigDecimal("100000")) < 0) {
             interestRate1 = new BigDecimal("0.05");
+        } else if (depositAmount1.compareTo(new BigDecimal("300000")) <= 0) {
+            interestRate1 = new BigDecimal("0.07");
         }
         BigDecimal interestAmount1 = depositAmount1.multiply(interestRate1).setScale(2, RoundingMode.HALF_UP);
         BigDecimal totalAmount1 = depositAmount1.add(interestAmount1).setScale(2, RoundingMode.HALF_UP);
@@ -185,9 +186,8 @@ public class IfElseStatementTheme {
         BigDecimal monthlyRent2 = new BigDecimal("5123.018");
         BigDecimal monthlyProductionPrice2 = new BigDecimal("9001.729");
         BigDecimal monthlyNumber = new BigDecimal("12");
-        BigDecimal yearlyRevenue2 = monthlySales2.multiply(monthlyNumber);
-        BigDecimal yearlyExpenses2 = (monthlyRent2.add(monthlyProductionPrice2)).multiply(monthlyNumber);
-        BigDecimal yearlyProfit2 = yearlyRevenue2.subtract(yearlyExpenses2).setScale(2, RoundingMode.HALF_UP);
+        BigDecimal yearlyProfit2 = (monthlySales2.subtract(monthlyRent2.add(monthlyProductionPrice2)))
+                .multiply(monthlyNumber);
         if (yearlyProfit2.compareTo(BigDecimal.ZERO) > 0) {
             System.out.printf("Прибыль за год: +" + yearlyProfit2 + " руб.\n");
         } else if (yearlyProfit2.compareTo(BigDecimal.ZERO) < 0) {
