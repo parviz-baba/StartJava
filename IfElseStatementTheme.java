@@ -48,25 +48,19 @@ public class IfElseStatementTheme {
         System.out.println("\n3. Проверка числа\n");
 
         int number = 20;
-        if (number != 0) {
-            if (number > 0) {
-                if (number % 2 == 0) {
-                    System.out.println(number + " является положительным и четным");
-                }
-                if (number % 2 != 0 && number % 1 == 0) {
-                    System.out.println(number + " является положительным и нечетным");
-                }
-            }
-            if (number < 0) {
-                if (number % 2 == 0) {
-                    System.out.println(number + " является отрицательным  и четным");
-                }
-                if (number % 2 != 0 && number % 1 == 0) {
-                    System.out.println(number + " является отрицательным  и нечетным");
-                }
-            }
-        } else {
+        if (number == 0) {
             System.out.println(number + " является нулям");
+        } else {
+            System.out.print(number + " является ");
+            String positivity = "отрицательным";
+            if (number > 0) {
+                positivity = "положительным";
+            }
+            String parity = " и нечетным";
+            if (number % 2 == 0) {
+                parity = " и четным";
+            }
+            System.out.println(positivity + parity);
         }
 
         System.out.println("\n4. Поиск одинаковых цифр в числах.\n");
@@ -159,7 +153,7 @@ public class IfElseStatementTheme {
         double yearlyProfit = (monthlySales - (monthlyRent + monthlyProductionPrice)) * 12;
         if (yearlyProfit > 0) {
             System.out.printf("Прибыль за год: +" + yearlyProfit + " руб.\n");
-        } else if (yearlyProfit <= 0) {
+        } else {
             System.out.printf("Прибыль за год: " + yearlyProfit + " руб.\n");
         }
 
@@ -186,14 +180,13 @@ public class IfElseStatementTheme {
         BigDecimal monthlyRent2 = new BigDecimal("5123.018");
         BigDecimal monthlyProductionPrice2 = new BigDecimal("9001.729");
         BigDecimal monthlyNumber = new BigDecimal("12");
-        BigDecimal yearlyProfit2 = (monthlySales2.subtract(monthlyRent2.add(monthlyProductionPrice2)))
+        BigDecimal yearlyProfit2 = (monthlySales2.subtract(monthlyRent2
+                .add(monthlyProductionPrice2)))
                 .multiply(monthlyNumber);
         if (yearlyProfit2.compareTo(BigDecimal.ZERO) > 0) {
             System.out.printf("Прибыль за год: +" + yearlyProfit2 + " руб.\n");
-        } else if (yearlyProfit2.compareTo(BigDecimal.ZERO) < 0) {
-            System.out.printf("Прибыль за год: " + yearlyProfit2 + " руб.\n");
         } else {
-            System.out.println("Прибыль за год: 0 руб.\n");
+            System.out.printf("Прибыль за год: " + yearlyProfit2 + " руб.\n");
         }
     }
 }
