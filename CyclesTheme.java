@@ -89,7 +89,7 @@ public class CyclesTheme {
         System.out.println("\n6. Вывод геометрических фигур\n");
 
         int stars = 50;
-        for (int i = 0; i < star; i++) {
+        for (int i = 0; i < stars; i++) {
             if (i % 10 == 0) {
                 System.out.println();
             }
