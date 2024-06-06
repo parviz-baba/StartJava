@@ -2,56 +2,64 @@
 public class CyclesTheme {
     public static void main(String[] args) {
         System.out.println("\n1. Подсчет суммы четных и нечетных чисел\n");
-
         int start = -10;
         int end = 21;
-        int sumEven = 0;
-        int sumOdd = 0;
+        int sumEvens = 0;
+        int sumOdds = 0;
         int number = start;
         do {
-            sumEven += (number % 2 == 0) ? number : 0;
-            sumOdd += (number % 2 != 0 & number % 1 == 0) ? number : 0;
+            if (number % 2 == 0) {
+                sumEvens += number;
+            }
+            if (number % 2 != 0) {
+                sumOdds += number;
+            }
             number++;
         } while (number <= 21);
-        System.out.println("В отрезке [" + start + " ," + end + "] сумма четных чисел = " + sumEven + 
-                ", а нечетных = " + sumOdd);
+        System.out.println("В отрезке [" + start + " ," + end + "] сумма четных чисел = " + sumEvens + 
+                ", а нечетных = " + sumOdds);
 
         System.out.println("\n2. Вывод чисел между min и max в порядке убывания\n");
-
         int a = 10;
         int b = 5;
         int c = -1;
-        int maxNumber = a;
-        int minNumber = a;
-        minNumber = (b < minNumber) ? b : minNumber;
-        maxNumber = (b > maxNumber) ? b : maxNumber;
-        minNumber = (c < minNumber) ? c : minNumber;
-        maxNumber = (c > maxNumber) ? c : maxNumber;
-        System.out.print("Числа в интервале (" + minNumber + ", " + maxNumber + ") в порядке убывания: ");
-        for (int i = maxNumber - 1; i > minNumber; i--) {
+        int max = a;
+        int min = a;
+        if (b < min) {
+            min = b;
+        }
+        if (b > max) {
+            max = b;
+        }
+        if (c < min) {
+            min = c;
+        }
+        if (c > max) {
+            max = c;
+        }
+        System.out.print("Числа в интервале (" + min + ", " + max + ") в порядке убывания: ");
+        for (int i = max - 1; i > min; i--) {
             System.out.print(i + " ");
         }
-        System.out.println();
 
         System.out.println("\n3. Вывод реверсивного числа и суммы его цифр\n");
-
-        int d = 0;
-        int sumOfDigitsReceived = 0;
-        while (d <= 1234) {
-            sumOfDigitsReceived += d;
-            d++;
+        int number1 = 1234;
+        int reversedNumber = 0;
+        int sumOfDigits = 0;
+        System.out.println("Исходное число: " + number1);
+        int tempNumber = number1;
+        System.out.print("Число в обратном порядке: ");
+        while (tempNumber != 0) {
+            int digit = tempNumber % 10;
+            System.out.print(digit);
+            reversedNumber = reversedNumber * 10 + digit;
+            sumOfDigits += digit;
+            tempNumber /= 10;
         }
-        int e = sumOfDigitsReceived;
-        System.out.print("Число в обратном порядке:");
-        while (e != 0) {
-            int digit = e % 10;
-            System.out.print(" " + digit);
-            e /= 10;
-        }
-        System.out.println("\nСумму выделенных цифр: " + sumOfDigitsReceived);
+        System.out.println();
+        System.out.println("Сумма цифр: " + sumOfDigits);
 
         System.out.println("\n4. Вывод чисел в несколько строк\n");
-
         int start1 = 1;
         int end1 = 24;
         int count = 0;
@@ -71,9 +79,9 @@ public class CyclesTheme {
 
         System.out.println("\n5. Проверка количества двоек числа на четность/нечетность\n");
 
-        int number1 = 3242592;
+        int number3 = 3242592;
         int count1 = 0;
-        int swap = number1;
+        int swap = number3;
         while (swap > 0) {
             if (swap % 10 == 2) {
                 count1++;
@@ -81,13 +89,12 @@ public class CyclesTheme {
             swap /= 10;
         }
         if (count1 % 2 == 0) {
-            System.out.println("В " + number1 + " четное (" + count1 + ") количество двоек");
+            System.out.println("В " + number3 + " четное (" + count1 + ") количество двоек");
         } else {
-            System.out.println("В " + number1 + " нечетное (" + count1 + ") количество двоек");
+            System.out.println("В " + number3 + " нечетное (" + count1 + ") количество двоек");
         }
 
         System.out.println("\n6. Вывод геометрических фигур\n");
-
         int stars = 50;
         for (int i = 0; i < stars; i++) {
             if (i % 10 == 0) {
