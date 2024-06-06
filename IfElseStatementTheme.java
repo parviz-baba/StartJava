@@ -180,9 +180,9 @@ public class IfElseStatementTheme {
         BigDecimal monthlyRent2 = new BigDecimal("5123.018");
         BigDecimal monthlyProductionPrice2 = new BigDecimal("9001.729");
         BigDecimal monthlyNumber = new BigDecimal("12");
-        BigDecimal yearlyProfit2 = (monthlySales2.subtract(monthlyRent2
-                .add(monthlyProductionPrice2)))
-                .multiply(monthlyNumber);
+        BigDecimal yearlyProfit2 = monthlySales2.subtract(monthlyRent2
+                .add(monthlyProductionPrice2))
+                .multiply(monthlyNumber).setScale(2, RoundingMode.HALF_UP);
         if (yearlyProfit2.compareTo(BigDecimal.ZERO) > 0) {
             System.out.printf("Прибыль за год: +" + yearlyProfit2 + " руб.\n");
         } else {
