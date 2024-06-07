@@ -73,7 +73,6 @@ public class CyclesTheme {
         }
 
         System.out.println("\n5. Проверка количества двоек числа на четность/нечетность\n");
-
         originNumber = 3242592;
         count = 0;
         originNumberCopy = originNumber;
@@ -89,7 +88,7 @@ public class CyclesTheme {
             System.out.println("В " + originNumber + " нечетное (" + count + ") количество двоек");
         }
 
-        System.out.println("\n6. Вывод геометрических фигур\n");
+        System.out.println("\n6. Вывод геометрических фигур");
         int stars = 50;
         for (int i = 0; i < stars; i++) {
             if (i % 10 == 0) {
@@ -97,9 +96,7 @@ public class CyclesTheme {
             }
             System.out.print("*");
         }
-
         System.out.println();
-
         double octothorps = 16;
         double height = 5;
         double row = 0;
@@ -112,9 +109,6 @@ public class CyclesTheme {
             }
             row++;
         }
-
-        System.out.println();
-
         int floor = 1;
         boolean reverse = false;
         do {
@@ -134,5 +128,76 @@ public class CyclesTheme {
                 floor++;
             }
         } while (floor > 0 && floor <= 3);
+
+        System.out.println("\n7. Вывод ASCII-символов\n");
+        System.out.printf("%-10s%-12s%-30s%n", "DECIMAL", "CHARACTER", "DESCRIPTION");
+        for (int code = 33; code < 48; code += 2) {
+            System.out.print("  ");
+            printCharacterInfo(code);
+        }
+        for (int code = 97; code <= 122; code += 2) {
+            System.out.print("  ");
+            printCharacterInfo(code);
+        }
+
+        System.out.println("\n8. Проверка, является ли число палиндромом\n");
+        originNumber = 1234321;
+        originNumberCopy = originNumber;
+        int reverseNumber = 0;
+        int digit = 0;
+        while (originNumber > 0) {
+            digit = originNumber % 10;
+            reverseNumber = reverseNumber * 10 + digit;
+            originNumber /= 10;
+        }
+        if (originNumberCopy == reverseNumber) {
+            System.out.println("Число " + originNumberCopy + " - палиндром");
+        } else {
+            System.out.println("Число " + originNumberCopy + " - не палиндром");
+        }
+
+        System.out.println("\n9. Проверка, является ли число счастливым\n");
+        number = 123321;
+        int firstHalf = number / 1000;
+        int secondHalf = number % 1000;
+        int sumFirstHalf = 0;
+        while (firstHalf != 0) {
+            sumFirstHalf += firstHalf % 10;
+            firstHalf /= 10;
+        }
+        int sumSecondHalf = 0;
+        while (secondHalf != 0) {
+            sumSecondHalf += secondHalf % 10;
+            secondHalf /= 10;
+        }
+        if (sumFirstHalf == sumSecondHalf) {
+            System.out.println("Число " + number + " - " + "счастливое");
+        } else {
+            System.out.println("Число " + number + " - " + "не счастливое");
+        }
+        System.out.println("Сумма цифр " + (number / 1000) + " = " + sumFirstHalf);
+        System.out.println("Сумма " + (number % 1000) + " = " + sumSecondHalf);
+
+        System.out.println("\n10. Вывод таблицы умножения Пифагора\n");
+        System.out.println("ТАБЛИЦА ПИФАГОРА");
+        System.out.print("    |");
+        for (int i = 2; i <= 9; i++) {
+            System.out.printf("%4d", i);
+        }
+        System.out.println();
+        System.out.println("----+-----------------------------------");
+        for (int i = 2; i <= 9; i++) {
+            System.out.printf("%4d|", i);
+            for (int j = 2; j <= 9; j++) {
+                System.out.printf("%4d", i * j);
+            }
+            System.out.println();
+        }
+    }
+
+    private static void printCharacterInfo(int code) {
+        char character = (char) code;
+        String description = Character.getName(code);
+        System.out.printf("%-12d%-13c%-30s%n", code, character, description);
     }
 }
