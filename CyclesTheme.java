@@ -1,4 +1,3 @@
-
 public class CyclesTheme {
     public static void main(String[] args) {
         System.out.println("\n1. Подсчет суммы четных и нечетных чисел\n");
@@ -10,8 +9,7 @@ public class CyclesTheme {
         do {
             if (number % 2 == 0) {
                 sumEvens += number;
-            }
-            if (number % 2 != 0) {
+            } else {
                 sumOdds += number;
             }
             number++;
@@ -43,27 +41,24 @@ public class CyclesTheme {
         }
 
         System.out.println("\n3. Вывод реверсивного числа и суммы его цифр\n");
-        int number1 = 1234;
-        int reversedNumber = 0;
+        int originNumber = 1234;
         int sumOfDigits = 0;
-        System.out.println("Исходное число: " + number1);
-        int tempNumber = number1;
+        System.out.println("Исходное число: " + originNumber);
+        int originNumberCopy = originNumber;
         System.out.print("Число в обратном порядке: ");
-        while (tempNumber != 0) {
-            int digit = tempNumber % 10;
+        while (originNumberCopy > 0) {
+            int digit = originNumberCopy % 10;
             System.out.print(digit);
-            reversedNumber = reversedNumber * 10 + digit;
             sumOfDigits += digit;
-            tempNumber /= 10;
+            originNumberCopy /= 10;
         }
-        System.out.println();
-        System.out.println("Сумма цифр: " + sumOfDigits);
+        System.out.println("\nСумма цифр: " + sumOfDigits);
 
         System.out.println("\n4. Вывод чисел в несколько строк\n");
-        int start1 = 1;
-        int end1 = 24;
+        start = 1;
+        end = 24;
         int count = 0;
-        for (int i = start1; i < end1; i += 2) {
+        for (int i = start; i < end; i += 2) {
             if (count > 0 && count % 5 == 0) {
                 System.out.println();
             }
@@ -79,19 +74,19 @@ public class CyclesTheme {
 
         System.out.println("\n5. Проверка количества двоек числа на четность/нечетность\n");
 
-        int number3 = 3242592;
-        int count1 = 0;
-        int swap = number3;
-        while (swap > 0) {
-            if (swap % 10 == 2) {
-                count1++;
+        originNumber = 3242592;
+        count = 0;
+        originNumberCopy = originNumber;
+        while (originNumberCopy > 0) {
+            if (originNumberCopy % 10 == 2) {
+                count++;
             }
-            swap /= 10;
+            originNumberCopy /= 10;
         }
-        if (count1 % 2 == 0) {
-            System.out.println("В " + number3 + " четное (" + count1 + ") количество двоек");
+        if (count % 2 == 0) {
+            System.out.println("В " + originNumber + " четное (" + count + ") количество двоек");
         } else {
-            System.out.println("В " + number3 + " нечетное (" + count1 + ") количество двоек");
+            System.out.println("В " + originNumber + " нечетное (" + count + ") количество двоек");
         }
 
         System.out.println("\n6. Вывод геометрических фигур\n");
@@ -105,44 +100,39 @@ public class CyclesTheme {
 
         System.out.println();
 
-        double octothorps = 15;
+        double octothorps = 16;
         double height = 5;
-        double x = 0;
-        while (x < octothorps) {
-            if (x == 0 || x % height != 0) {
+        double row = 0;
+        while (row < octothorps) {
+            if (row == 0 || row % height != 0) {
                 System.out.print("#");
             } else {
-                System.out.println();
-                System.out.print("#");
+                System.out.println("#");
                 height -= 0.5;
             }
-            x++;
+            row++;
         }
 
         System.out.println();
 
         int floor = 1;
+        boolean reverse = false;
         do {
-            int row = 1;
+            int row1 = 1;
             do {
                 System.out.print("$");
-                row++;
-            } while (row <= floor);
+                row1++;
+            } while (row1 <= floor);
             System.out.println();
+            
             if (floor == 3) {
-                floor = 2;
-                do {
-                    row = 1;
-                    do {
-                        System.out.print("$");
-                        row++;
-                    } while (row <= floor);
-                    System.out.println();
-                    floor--;
-                } while (floor >= 1);
-                floor = 3;
+                reverse = true;
             }
-            floor++;
-        } while (floor <= 3);
+            if (reverse) {
+                floor--;
+            } else {
+                floor++;
+            }
+        } while (floor > 0 && floor <= 3);
     }
 }
