@@ -7,8 +7,7 @@ public class VariablesTheme {
         int numberOfCores = 4;
         double cpuFrequency = 2.4;
         long ramSize = 4;
-        short screenSize = 60; 
-        System.out.println("сделал пробел, показал ошибку. но ");
+        short screenSize = 60;
         byte numberOfUsbPorts = 2;
         boolean hasBluetooth = true;
         char computerClass = 'A';

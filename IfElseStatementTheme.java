@@ -136,7 +136,7 @@ public class IfElseStatementTheme {
         } else if (percentProgramming < 73) {
             gradeProgramming = 3;
         } else if (percentProgramming < 91) {
-            gradeProgramming = 2;
+            gradeProgramming = 4;
         }
         double averageGrade = (gradeHistory + gradeProgramming) / 2;
         double averagePercent = (percentHistory + percentProgramming) / 2;
@@ -158,7 +158,7 @@ public class IfElseStatementTheme {
         }
 
         System.out.println("\n6. Подсчет начисленных банком % (BigDecimal)\n");
-
+        
         BigDecimal depositAmount1 = new BigDecimal("321123.59");
         depositAmount1 = depositAmount1.setScale(2, RoundingMode.HALF_UP);
         BigDecimal interestRate1 = new BigDecimal("0.1");

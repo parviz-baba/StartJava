@@ -99,7 +99,9 @@ public class CyclesTheme {
                 System.out.println();
             }
         }
+
         System.out.println();
+
         double octothorps = 16;
         double height = 5;
         double row = 0;
@@ -115,6 +117,9 @@ public class CyclesTheme {
                 System.out.println();
             }
         }
+
+        System.out.println();
+
         int floor = 1;
         boolean reverse = false;
         do {
@@ -133,16 +138,14 @@ public class CyclesTheme {
             } else {
                 floor++;
             }
-        } while (floor > 0 && floor <= 3);
+        } while (floor > 0);
 
         System.out.println("\n7. Вывод ASCII-символов\n");
         System.out.printf("%-10s%-12s%-30s%n", "DECIMAL", "CHARACTER", "DESCRIPTION");
         for (int code = 33; code < 48; code += 2) {
-            System.out.print("  ");
             printAsciiTable(code);
         }
         for (int code = 97; code <= 122; code += 2) {
-            System.out.print("  ");
             printAsciiTable(code);
         }
 
@@ -166,13 +169,11 @@ public class CyclesTheme {
         int leftHalf = number / 1000;
         int rightHalf = number % 1000;
         int sumLeftHalf = 0;
-        while (leftHalf > 0) {
-            sumLeftHalf += leftHalf % 10;
-            leftHalf /= 10;
-        }
         int sumRightHalf = 0;
-        while (rightHalf > 0) {
+        while (leftHalf > 0 && rightHalf > 0) {
+            sumLeftHalf += leftHalf % 10;
             sumRightHalf += rightHalf % 10;
+            leftHalf /= 10;
             rightHalf /= 10;
         }
         if (sumLeftHalf == sumRightHalf) {
@@ -181,7 +182,7 @@ public class CyclesTheme {
             System.out.println("Число " + number + " - " + "не счастливое");
         }
         System.out.println("Сумма цифр " + (number / 1000) + " = " + sumLeftHalf);
-        System.out.println("Сумма " + (number % 1000) + " = " + sumRightHalf);
+        System.out.println("Сумма цифр " + (number % 1000) + " = " + sumRightHalf);
 
         System.out.println("\n10. Вывод таблицы умножения Пифагора\n");
         System.out.println("ТАБЛИЦА ПИФАГОРА");
@@ -189,8 +190,7 @@ public class CyclesTheme {
         for (int i = 2; i <= 9; i++) {
             System.out.printf("%4d", i);
         }
-        System.out.println();
-        System.out.println("  --+--------------------------------");
+        System.out.println("\n  --+--------------------------------");
         for (int i = 2; i <= 9; i++) {
             System.out.printf("%3d |", i);
             for (int j = 2; j <= 9; j++) {
@@ -201,6 +201,7 @@ public class CyclesTheme {
     }
 
     private static void printAsciiTable(int code) {
+        System.out.print("  ");
         System.out.printf("%-12d%-13c%-30s%n", code, (char) code, Character.getName(code));
     }
 }
