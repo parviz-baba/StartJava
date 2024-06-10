@@ -94,7 +94,7 @@ public class CyclesTheme {
             if (i % 10 == 0) {
                 System.out.println();
             }
-            System.out.print("*");
+            System.out.print("* ");
             if (i == 49) {
                 System.out.println();
             }
@@ -104,12 +104,12 @@ public class CyclesTheme {
 
         double octothorps = 16;
         double height = 5;
-        double row = 0;
+        double row = 1; // 
         while (row < octothorps) {
             if (row == 0 || row % height != 0) {
-                System.out.print("#");
+                System.out.print("# ");
             } else {
-                System.out.println("#");
+                System.out.println("# ");
                 height -= 0.5;
             }
             row++;
@@ -117,15 +117,13 @@ public class CyclesTheme {
                 System.out.println();
             }
         }
-
-        System.out.println();
-
+        
         int floor = 1;
         boolean reverse = false;
         do {
             int row1 = 1;
             do {
-                System.out.print("$");
+                System.out.print("$ ");
                 row1++;
             } while (row1 <= floor);
             System.out.println();
