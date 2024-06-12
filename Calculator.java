@@ -4,6 +4,7 @@ public class Calculator {
         int num2 = 10;
         char operator = '^';
         int result = 0;
+
         if (operator == '+') {
             result = num1 + num2;
         } else if (operator == '-') {
@@ -17,7 +18,8 @@ public class Calculator {
                 System.out.println("На ноль делить нельзя");
                 return;
             }
-        } else if (operator == '^') {
+        }
+        if (operator == '^') {
             result = 1;
             for (int i = 0; i < num2; i++) {
                 result *= num1;
