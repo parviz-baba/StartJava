@@ -117,7 +117,7 @@ public class CyclesTheme {
                 System.out.println();
             }
         }
-        
+
         int floor = 1;
         boolean reverse = false;
         do {
@@ -168,7 +168,7 @@ public class CyclesTheme {
         int rightHalf = number % 1000;
         int sumLeftHalf = 0;
         int sumRightHalf = 0;
-        while (leftHalf > 0 && rightHalf > 0) {
+        while (rightHalf > 0) {
             sumLeftHalf += leftHalf % 10;
             sumRightHalf += rightHalf % 10;
             leftHalf /= 10;
@@ -199,7 +199,6 @@ public class CyclesTheme {
     }
 
     private static void printAsciiTable(int code) {
-        System.out.print("  ");
-        System.out.printf("%-12d%-13c%-30s%n", code, (char) code, Character.getName(code));
+        System.out.printf("\n%-12d%-13c%-30s%n", code, (char) code, Character.getName(code));
     }
 }
