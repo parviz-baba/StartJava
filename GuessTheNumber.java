@@ -1,4 +1,4 @@
-public class GuessTheNumber {
+public class GuessNumber {
     public static void main(String[]args) {
         int secretNumber = 42;
         int guess = 0;
