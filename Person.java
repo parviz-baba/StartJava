@@ -1,5 +1,5 @@
 public class Person {
-    String gender;
+    String sex;
     String name;
     double height;
     double weight;
