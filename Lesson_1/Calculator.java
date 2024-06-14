@@ -16,7 +16,7 @@ public class Calculator {
                 System.out.println("На ноль делить нельзя");
                 return;
             }
-                result = num1 / num2;
+            result = num1 / num2;
         } else if (operator == '^') {
             result = 1;
             for (int i = 0; i < num2; i++) {
