@@ -12,13 +12,12 @@ public class Calculator {
         } else if (operator == '*') {
             result = num1 * num2;
         } else if (operator == '/') {
-            if (num2 != 0) {
-                result = num1 / num2;
-            } else {
+            if (num2 == 0) {
                 System.out.println("На ноль делить нельзя");
                 return;
-
-        if (operator == '^') {
+            }
+                result = num1 / num2;
+        } else if (operator == '^') {
             result = 1;
             for (int i = 0; i < num2; i++) {
                 result *= num1;
