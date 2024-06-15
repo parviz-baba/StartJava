@@ -18,7 +18,7 @@ public class Wolf {
     }
 
     public void setNickname(String nickname) {
-            this.nickname = nickname;
+        this.nickname = nickname;
     }
 
     public String getColor() {
@@ -34,7 +34,7 @@ public class Wolf {
     }
 
     public void setWeight(double weight) {
-    this.weight = weight;
+        this.weight = weight;
     }
 
     public int getAge() {
