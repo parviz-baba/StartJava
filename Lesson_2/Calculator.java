@@ -1,6 +1,6 @@
 public class Calculator {
     public double calculate(int num1, String operator, int num2) {
-        switch(operator) {
+        switch (operator) {
             case "+":
                 return add(num1, num2);
             case "-":
@@ -10,6 +10,7 @@ public class Calculator {
             case "/":
                 if (num2 == 0) {
                     System.out.println("Ошибка: деление на ноль запрещено");
+                    return Double.NaN;
                 }
                 return divide(num1, num2);
             case "^":
@@ -19,6 +20,7 @@ public class Calculator {
             default:
                 System.out.println("Ошибка: операция " + operator + " не поддерживается.");
                 System.out.println("Доступны следующие операции: +, -, *, /, ^, %");
+                return Double.NaN;
         }
     }
 
@@ -34,8 +36,8 @@ public class Calculator {
         return a * b;
     }
 
-    public int divide(int a, int b) {
-        return a / b;
+    public double divide(int a, int b) {
+        return (double) a / b;
     }
 
     public int power(int a, int b) {
