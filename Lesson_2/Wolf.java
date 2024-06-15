@@ -1,5 +1,9 @@
 public class Wolf {
     private String sex = "male";
+    private String nickname = "Alfa";
+    private String color = "Black";
+    private double weight = 17.5;
+    private int age = 10;
 
     public String getSex() {
         return sex;
@@ -9,17 +13,13 @@ public class Wolf {
         this.sex = sex;
     }
 
-    private String nickname = "Alfa";
-
     public String getNickname() {
         return nickname;
     }
 
     public void setNickname(String nickname) {
-        this.nickname = nickname;
+            this.nickname = nickname;
     }
-
-    private String color = "Black";
 
     public String getColor() {
         return color;
@@ -29,8 +29,6 @@ public class Wolf {
         this.color = color;
     }
 
-    private double weight = 17.5;
-
     public double getWeight() {
         return weight;
     }
@@ -38,8 +36,6 @@ public class Wolf {
     public void setWeight(double weight) {
     this.weight = weight;
     }
-
-    private int age = 10;
 
     public int getAge() {
         return age;
@@ -52,7 +48,7 @@ public class Wolf {
             this.age = age;
         }
     }
-    
+
     public void go() {
         System.out.println("\n" + nickname + " идёт");
     }
