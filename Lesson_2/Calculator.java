@@ -10,16 +10,20 @@ class Calculator {
             case "/":
                 if (num2 != 0) {
                     return num1 / (double) num2;
-                } else {
-                    System.out.println("Деление на ноль невозможно.");
-                    return Double.NaN;
                 }
+                System.out.println("Ошибка: деление на ноль запрещено");
+                return Double.NaN;
             case "^":
                 return pow(num1, num2);
             case "%":
-                return num1 % num2;
+                if (num2 != 0) {
+                    return num1 % num2;
+                }
+                System.out.println("Ошибка: деление на ноль запрещено");
+                return Double.NaN;
             default:
-                System.out.println("Неверный оператор.");
+                System.out.println("Ошибка: операция '&' не поддерживается.");
+                System.out.println("Доступны следующие операции: +, -, *, /, ^, %");
                 return Double.NaN;
         }
     }
