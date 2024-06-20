@@ -1,31 +1,38 @@
 class Calculator {
     public double calculate(int num1, String operator, int num2) {
+        double result = Double.NaN;
         switch (operator) {
             case "+":
-                return num1 + num2;
+                result = num1 + num2;
+                break;
             case "-":
-                return num1 - num2;
+                result = num1 - num2;
+                break;
             case "*":
-                return num1 * num2;
+                result = num1 * num2;
+                break;
             case "/":
                 if (num2 != 0) {
-                    return num1 / (double) num2;
+                    result = num1 / (double) num2;
+                } else {
+                    System.out.println("Ошибка: деление на ноль запрещено");
                 }
-                System.out.println("Ошибка: деление на ноль запрещено");
-                return Double.NaN;
+                break;
             case "^":
-                return pow(num1, num2);
+                result = pow(num1, num2);
+                break;
             case "%":
                 if (num2 != 0) {
-                    return num1 % num2;
+                    result = num1 % num2;
+                } else {
+                    System.out.println("Ошибка: деление на ноль запрещено");
                 }
-                System.out.println("Ошибка: деление на ноль запрещено");
-                return Double.NaN;
+                break;
             default:
-                System.out.println("Ошибка: операция '&' не поддерживается.");
+                System.out.println("Ошибка: операция " + operator + " не поддерживается.");
                 System.out.println("Доступны следующие операции: +, -, *, /, ^, %");
-                return Double.NaN;
         }
+        return result;
     }
 
     public int pow(int a, int b) {

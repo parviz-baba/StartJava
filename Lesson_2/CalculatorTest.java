@@ -14,18 +14,18 @@ public class CalculatorTest {
             Calculator calculator = new Calculator();
             double result = calculator.calculate(num1, operator, num2);
             printResult(num1, operator, num2, result);
-            while (userChoice.equals("yes")) {
-                System.out.println("Хотите продолжить вычисления? [yes/no]: ");
-                userChoice = scanner.nextLine();
-                if (userChoice.equalsIgnoreCase("yes")) {
-                    break;
-                } else if (userChoice.equalsIgnoreCase("no")) {
-                    scanner.close();
-                    return;
-                } else {
-                    System.out.println("Пожалуйста, введите 'yes' или 'no'.");
-                }
+            System.out.println("Хотите продолжить вычисления? [yes/no]: ");
+            userChoice = scanner.nextLine();
+            if (userChoice.equalsIgnoreCase("yes")) {
+                continue;
             }
+            if (userChoice.equalsIgnoreCase("no")) {
+                scanner.close();
+                return;
+            }
+            System.out.println("Пожалуйста, введите 'yes' или 'no'.");
+            userChoice = scanner.nextLine();
+            continue;
         }
     }
 
