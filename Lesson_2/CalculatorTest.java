@@ -4,6 +4,7 @@ public class CalculatorTest {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         String userChoice = "yes";
+
         while (userChoice.equals("yes")) {
             System.out.println("Введите первое число: ");
             int num1 = Integer.parseInt(scanner.nextLine());
@@ -16,16 +17,6 @@ public class CalculatorTest {
             printResult(num1, operator, num2, result);
             System.out.println("Хотите продолжить вычисления? [yes/no]: ");
             userChoice = scanner.nextLine();
-            if (userChoice.equalsIgnoreCase("yes")) {
-                continue;
-            }
-            if (userChoice.equalsIgnoreCase("no")) {
-                scanner.close();
-                return;
-            }
-            System.out.println("Пожалуйста, введите 'yes' или 'no'.");
-            userChoice = scanner.nextLine();
-            continue;
         }
     }
 
