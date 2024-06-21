@@ -1,6 +1,6 @@
 class Calculator {
     public double calculate(int num1, String operator, int num2) {
-        double result = Double.NaN;
+        double result;
         switch (operator) {
             case "+":
                 result = num1 + num2;
@@ -32,7 +32,7 @@ class Calculator {
                 System.out.println("Ошибка: операция " + operator + " не поддерживается.");
                 System.out.println("Доступны следующие операции: +, -, *, /, ^, %");
         }
-        return result;
+        return Double.NaN;
     }
 
     public int pow(int a, int b) {
