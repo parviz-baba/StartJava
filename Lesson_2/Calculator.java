@@ -10,24 +10,23 @@ class Calculator {
             case "/":
                 if (num2 != 0) {
                     return num1 / (double) num2;
-                } else {
-                    System.out.println("Ошибка: деление на ноль запрещено");
-                    return Double.NaN;
                 }
+                System.out.println("Ошибка: деление на ноль запрещено");
+                break;
             case "^":
-                return pow(num1, num2);
+                return Math.pow(num1, num2);
             case "%":
                 if (num2 != 0) {
                     return num1 % num2;
-                } else {
-                    System.out.println("Ошибка: деление на ноль запрещено");
-                    return Double.NaN;
                 }
+                System.out.println("Ошибка: деление на ноль запрещено");
+                break;
             default:
                 System.out.println("Ошибка: операция " + operator + " не поддерживается.");
                 System.out.println("Доступны следующие операции: +, -, *, /, ^, %");
-                return Double.NaN;
+                break;
         }
+        return Double.NaN;
     }
 
     public int pow(int a, int b) {
