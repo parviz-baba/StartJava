@@ -15,8 +15,18 @@ public class CalculatorTest {
             Calculator calculator = new Calculator();
             double result = calculator.calculate(num1, operator, num2);
             printResult(num1, operator, num2, result);
+            if (!operator.equals("+") && !operator.equals("-") && 
+                    !operator.equals("*") && !operator.equals("/") && 
+                    !operator.equals("^") && !operator.equals("%")) {
+                System.out.println("Неправильный оператор. Попробуйте снова.");
+                continue;
+            }
             System.out.println("Хотите продолжить вычисления? [yes/no]: ");
             userChoice = scanner.nextLine();
+            while (!userChoice.equalsIgnoreCase("yes") && !userChoice.equalsIgnoreCase("no")) {
+                System.out.println("Пожалуйста, введите 'yes' или 'no'.");
+                userChoice = scanner.nextLine();
+            }
         }
     }
 

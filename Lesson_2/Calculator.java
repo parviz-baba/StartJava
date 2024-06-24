@@ -1,44 +1,42 @@
 class Calculator {
     public double calculate(int num1, String operator, int num2) {
-        double result;
         switch (operator) {
             case "+":
-                result = num1 + num2;
-                break;
+                return num1 + num2;
             case "-":
-                result = num1 - num2;
-                break;
+                return num1 - num2;
             case "*":
-                result = num1 * num2;
-                break;
+                return num1 * num2;
             case "/":
                 if (num2 != 0) {
-                    result = num1 / (double) num2;
+                    return num1 / (double) num2;
                 } else {
                     System.out.println("Ошибка: деление на ноль запрещено");
+                    return Double.NaN;
                 }
-                break;
             case "^":
-                result = pow(num1, num2);
-                break;
+                return pow(num1, num2);
             case "%":
                 if (num2 != 0) {
-                    result = num1 % num2;
+                    return num1 % num2;
                 } else {
                     System.out.println("Ошибка: деление на ноль запрещено");
+                    return Double.NaN;
                 }
-                break;
             default:
                 System.out.println("Ошибка: операция " + operator + " не поддерживается.");
                 System.out.println("Доступны следующие операции: +, -, *, /, ^, %");
+                return Double.NaN;
         }
-        return Double.NaN;
     }
 
     public int pow(int a, int b) {
         int result = 1;
-        for (int i = 0; i < b; i++) {
+        for (int i = 0; i < Math.abs(b); i++) {
             result *= a;
+        }
+        if (b < 0) {
+            result = 1 / result;
         }
         return result;
     }
