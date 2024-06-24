@@ -15,16 +15,16 @@ public class GuessNumberTest {
 
         boolean playAgain = true;
         while (playAgain) {
-            game.startGame();
+            game.start();
             System.out.println("Хотите продолжить игру? [yes/no]: ");
             String answer = scanner.next();
             while (!answer.equalsIgnoreCase("yes") && !answer.equalsIgnoreCase("no")) {
-                System.out.println("Пожалуйста, введите 'yes' или 'no'. Хотите продолжить игру? [yes/no]: ");
+                System.out.println("Пожалуйста, введите 'yes' или 'no'.");
                 answer = scanner.next();
             }
             playAgain = answer.equalsIgnoreCase("yes");
             if (playAgain) {
-                game.resetGame();
+                game.generateNewTarget();
             }
         }
         System.out.println("Игра завершена. Спасибо за игру!");

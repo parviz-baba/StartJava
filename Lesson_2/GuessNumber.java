@@ -8,10 +8,10 @@ public class GuessNumber {
     public GuessNumber(Player player1, Player player2) {
         this.player1 = player1;
         this.player2 = player2;
-        resetGame();
+        generateNewTarget();
     }
 
-    public void startGame() {
+    public void start() {
         Scanner scanner = new Scanner(System.in);
         boolean guessed = false;
         Player currentPlayer = player1;
@@ -24,17 +24,18 @@ public class GuessNumber {
                 guessed = true;
                 System.out.println("Поздравляем, " + currentPlayer.getName() + "! Ты угадал число.");
             } else {
-                System.out.println("Неверно. Попробуй снова.");
-                if (currentPlayer == player1) {
-                    currentPlayer = player2;
+                if (guess > targetNumber) {
+                    System.out.println(guess + " больше того, что загадал компьютер");
                 } else {
-                    currentPlayer = player1;
+                    System.out.println(guess + " меньше того, что загадал компьютер");
                 }
+                System.out.println("Неверно. Попробуй снова.");
+                currentPlayer = (currentPlayer == player1) ? player2 : player1;
             }
         }
     }
 
-    public void resetGame() {
+    public void generateNewTarget() {
         targetNumber = (int) (Math.random() * 100) + 1;
     }
 }
