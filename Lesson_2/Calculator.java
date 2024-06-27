@@ -14,7 +14,7 @@ class Calculator {
                 System.out.println("Ошибка: деление на ноль запрещено");
                 break;
             case "^":
-                return Math.pow(num1, num2);
+                return pow(num1, num2);
             case "%":
                 if (num2 != 0) {
                     return num1 % num2;
@@ -24,19 +24,16 @@ class Calculator {
             default:
                 System.out.println("Ошибка: операция " + operator + " не поддерживается.");
                 System.out.println("Доступны следующие операции: +, -, *, /, ^, %");
-                break;
         }
         return Double.NaN;
     }
 
-    public int pow(int a, int b) {
-        int result = 1;
+    private double pow(int a, int b) {
+        double result = 1;
         for (int i = 0; i < Math.abs(b); i++) {
             result *= a;
         }
-        if (b < 0) {
-            result = 1 / result;
-        }
+        result = (b < 0) ? 1 / result : result;
         return result;
     }
 }
