@@ -1,58 +1,71 @@
 public class BooleanMethods {
     public boolean isProgramRunning() {
-        System.out.println(getCurrentMethodName() + "() -> выполняется ли далее программа или завершается?");
-        return true;
+        boolean result = true;
+        System.out.println(MethodNameHelper.getMethodName() + 
+                "() -> выполняется ли далее программа или завершается? " + result);
+        return result;
     }
 
     public boolean isFileDeleted() {
-        System.out.println(getCurrentMethodName() + "() -> удалился ли файл на жестком диске или флешке?");
-        return false;
+        boolean result = false;
+        System.out.println(MethodNameHelper.getMethodName() + 
+                "() -> удалился ли файл на жестком диске или флешке? " + result);
+        return result;
     }
 
     public boolean isUniqueNumber() {
-        System.out.println(getCurrentMethodName() + "() -> последовательность содержит уникальную цифру?");
-        return true;
+        boolean result = true;
+        System.out.println(MethodNameHelper.getMethodName() + 
+                "() -> последовательность содержит уникальную цифру? " + result);
+        return result;
     }
 
     public boolean isLetterEntered() {
-        System.out.println(getCurrentMethodName() + "() -> пользователь ввел букву или что-то другое?");
-        return false;
+        boolean result = false;
+        System.out.println(MethodNameHelper.getMethodName() + 
+                "() -> пользователь ввел букву или что-то другое? " + result);
+        return result;
     }
 
     public boolean hasEqualDigits() {
-        System.out.println(getCurrentMethodName() + "() -> в проверяемых числах, есть равные цифры?");
-        return true;
+        boolean result = true;
+        System.out.println(MethodNameHelper.getMethodName() + 
+                "() -> в проверяемых числах, есть равные цифры? " + result);
+        return result;
     }
 
     public boolean hasMarioLives() {
-        System.out.println(getCurrentMethodName() + "() -> в игре 'Марио' остались попытки?");
-        return false;
+        boolean result = false;
+        System.out.println(MethodNameHelper.getMethodName() + 
+                "() -> в игре 'Марио' остались попытки? " + result);
+        return result;
     }
 
     public boolean isEmptyOrWhitespace() {
-        System.out.println(getCurrentMethodName() + 
-                "() -> пользователь ввёл пустую строку или строку, где одни пробелы?");
-        return true;
+        boolean result = true;
+        System.out.println(MethodNameHelper.getMethodName() + 
+                "() -> пользователь ввёл пустую строку или строку, где одни пробелы? " + result);
+        return result;
     }
 
     public boolean isEvenNumber() {
-        System.out.println(getCurrentMethodName() + 
-                "() -> на кубике, который бросил компьютер, выпало четное число?");
-        return false;
+        boolean result = false;
+        System.out.println(MethodNameHelper.getMethodName() + 
+                "() -> на кубике, который бросил компьютер, выпало четное число? " + result);
+        return result;
     }
 
     public boolean isValidPath() {
-        System.out.println(getCurrentMethodName() + 
-                    "() -> путь до файла, который вы ищите на ssd, действительный?");
-        return true;
+        boolean result = true;
+        System.out.println(MethodNameHelper.getMethodName() + 
+                    "() -> путь до файла, который вы ищите на ssd, действительный? " + result);
+        return result;
     }
 
     public boolean isFileExists() {
-        System.out.println(getCurrentMethodName() + "() -> файл по указанному адресу существует?");
-        return false;
-    }
-
-    private String getCurrentMethodName() {
-        return new Exception().getStackTrace()[1].getMethodName();
+        boolean result = false;
+        System.out.println(MethodNameHelper.getMethodName() + 
+                "() -> файл по указанному адресу существует? " + result);
+        return result;
     }
 }
