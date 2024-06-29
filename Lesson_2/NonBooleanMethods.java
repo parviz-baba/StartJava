@@ -69,6 +69,6 @@ public class NonBooleanMethods {
 
     public void saveToClipboard() {
         System.out.println(MethodNameHelper.getMethodName() + 
-                "() -> сохранить содержимое из буфера обмена в файл Buffer.txt");
+                "() -> сохранить содержимое из буфера обмена в файл Buffer.txt\n");
     }
 }
