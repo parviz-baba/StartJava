@@ -9,21 +9,22 @@ public class NonBooleanMethods {
                 "() -> выбрать пункт меню в текстовом редакторе на macOS");
     }
 
-    public void calculateAverageGrade() {
+    public void calculateAvgGrade() {
         System.out.println(MethodNameHelper.getMethodName() + 
                 "() -> вычислить среднее значение оценок в школе №1234");
     }
 
-    public void countUniqueWords() {
+    public void countWords() {
         System.out.println(MethodNameHelper.getMethodName() + 
                 "() -> подсчитать количество уникальных слов в 'Война и Мир'");
     }
 
     public void displayError() {
-        System.out.println(MethodNameHelper.getMethodName() + "() -> вывести сообщение об ошибке");
+        System.out.println(MethodNameHelper.getMethodName() + 
+                "() -> вывести сообщение об ошибке");
     }
 
-    public void synchronizeData() {
+    public void sync() {
         System.out.println(MethodNameHelper.getMethodName() + 
                 "() -> синхронизировать данные с облачным хранилищем");
     }
@@ -48,7 +49,7 @@ public class NonBooleanMethods {
                 "() -> записать содержимое в файл по указанному пути на флешку");
     }
 
-    public void convertCelsiusToFahrenheit() {
+    public void convertTemperature() {
         System.out.println(MethodNameHelper.getMethodName() + 
                 "() -> преобразовать температуру из Цельсия в Фаренгейт");
     }
@@ -64,10 +65,11 @@ public class NonBooleanMethods {
     }
 
     public void searchBook() {
-        System.out.println(MethodNameHelper.getMethodName() + "() -> найти книгу по имени писателя");
+        System.out.println(MethodNameHelper.getMethodName() + 
+                "() -> найти книгу по имени писателя");
     }
 
-    public void saveToClipboard() {
+    public void saveClipboardToFile() {
         System.out.println(MethodNameHelper.getMethodName() + 
                 "() -> сохранить содержимое из буфера обмена в файл Buffer.txt\n");
     }
