@@ -31,10 +31,10 @@ public class RpsGameFormatting {
         String name2 = "WALLE";
         int position2 = r.nextInt(1, 100);
         String sign2 = rock;
-        if (position1 > 66) {
+        if (position2 > 66) {
             sign2 = paper;
         } else {
-            if (position1 > 33) {
+            if (position2 > 33) {
                 sign2 = scissors;
             }
         }
