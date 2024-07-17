@@ -2,7 +2,7 @@ package com.startjava.lesson_2_3.method.naming;
 
 public class MethodDoTest {
     public static void main(String[] args) {
-        MethodDoTest MethodDoTest = new MethodDoTest();
+        MethodDoTest methodDoTest = new MethodDoTest();
         MethodDoTest.callNonBooleanMethods();
         MethodDoTest.callBooleanMethods();
     }
