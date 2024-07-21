@@ -1,2 +1,0 @@
--d out
-D:\git\StartJava\src\com\startjava\Lesson_1\final_\Calculator.java
