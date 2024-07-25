@@ -3,23 +3,7 @@ package com.startjava.lesson_2_3.rps;
 import java.util.Random;
 import java.util.Scanner;
 
-// Игра Камень-Ножницы-Бумага
 public class RpsGameFormatting {
-    public static void main(String[] args) throws InterruptedException {
-        Random r = new Random();
-        Scanner console = new Scanner(System.in);
-        String name1 = inputName(console);
-        String name2 = inputName(console);
-        // Ход первого игрока
-        int position = generatePosition(name1, r);
-        String sign1 = defineSign(position);
-        showSigns(sign1);
-        // Ход второго игрока
-        position = generatePosition(name2, r);
-        String sign2 = defineSign(position);
-        showSigns(sign2);
-        defineWinner(name1, sign1, name2, sign2);
-    }
 
     private static final String ROCK = "R";
     private static final String SCISSORS = "S";
@@ -37,10 +21,10 @@ public class RpsGameFormatting {
 
     private static String defineSign(int position) {
         String sign = ROCK;
-        if (position > 66) {
-            sign = ROCK;
-        } else if (position > 33) {
-            sign = ROCK;
+        if (position <= 66) {
+            sign = SCISSORS;
+        } else if (position <= 33) {
+            sign = PAPER;
         }
         return sign;
     }
@@ -70,5 +54,24 @@ public class RpsGameFormatting {
         } else {
             System.out.println("\nПобедил - " + name2);
         }
+    }
+
+    // Игра Камень-Ножницы-Бумага
+    public static void main(String[] args) throws InterruptedException {
+        Random r = new Random();
+        Scanner console = new Scanner(System.in);
+        String name1 = inputName(console);
+        String name2 = inputName(console);
+
+        // Ход первого игрока
+        int position = generatePosition(name1, r);
+        String sign1 = defineSign(position);
+        showSigns(sign1);
+        
+        // Ход второго игрока
+        position = generatePosition(name2, r);
+        String sign2 = defineSign(position);
+        showSigns(sign2);
+        defineWinner(name1, sign1, name2, sign2);
     }
 }
