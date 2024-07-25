@@ -3,6 +3,7 @@ package com.startjava.lesson_2_3.rps;
 import java.util.Random;
 import java.util.Scanner;
 
+// Игра Камень-Ножницы-Бумага
 public class RpsGameFormatting {
 
     private static final String ROCK = "R";
