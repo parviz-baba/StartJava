@@ -1,3 +1,5 @@
+package com.startjava.lesson_2_3.array;
+
 public class ArrayReversel {
     public static void reverseArray(int[] array) {
         if (array == null || array.length == 0) {
