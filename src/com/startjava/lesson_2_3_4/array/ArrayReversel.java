@@ -1,6 +1,11 @@
-package com.startjava.lesson_2_3.array;
-
 public class ArrayReversel {
+    public static void main(String[] args) {
+        reverseArray(new int[0]);
+        reverseArray(null);
+        reverseArray(new int[]{6, 8, 9, 1});
+        reverseArray(new int[]{13, 8, 5, 3, 2, 1, 1});
+    }
+
     public static void reverseArray(int[] array) {
         if (array == null || array.length == 0) {
             System.out.println("Массив либо нулевой, либо пустой");
@@ -28,13 +33,5 @@ public class ArrayReversel {
             }
         }
         System.out.println("]");
-    }
-
-    public static void main(String[] args) {
-        reverseArray(new int[0]);
-        reverseArray(null);
-        reverseArray(new int[]{6, 8, 9, 1});
-        reverseArray(new int[]{13, 8, 5, 3, 2, 1, 1});
-        reverseArray(new int[]{1, 2, 3, 4});
     }
 }
