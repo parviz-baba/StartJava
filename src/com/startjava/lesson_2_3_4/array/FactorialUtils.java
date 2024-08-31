@@ -1,5 +1,3 @@
-package com.startjava.lesson_2_3_4.array;
-
 public class FactorialUtils {
     public static void main(String[] args) {
         printFactorials(new int[]{});
@@ -13,7 +11,8 @@ public class FactorialUtils {
         if (numbers == null) {
             System.out.println("Массив равен null");
             return;
-        } else if (numbers.length == 0) {
+        }
+        if (numbers.length == 0) {
             System.out.println("Массив нулевой длины");
             return;
         }
@@ -49,7 +48,7 @@ public class FactorialUtils {
     public static String formatFactorial(int number, int result) {
         if (number == 0) return "0! = 1";
         String resultString = number + "! = ";
-        for (int i = 1; i <= number; i++){
+        for (int i = 1; i <= number; i++) {
             resultString += i;
             if (i < number) resultString += " * ";
         }
