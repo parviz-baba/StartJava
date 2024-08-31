@@ -7,7 +7,7 @@ public class FactorialUtils {
         printFactorials(-22, -0);
     }
 
-    public static void printFactorials(int... numbers) {
+    private static void printFactorials(int... numbers) {
         if (numbers == null) {
             System.out.println("Массив равен null");
             return;
@@ -21,10 +21,9 @@ public class FactorialUtils {
             int num = numbers[i];
             if (num < 0) {
                 System.out.println("Ошибка: факториал " + num + "! не определен.");
-                results[i] = -1;
             } else {
-                results[i] = calculateFactorialValue(num);
-                System.out.println(formatFactorial(num, results[i]));
+                results[i] = calculateFactorial(num);
+                System.out.println(formatResult(num, results[i]));
             }
         }
         System.out.println("Массив результатов: ");
@@ -36,7 +35,7 @@ public class FactorialUtils {
         System.out.println();
     }
 
-    public static int calculateFactorialValue(int number) {
+    private static int calculateFactorial(int number) {
         if (number == 0) return 1;
         int fact = 1;
         for (int i = 1; i <= number; i++) {
@@ -45,14 +44,14 @@ public class FactorialUtils {
         return fact;
     }
 
-    public static String formatFactorial(int number, int result) {
+    private static String formatResult(int number, int result) {
         if (number == 0) return "0! = 1";
-        String resultString = number + "! = ";
+        StringBuilder resultString = new StringBuilder(number + "! = ");
         for (int i = 1; i <= number; i++) {
-            resultString += i;
-            if (i < number) resultString += " * ";
+            resultString.append(i);
+            if (i < number) resultString.append(" * ");
         }
-        resultString += " = " + result;
-        return resultString;
+        resultString.append(" = ").append(result);
+        return resultString.toString();
     }
 }
