@@ -4,23 +4,23 @@ import java.util.Random;
 
 public class ArrayModifier {
     public static void main(String[] args) {
-        float[] value = new float[15];
+        float[] randomFloats = new float[15];
         Random random = new Random();
-        for (int i = 0; i < value.length; i++) {
-            value[i] = random.nextFloat();
-        }
-        System.out.println("\nИсходный массив:");
-        printArray(value);
         int[] addresses = {-1, 15, 0, 14};
         for (int address : addresses) {
-            System.out.println("\nAdres: " + address);
-            if (address >= 0 && address < value.length) {
-                double threshold = value[address];
+            System.out.println("\nАдрес: " + address);
+            for (int i = 0; i < randomFloats.length; i++) {
+                randomFloats[i] = random.nextFloat();
+            }
+            System.out.println("\nИсходный массив:");
+            printArray(randomFloats);
+            if (address >= 0 && address < randomFloats.length) {
+                double threshold = randomFloats[address];
                 System.out.println("Элемент по указанному адресу: " + address +
                         ", Значение: " + String.format("%.3f", threshold));
-                int zeroedCount = removeGreaterElements(value, address);
-                System.out.println("\nИзмененный массив:");
-                printArray(value);
+                int zeroedCount = removeGreaterElements(randomFloats, address);
+                System.out.println("Измененный массив:");
+                printArray(randomFloats);
                 System.out.println("Количество обнуленных элементов: " + zeroedCount);
             } else {
                 System.out.println("Ошибка: Неверный адрес. За пределами границы массива.");
@@ -28,22 +28,22 @@ public class ArrayModifier {
         }
     }
 
-    private static void printArray(float[] value) {
-        for (int i = 0; i < value.length; i++) {
-            System.out.printf("%.3f ", value[i]);
-            if ((i + 1) % 8 == 0) {
+    private static void printArray(float[] randomFloats) {
+        for (int i = 0; i < randomFloats.length; i++) {
+            System.out.printf("%.3f ", randomFloats[i]);
+            if (i + 1 == 8) {
                 System.out.println();
             }
         }
         System.out.println();
     }
 
-    private static int removeGreaterElements(float[] value, int address) {
-        double threshold = value[address];
+    private static int removeGreaterElements(float[] randomFloats, int address) {
+        double threshold = randomFloats[address];
         int zeroedCount = 0;
-        for (int i = 0; i < value.length; i++) {
-            if (value[i] > threshold) {
-                value[i] = 0.0f;
+        for (int i = 0; i < randomFloats.length; i++) {
+            if (randomFloats[i] > threshold) {
+                randomFloats[i] = 0.0f;
                 zeroedCount++;
             }
         }

@@ -9,31 +9,27 @@ public class FactorialUtils {
         printFactorials(-22, -0);
     }
 
-    private static void printFactorials(int... number) {
-        if (number == null) {
+    private static void printFactorials(int... numbers) {
+        if (numbers == null) {
             System.out.println("Массив равен null");
             return;
         }
-        if (number.length == 0) {
+        if (numbers.length == 0) {
             System.out.println("Массив нулевой длины");
             return;
         }
-        long[] results = new long[number.length];
-        for (int i = 0; i < number.length; i++) {
-            int num = number[i];
-            if (num < 0) {
-                System.out.println("Ошибка: факториал " + num + "! не определен.");
+        long[] results = new long[numbers.length];
+        for (int i = 0; i < numbers.length; i++) {
+            int number = numbers[i];
+            if (number < 0) {
+                System.out.println("Ошибка: факториал " + number + "! не определен.");
             } else {
-                results[i] = calculateFactorial(num);
-                System.out.println(formatResult(num, results[i]));
+                results[i] = calculateFactorial(number);
+                System.out.println(formatResult(number, results[i]));
             }
         }
         System.out.println("Массив результатов: ");
-        for (long result : results) {
-            if (result != -1) {
-                System.out.print(result + " ");
-            }
-        }
+        for (long result : results) System.out.print(result + " ");
         System.out.println();
     }
 
