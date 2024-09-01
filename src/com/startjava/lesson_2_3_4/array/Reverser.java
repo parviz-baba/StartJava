@@ -1,3 +1,5 @@
+package com.startjava.lesson_2_3_4.array;
+
 public class Reverser {
     public static void main(String[] args) {
         toReverse(new int[0]);
