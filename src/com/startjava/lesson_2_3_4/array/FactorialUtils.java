@@ -29,7 +29,9 @@ public class FactorialUtils {
             }
         }
         System.out.println("Массив результатов: ");
-        for (long result : results) System.out.print(result + " ");
+        for (long result : results) {
+            System.out.print(result + " ");
+        }
         System.out.println();
     }
 
@@ -49,7 +51,9 @@ public class FactorialUtils {
             resultString.append(i);
             if (i < number) resultString.append(" * ");
         }
-        if (number > 1) resultString.append(" = ").append(result);
+        if (number > 1) {
+            resultString.append(" = ").append(result);
+        }
         return resultString.toString();
     }
 }
