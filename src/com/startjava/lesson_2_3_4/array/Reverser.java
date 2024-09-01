@@ -14,12 +14,11 @@ public class Reverser {
             return;
         }
         displayArray("   До реверса: ", array);
-        int len = array.length - 1;
-        for (int i = 0; i < len; i++) {
+        int len = array.length;
+        for (int i = 0; i < --len; i++) {
             int temp = array[i];
             array[i] = array[len];
             array[len] = temp;
-            len--;
         }
         displayArray("После реверса: ", array);
     }
