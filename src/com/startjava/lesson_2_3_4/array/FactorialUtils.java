@@ -7,18 +7,18 @@ public class FactorialUtils {
         printFactorials(-22, -0);
     }
 
-    private static void printFactorials(int... numbers) {
-        if (numbers == null) {
+    private static void printFactorials(int... number) {
+        if (number == null) {
             System.out.println("Массив равен null");
             return;
         }
-        if (numbers.length == 0) {
+        if (number.length == 0) {
             System.out.println("Массив нулевой длины");
             return;
         }
-        int[] results = new int[numbers.length];
-        for (int i = 0; i < numbers.length; i++) {
-            int num = numbers[i];
+        long[] results = new long[number.length];
+        for (int i = 0; i < number.length; i++) {
+            int num = number[i];
             if (num < 0) {
                 System.out.println("Ошибка: факториал " + num + "! не определен.");
             } else {
@@ -27,7 +27,7 @@ public class FactorialUtils {
             }
         }
         System.out.println("Массив результатов: ");
-        for (int result : results) {
+        for (long result : results) {
             if (result != -1) {
                 System.out.print(result + " ");
             }
@@ -35,23 +35,23 @@ public class FactorialUtils {
         System.out.println();
     }
 
-    private static int calculateFactorial(int number) {
+    private static long calculateFactorial(long number) {
         if (number == 0) return 1;
-        int fact = 1;
-        for (int i = 1; i <= number; i++) {
-            fact *= i;
+        long factorial = 1L;
+        for (long i = 1; i <= number; i++) {
+            factorial *= i;
         }
-        return fact;
+        return factorial;
     }
 
-    private static String formatResult(int number, int result) {
+    private static String formatResult(int number, long result) {
         if (number == 0) return "0! = 1";
         StringBuilder resultString = new StringBuilder(number + "! = ");
         for (int i = 1; i <= number; i++) {
             resultString.append(i);
             if (i < number) resultString.append(" * ");
         }
-        resultString.append(" = ").append(result);
+        if (number > 1) resultString.append(" = ").append(result);
         return resultString.toString();
     }
 }
