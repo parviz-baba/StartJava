@@ -40,7 +40,7 @@ public class IfElseStatementTheme {
         int a = 152;
         int b = 205;
         if (a > b) {
-            System.out.println(a + " больше " + b); 
+            System.out.println(a + " больше " + b);
         } else if (b > a) {
             System.out.println(b + " больше " + a);
         } else {
@@ -76,7 +76,7 @@ public class IfElseStatementTheme {
         int hundredsB = numberB / 100;
         int tensB = numberB / 10 % 10;
         int onesB = numberB % 10;
-        
+
         if (hundredsA == hundredsB || tensA == tensB || onesA == onesB) {
             System.out.println("Числа: " + numberA + " и " + numberB);
             if (hundredsA == hundredsB) {
@@ -87,7 +87,7 @@ public class IfElseStatementTheme {
             }
             if (onesA == onesB) {
                 System.out.println("Одинаковые цифры в разряде единиц: " + onesA);
-            } 
+            }
         } else {
             System.out.println("Нет одинаковых цифр в одинаковых разрядах.");
         }
@@ -160,11 +160,11 @@ public class IfElseStatementTheme {
         }
 
         System.out.println("\n6. Подсчет начисленных банком % (BigDecimal)\n");
-        
+
         BigDecimal depositAmount1 = new BigDecimal("321123.59");
         depositAmount1 = depositAmount1.setScale(2, RoundingMode.HALF_UP);
         BigDecimal interestRate1 = new BigDecimal("0.1");
-        if (depositAmount1.compareTo(new BigDecimal("0")) > 0 && 
+        if (depositAmount1.compareTo(new BigDecimal("0")) > 0 &&
                 depositAmount1.compareTo(new BigDecimal("100000")) < 0) {
             interestRate1 = new BigDecimal("0.05");
         } else if (depositAmount1.compareTo(new BigDecimal("300000")) <= 0) {
@@ -183,7 +183,7 @@ public class IfElseStatementTheme {
         BigDecimal monthlyProductionPrice2 = new BigDecimal("9001.729");
         BigDecimal monthlyNumber = new BigDecimal("12");
         BigDecimal yearlyProfit2 = monthlySales2.subtract(monthlyRent2
-                .add(monthlyProductionPrice2))
+                        .add(monthlyProductionPrice2))
                 .multiply(monthlyNumber).setScale(2, RoundingMode.HALF_UP);
         if (yearlyProfit2.compareTo(BigDecimal.ZERO) > 0) {
             System.out.printf("Прибыль за год: +" + yearlyProfit2 + " руб.\n");
