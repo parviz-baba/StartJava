@@ -16,9 +16,7 @@ public class TriangleSorter {
         for (int i = 0; i < symbols.length; i++) {
             symbols[i] = (char) (start + i);
         }
-        if (!ascending) {
-            reverse(symbols);
-        }
+        if (!ascending) reverse(symbols);
         int maxSymbols = symbols.length * 2 - 1;
         for (int i = 0; i < symbols.length; i++) {
             int numChars = 2 * i + 1;
