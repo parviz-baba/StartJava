@@ -14,22 +14,20 @@ public class TriangleSorter {
         }
         char[] symbols = new char[end - start + 1];
         for (int i = 0; i < symbols.length; i++) {
-            symbols[i] = (char) (start + i);
+            symbols[i] = ascending ? (char) (start + i) : (char) (end - i);
         }
-        if (!ascending) reverse(symbols);
         int maxSymbols = symbols.length * 2 - 1;
         for (int i = 0; i < symbols.length; i++) {
             int numChars = 2 * i + 1;
             int spaces = (maxSymbols - numChars) / 2;
-            System.out.printf("%" + (spaces + numChars) + "s\n", String.valueOf(symbols[i]).repeat(numChars));
-        }
-    }
-
-    private static void reverse(char[] toReverse) {
-        for (int i = 0; i < toReverse.length / 2; i++) {
-            char temp = toReverse[i];
-            toReverse[i] = toReverse[toReverse.length - 1 - i];
-            toReverse[toReverse.length - 1 - i] = temp;
+            StringBuilder sb = new StringBuilder();
+            for (int j = 0; j < spaces; j++) {
+                sb.append(' ');
+            }
+            for (int j = 0; j < numChars; j++) {
+                sb.append(symbols[i]);
+            }
+            System.out.println(sb);
         }
     }
 }
