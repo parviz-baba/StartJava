@@ -1,31 +1,63 @@
 package com.startjava.lesson_2_3_4.array;
 
-import java.util.*;
+import java.util.Random;
 
 public class NumberRange {
     public static void main(String[] args) {
         generateNumbers(-10, 20, 23);
-        generateNumbers(-34, 0, -10);
-        generateNumbers(1, 2, 3);
+        generateNumbers(-30, 10, 10);
+        generateNumbers(-34, -34, 0);
+        generateNumbers(1, 2, -3);
         generateNumbers(5, -8, 2);
     }
 
     private static void generateNumbers (int... numbers) {
-        int max = Math.max(numbers[0], Math.max(numbers[1], numbers[2]));
-        int min = Math.min(numbers[0], Math.min(numbers[1], numbers[2]));
-        int rangeLength = max - min + 1;
+        int start = numbers[0];
+        int end = numbers[1];
+        int countPerLine = numbers[2];
+        if (start > end) {
+            System.out.println("Ошибка: левая граница (" + start + ") > правой (" + end + ")");
+            return;
+        }
+        int rangeLength = end - start + 1;
         int arrayLength = (int) (rangeLength * 0.75);
         if (arrayLength < 1) {
             System.out.println("Ошибка: количество чисел в строке не может быть меньше 1 (" + arrayLength + ")");
             return;
         }
-        Set<Integer> uniqueNumbers = new HashSet<>();
-        Random random = new Random();
-        while (uniqueNumbers.size() < arrayLength) {
-            uniqueNumbers.add(random.nextInt(min, max + 1));
+        if (countPerLine < 1) {
+            System.out.println("Ошибка: количество чисел в строке не может быть меньше 1 (" + countPerLine + ")");
+            return;
         }
-        List<Integer> sortedList = new ArrayList<>(uniqueNumbers);
-        Collections.sort(sortedList);
-        System.out.println(sortedList);
+        int[] uniqueNumbers = new int[arrayLength];
+        Random random = new Random();
+        for (int i = 0; i < arrayLength; i++) {
+            int number;
+            boolean isUnique;
+            do {
+                isUnique = true;
+                number = random.nextInt(start, end + 1);
+                for (int j = 0; j < i; j++) {
+                    if (uniqueNumbers[j] == number) {
+                        isUnique = false;
+                        break;
+                    }
+                }
+            } while (!isUnique);
+            uniqueNumbers[i] = number;
+        }
+        for (int i = 0; i < uniqueNumbers.length - 1; i++) {
+            for (int j = i + 1; j < uniqueNumbers.length; j++) {
+                if (uniqueNumbers[i] > uniqueNumbers[j]) {
+                    int temp = uniqueNumbers[i];
+                    uniqueNumbers[i] = uniqueNumbers[j];
+                    uniqueNumbers[j] = temp;
+                }
+            }
+        }
+        for (int i = 0; i < uniqueNumbers.length; i++) {
+            System.out.print(uniqueNumbers[i] + " ");
+        }
+        System.out.println();
     }
 }
