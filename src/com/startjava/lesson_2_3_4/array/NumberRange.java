@@ -56,7 +56,10 @@ public class NumberRange {
             }
         }
         for (int i = 0; i < uniqueNumbers.length; i++) {
-            System.out.print(uniqueNumbers[i] + " ");
+            System.out.printf("%4d ", uniqueNumbers[i]);
+            if ((i + 1) % countPerLine == 0) {
+                System.out.println();
+            }
         }
         System.out.println();
     }
