@@ -17,17 +17,12 @@ public class TriangleSorter {
             symbols[i] = ascending ? (char) (start + i) : (char) (end - i);
         }
         int maxSymbols = symbols.length * 2 - 1;
+        StringBuilder sb = new StringBuilder();
         for (int i = 0; i < symbols.length; i++) {
             int numChars = 2 * i + 1;
             int spaces = (maxSymbols - numChars) / 2;
-            StringBuilder sb = new StringBuilder();
-            for (int j = 0; j < spaces; j++) {
-                sb.append(' ');
-            }
-            for (int j = 0; j < numChars; j++) {
-                sb.append(symbols[i]);
-            }
-            System.out.println(sb);
+            sb.append(" ".repeat(spaces)).append(String.valueOf(symbols[i]).repeat(numChars)).append(("\n"));
         }
+        System.out.print(sb);
     }
 }
