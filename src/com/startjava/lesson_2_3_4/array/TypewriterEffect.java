@@ -35,7 +35,7 @@ public class TypewriterEffect {
                 }
             }
         }
-        if (shortestWord != null && longestWord != null) {
+        if (shortestWord != null) {
             System.out.println("Самое короткое слово: " + shortestWord.toUpperCase());
             System.out.println("Самое длинное слово: " + longestWord.toUpperCase());
             StringBuilder processedText = new StringBuilder();
