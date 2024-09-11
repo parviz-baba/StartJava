@@ -14,4 +14,29 @@ public class Console {
         }
         System.out.println();
     }
+
+    public static void printResult(int number, long result) {
+        printMessage(formatResult(number, result));
+    }
+
+    public static void printResultsArray(long[] results) {
+        printMessage("Массив результатов: ");
+        for (long result : results) {
+            printMessage(result + " ");
+        }
+        printMessage("");
+    }
+
+    private static String formatResult(int number, long result) {
+        if (number == 0) return "0! = 1";
+        StringBuilder resultString = new StringBuilder(number + "! = ");
+        for (int i = 1; i <= number; i++) {
+            resultString.append(i);
+            if (i < number) resultString.append(" * ");
+        }
+        if (number > 1) {
+            resultString.append(" = ").append(result);
+        }
+        return resultString.toString();
+    }
 }

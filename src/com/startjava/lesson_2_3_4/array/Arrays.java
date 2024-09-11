@@ -22,4 +22,36 @@ public class Arrays {
         }
         return zeroedCount;
     }
+
+    public static long[] calculateFactorials(int... numbers) {
+        if (numbers == null) {
+            Console.printMessage("Массив равен null\n");
+            return null;
+        }
+        if (numbers.length == 0) {
+            Console.printMessage("Массив нулевой длины\n");
+            return null;
+        }
+        long[] results = new long[numbers.length];
+        for (int i = 0; i < numbers.length; i++) {
+            int number = numbers[i];
+            if (number < 0) {
+                Console.printMessage("Ошибка: факториал " + number + "! не определен.");
+            } else {
+                results[i] = calculateFactorial(number);
+                Console.printResult(number, results[i]);
+            }
+        }
+        Console.printResultsArray(results);
+        return results;
+    }
+
+    private static long calculateFactorial(int number) {
+        if (number == 0) return 1;
+        long factorial = 1L;
+        for (long i = 1; i <= number; i++) {
+            factorial *= i;
+        }
+        return factorial;
+    }
 }
