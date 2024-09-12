@@ -5,12 +5,12 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class HangmanGame {
-    private final String wordToGuess; // Угадываемое слово
-    private final char[] guessedWord; // Угаданное слово
-    private final char[] wrongGuesses; // Неправильные догадки
-    private int wrongGuessCount; // Количество неправильных догадок
-    private int attempts; // Попытки
-    private final int maxAttempts = 6; // Максимальное количество попыток
+    private final String wordToGuess;
+    private final char[] guessedWord;
+    private final char[] wrongGuesses;
+    private int wrongGuessCount;
+    private int attempts;
+    private final int maxAttempts = 6;
 
     private HangmanGame() {
         Random rand = new Random();
@@ -36,8 +36,7 @@ public class HangmanGame {
             for (int i = 0; i < wrongGuessCount; i++) {
                 System.out.print(wrongGuesses[i] + " ");
             }
-            System.out.println();
-            System.out.println("Осталось попыток: " + (maxAttempts - attempts));
+            System.out.println("\nОсталось попыток: " + (maxAttempts - attempts));
             System.out.print("Введите букву: ");
             char guess = scanner.next().toUpperCase().charAt(0);
             if (Character.isLetter(guess)) {
