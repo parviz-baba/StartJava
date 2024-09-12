@@ -27,7 +27,7 @@ public class Console {
         printMessage("");
     }
 
-    private static String formatResult(int number, long result) {
+    static String formatResult(int number, long result) {
         if (number == 0) return "0! = 1";
         StringBuilder resultString = new StringBuilder(number + "! = ");
         for (int i = 1; i <= number; i++) {
@@ -63,6 +63,29 @@ public class Console {
                     array[j] = temp;
                 }
             }
+        }
+    }
+
+    static void displayArray(String message, int[] toReverse) {
+        System.out.print(message + "[");
+        for (int i = 0; i < toReverse.length; i++) {
+            System.out.print(toReverse[i]);
+            if (i < toReverse.length - 1) {
+                System.out.print(", ");
+            }
+        }
+        printMessage("]");
+    }
+
+    static void printTriangle(char[] symbols) {
+        if (symbols.length == 0) {
+            return;
+        }
+        int maxSymbols = symbols.length * 2 - 1;
+        for (int i = 0; i < symbols.length; i++) {
+            int numChars = 2 * i + 1;
+            int spaces = (maxSymbols - numChars) / 2;
+            System.out.println(" ".repeat(spaces) + String.valueOf(symbols[i]).repeat(numChars));
         }
     }
 }

@@ -29,5 +29,15 @@ public class Main {
         Arrays.processRange(-34, -34, 0);
         Arrays.processRange(1, 2, -3);
         Arrays.processRange(5, -8, 2);
+        Arrays.reverse(new int[0]);
+        Arrays.reverse(null);
+        Arrays.reverse(new int[]{6, 8, 9, 1});
+        Arrays.reverse(new int[]{13, 8, 5, 3, 2, 1, 1});
+        char[] triangle1 = Arrays.createSymbolArray('0', '9', true);
+        Console.printTriangle(triangle1);
+        char[] triangle2 = Arrays.createSymbolArray('/', '!', false);
+        Console.printTriangle(triangle2);
+        char[] triangle3 = Arrays.createSymbolArray('A', 'J', false);
+        Console.printTriangle(triangle3);
     }
 }

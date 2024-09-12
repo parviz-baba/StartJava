@@ -46,7 +46,7 @@ public class Arrays {
         return results;
     }
 
-    private static long calculateFactorial(int number) {
+    static long calculateFactorial(int number) {
         if (number == 0) return 1;
         long factorial = 1L;
         for (long i = 1; i <= number; i++) {
@@ -62,7 +62,7 @@ public class Arrays {
         }
     }
 
-    private static int[] generateUniqueNumbers(int start, int end) {
+    static int[] generateUniqueNumbers(int start, int end) {
         if (start > end) {
             Console.printMessage("Ошибка: левая граница (" + start + ") > правой (" + end + ")");
             return null;
@@ -92,5 +92,32 @@ public class Arrays {
         }
         Console.sortArray(uniqueNumbers);
         return uniqueNumbers;
+    }
+
+    static void reverse(int[] toReverse) {
+        if (toReverse == null || toReverse.length == 0) {
+            Console.printMessage("Массив либо нулевой, либо пустой");
+            return;
+        }
+        Console.displayArray("   До реверса: ", toReverse);
+        int len = toReverse.length;
+        for (int i = 0; i < len; i++) {
+            int temp = toReverse[i];
+            toReverse[i] = toReverse[--len];
+            toReverse[len] = temp;
+        }
+        Console.displayArray("После реверса: ", toReverse);
+    }
+
+    static char[] createSymbolArray(char start, char end, boolean ascending) {
+        if (start > end) {
+            System.out.printf("Ошибка: левая граница (%d) > правая граница (%d)\n", (int) start, (int) end);
+            return new char[0];
+        }
+        char[] symbols = new char[end - start + 1];
+        for (int i = 0; i < symbols.length; i++) {
+            symbols[i] = ascending ? (char) (start + i) : (char) (end - i);
+        }
+        return symbols;
     }
 }
