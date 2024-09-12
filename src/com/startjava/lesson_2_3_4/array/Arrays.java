@@ -23,7 +23,7 @@ public class Arrays {
         return zeroedCount;
     }
 
-    public static long[] calculateFactorials(int... numbers) {
+    static long[] calculateFactorials(int... numbers) {
         if (numbers == null) {
             Console.printMessage("Массив равен null\n");
             return null;
@@ -53,5 +53,44 @@ public class Arrays {
             factorial *= i;
         }
         return factorial;
+    }
+
+    static void processRange(int start, int end, int countPerLine) {
+        int[] numbers = generateUniqueNumbers(start, end);
+        if (numbers != null) {
+            Console.printNumbers(numbers, countPerLine);
+        }
+    }
+
+    private static int[] generateUniqueNumbers(int start, int end) {
+        if (start > end) {
+            Console.printMessage("Ошибка: левая граница (" + start + ") > правой (" + end + ")");
+            return null;
+        }
+        int rangeLength = end - start + 1;
+        int arrayLength = (int) (rangeLength * 0.75);
+        if (arrayLength < 1) {
+            Console.printMessage("Ошибка: количество чисел в строке не может быть меньше 1 (" + arrayLength + ")");
+            return null;
+        }
+        int[] uniqueNumbers = new int[arrayLength];
+        Random random = new Random();
+        for (int i = 0; i < arrayLength; i++) {
+            int number;
+            boolean isUnique;
+            do {
+                isUnique = true;
+                number = random.nextInt(start, end + 1);
+                for (int j = 0; j < i; j++) {
+                    if (uniqueNumbers[j] == number) {
+                        isUnique = false;
+                        break;
+                    }
+                }
+            } while (!isUnique);
+            uniqueNumbers[i] = number;
+        }
+        Console.sortArray(uniqueNumbers);
+        return uniqueNumbers;
     }
 }

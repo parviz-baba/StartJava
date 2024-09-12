@@ -24,6 +24,10 @@ public class Main {
         Arrays.calculateFactorials(8, 0, 9);
         Arrays.calculateFactorials(-3, 1, 7, 13);
         Arrays.calculateFactorials(-22, -0);
-
+        Arrays.processRange(-10, 20, 23);
+        Arrays.processRange(-30, 10, 10);
+        Arrays.processRange(-34, -34, 0);
+        Arrays.processRange(1, 2, -3);
+        Arrays.processRange(5, -8, 2);
     }
 }

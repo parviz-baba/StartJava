@@ -1,7 +1,7 @@
 package com.startjava.lesson_2_3_4.array;
 
 public class Console {
-    public static void printMessage(String message) {
+    static void printMessage(String message) {
         System.out.println(message);
     }
 
@@ -15,11 +15,11 @@ public class Console {
         System.out.println();
     }
 
-    public static void printResult(int number, long result) {
+    static void printResult(int number, long result) {
         printMessage(formatResult(number, result));
     }
 
-    public static void printResultsArray(long[] results) {
+    static void printResultsArray(long[] results) {
         printMessage("Массив результатов: ");
         for (long result : results) {
             printMessage(result + " ");
@@ -38,5 +38,31 @@ public class Console {
             resultString.append(" = ").append(result);
         }
         return resultString.toString();
+    }
+
+    static void printNumbers(int[] numbers, int countPerLine) {
+        if (countPerLine < 1) {
+            Console.printMessage("Ошибка: количество чисел в строке не может быть меньше 1 (" + countPerLine + ")");
+            return;
+        }
+        for (int i = 0; i < numbers.length; i++) {
+            System.out.printf("%4d ", numbers[i]);
+            if ((i + 1) % countPerLine == 0) {
+                Console.printMessage("");
+            }
+        }
+        Console.printMessage("");
+    }
+
+    static void sortArray(int[] array) {
+        for (int i = 0; i < array.length - 1; i++) {
+            for (int j = i + 1; j < array.length; j++) {
+                if (array[i] > array[j]) {
+                    int temp = array[i];
+                    array[i] = array[j];
+                    array[j] = temp;
+                }
+            }
+        }
     }
 }
