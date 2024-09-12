@@ -12,7 +12,7 @@ public class Console {
                 System.out.println();
             }
         }
-        System.out.println();
+        printMessage("");
     }
 
     static void printResult(int number, long result) {
@@ -42,7 +42,8 @@ public class Console {
 
     static void printNumbers(int[] numbers, int countPerLine) {
         if (countPerLine < 1) {
-            Console.printMessage("Ошибка: количество чисел в строке не может быть меньше 1 (" + countPerLine + ")");
+            Console.printMessage("Ошибка: количество чисел в строке не может быть меньше 1 (" +
+                    countPerLine + ")");
             return;
         }
         for (int i = 0; i < numbers.length; i++) {
@@ -66,7 +67,7 @@ public class Console {
         }
     }
 
-    static void displayArray(String message, int[] toReverse) {
+    public static void displayArray(String message, int[] toReverse) {
         System.out.print(message + "[");
         for (int i = 0; i < toReverse.length; i++) {
             System.out.print(toReverse[i]);
@@ -85,7 +86,18 @@ public class Console {
         for (int i = 0; i < symbols.length; i++) {
             int numChars = 2 * i + 1;
             int spaces = (maxSymbols - numChars) / 2;
-            System.out.println(" ".repeat(spaces) + String.valueOf(symbols[i]).repeat(numChars));
+            printMessage(" ".repeat(spaces) + String.valueOf(symbols[i]).repeat(numChars));
         }
+    }
+
+    static void displayProcessedText(String shortestWord, String longestWord, String processedText)
+            throws InterruptedException {
+        printMessage("Самое короткое слово: " + shortestWord + "\n" +
+                "Самое длинное слово: " + longestWord + "\n");
+        for (char c : processedText.toCharArray()) {
+            System.out.print(c);
+            Thread.sleep(100);
+        }
+        printMessage("");
     }
 }

@@ -1,7 +1,7 @@
 package com.startjava.lesson_2_3_4.array;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         int[] addresses = {-1, 15, 0, 14};
         for (int address : addresses) {
             Console.printMessage("\nАдрес: " + address + "\n");
@@ -39,5 +39,21 @@ public class Main {
         Console.printTriangle(triangle2);
         char[] triangle3 = Arrays.createSymbolArray('A', 'J', false);
         Console.printTriangle(triangle3);
+        String[] inputs = {
+                "Java - это C++, из которого убрали все пистолеты, ножи и дубинки." +
+                        "\n- James Gosling",
+                "Чтобы написать чистый код, мы сначала пишем грязный код, затем рефакторим его." +
+                        "\n- Robert Martin",
+                null,
+                ""
+        };
+        for (String input : inputs) {
+            if (input != null && !input.isEmpty()) {
+                String[] processedResult = Arrays.processString(input);
+                Console.displayProcessedText(processedResult[0], processedResult[1], processedResult[2]);
+            } else {
+                Console.printMessage("Пустая или нулевая строка");
+            }
+        }
     }
 }
