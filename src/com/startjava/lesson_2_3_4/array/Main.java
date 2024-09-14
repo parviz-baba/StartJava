@@ -7,13 +7,13 @@ public class Main {
             Console.printMessage("\nАдрес: " + address + "\n");
             float[] randomFloats = Arrays.generateRandomFloats(15);
             Console.printMessage("Исходный массив:");
-            Console.printArray(randomFloats);
+            Console.printArrayFloat(randomFloats);
             if (address >= 0 && address < randomFloats.length) {
                 Console.printMessage("Элемент по указанному адресу: " + address +
                         ", Значение: " + String.format("%.3f", randomFloats[address]) +
                         "\nИзмененный массив:");
                 int zeroedCount = Arrays.removeGreaterElements(randomFloats, address);
-                Console.printArray(randomFloats);
+                Console.printArrayFloat(randomFloats);
                 Console.printMessage("Количество обнуленных элементов: " + zeroedCount);
             } else {
                 Console.printMessage("Ошибка: Неверный адрес. За пределами границы массива.\n");

@@ -23,27 +23,22 @@ public class Arrays {
         return zeroedCount;
     }
 
-    static long[] calculateFactorials(int... numbers) {
-        if (numbers == null) {
-            Console.printMessage("Массив равен null\n");
-            return null;
-        }
-        if (numbers.length == 0) {
-            Console.printMessage("Массив нулевой длины\n");
-            return null;
-        }
-        long[] results = new long[numbers.length];
-        for (int i = 0; i < numbers.length; i++) {
-            int number = numbers[i];
-            if (number < 0) {
-                Console.printMessage("Ошибка: факториал " + number + "! не определен.");
-            } else {
-                results[i] = calculateFactorial(number);
-                Console.printResult(number, results[i]);
+    static void calculateFactorials(int... numbers) {
+        if (numbers == null || numbers.length == 0) {
+            Console.printErrorMessage(numbers);
+        } else {
+            long[] results = new long[numbers.length];
+            for (int i = 0; i < numbers.length; i++) {
+                int number = numbers[i];
+                if (number < 0) {
+                    Console.printMessage("Ошибка: факториал " + number + "! не определен.");
+                } else {
+                    results[i] = calculateFactorial(number);
+                    Console.printResult(number, results[i]);
+                }
             }
+            Console.printResultsArray(results);
         }
-        Console.printResultsArray(results);
-        return results;
     }
 
     static long calculateFactorial(int number) {
@@ -97,17 +92,17 @@ public class Arrays {
 
     static void reverse(int[] toReverse) {
         if (toReverse == null || toReverse.length == 0) {
-            Console.printMessage("Массив либо нулевой, либо пустой");
-            return;
+            Console.printErrorMessage(toReverse);
+        } else {
+            Console.printArrayInt("   До реверса: ", toReverse);
+            int len = toReverse.length;
+            for (int i = 0; i < len; i++) {
+                int temp = toReverse[i];
+                toReverse[i] = toReverse[--len];
+                toReverse[len] = temp;
+            }
+            Console.printArrayInt("После реверса: ", toReverse);
         }
-        Console.displayArray("   До реверса: ", toReverse);
-        int len = toReverse.length;
-        for (int i = 0; i < len; i++) {
-            int temp = toReverse[i];
-            toReverse[i] = toReverse[--len];
-            toReverse[len] = temp;
-        }
-        Console.displayArray("После реверса: ", toReverse);
     }
 
     static char[] createSymbolArray(char start, char end, boolean ascending) {

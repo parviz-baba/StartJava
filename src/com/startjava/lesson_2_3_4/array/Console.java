@@ -5,7 +5,7 @@ public class Console {
         System.out.println(message);
     }
 
-    static void printArray(float[] randomFloats) {
+    static void printArrayFloat(float[] randomFloats) {
         for (int i = 0; i < randomFloats.length; i++) {
             System.out.printf("%.3f ", randomFloats[i]);
             if (i + 1 == 8) {
@@ -67,7 +67,7 @@ public class Console {
         }
     }
 
-    public static void displayArray(String message, int[] toReverse) {
+    public static void printArrayInt(String message, int[] toReverse) {
         System.out.print(message + "[");
         for (int i = 0; i < toReverse.length; i++) {
             System.out.print(toReverse[i]);
@@ -99,5 +99,15 @@ public class Console {
             Thread.sleep(100);
         }
         printMessage("");
+    }
+
+    static void printErrorMessage (int... numbers) {
+        if (numbers == null) {
+            Console.printMessage("Массив равен null\n");
+            return;
+        }
+        if (numbers.length == 0) {
+            Console.printMessage("Массив нулевой длины\n");
+        }
     }
 }
