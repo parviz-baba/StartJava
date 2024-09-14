@@ -15,11 +15,11 @@ public class Console {
         printMessage("");
     }
 
-    static void printResult(int number, long result) {
-        printMessage(formatResult(number, result));
+    static void printFactorial(int number, long result) {
+        printMessage(formatFactorial(number, result));
     }
 
-    static void printResultsArray(long[] results) {
+    static void printArrayValues(long[] results) {
         printMessage("Массив результатов: ");
         for (long result : results) {
             printMessage(result + " ");
@@ -27,7 +27,7 @@ public class Console {
         printMessage("");
     }
 
-    static String formatResult(int number, long result) {
+    static String formatFactorial(int number, long result) {
         if (number == 0) return "0! = 1";
         StringBuilder resultString = new StringBuilder(number + "! = ");
         for (int i = 1; i <= number; i++) {
@@ -67,7 +67,7 @@ public class Console {
         }
     }
 
-    public static void printArrayInt(String message, int[] toReverse) {
+    static void printArrayInt(String message, int[] toReverse) {
         System.out.print(message + "[");
         for (int i = 0; i < toReverse.length; i++) {
             System.out.print(toReverse[i]);

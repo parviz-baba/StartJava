@@ -34,10 +34,10 @@ public class Arrays {
                     Console.printMessage("Ошибка: факториал " + number + "! не определен.");
                 } else {
                     results[i] = calculateFactorial(number);
-                    Console.printResult(number, results[i]);
+                    Console.printFactorial(number, results[i]);
                 }
             }
-            Console.printResultsArray(results);
+            Console.printArrayValues(results);
         }
     }
 
