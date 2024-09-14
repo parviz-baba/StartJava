@@ -9,16 +9,16 @@ public class CalculatorTest {
         while (userChoice.equalsIgnoreCase("yes")) {
             System.out.println("Введите математическое выражение: ");
             String expression = scanner.nextLine();
-            double result = Calculator.calculate(expression);
-            if (!Double.isNaN(result)) {
-                System.out.println("Результат: " + result);
+            double result = Double.parseDouble(Calculator.calculate(expression));
+            if (result == (int) result) {
+                System.out.println("Результат: " + (int) result);
             } else {
-                System.out.println("Некорректное выражение, попробуйте снова.");
+                System.out.println("Результат: " + result);
             }
             System.out.println("Хотите продолжить вычисления? [yes/no]: ");
             userChoice = scanner.nextLine();
             if (!userChoice.equalsIgnoreCase("yes") && !userChoice.equalsIgnoreCase("no")) {
-                System.out.println("Пожалуйста, введите 'yes' или 'no'.");
+                System.out.println("Введите корректный ответ [yes / no]:");
                 userChoice = scanner.nextLine();
             }
             if (userChoice.equalsIgnoreCase("no")) {
