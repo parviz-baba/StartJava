@@ -50,7 +50,7 @@ public class Arrays {
         return factorial;
     }
 
-    static void processRange(int start, int end, int countPerLine) {
+    static void generateRange(int start, int end, int countPerLine) {
         int[] numbers = generateUniqueNumbers(start, end);
         if (numbers != null) {
             Console.printNumbers(numbers, countPerLine);
@@ -86,23 +86,18 @@ public class Arrays {
             } while (!isUnique);
             uniqueNumbers[i] = number;
         }
-        Console.sortArray(uniqueNumbers);
+        sortArray(uniqueNumbers);
         return uniqueNumbers;
     }
 
-    static void reverse(int[] toReverse) {
-        if (toReverse == null || toReverse.length == 0) {
-            Console.printErrorMessage(toReverse);
-        } else {
-            Console.printArrayInt("   До реверса: ", toReverse);
-            int len = toReverse.length;
-            for (int i = 0; i < len; i++) {
-                int temp = toReverse[i];
-                toReverse[i] = toReverse[--len];
-                toReverse[len] = temp;
-            }
-            Console.printArrayInt("После реверса: ", toReverse);
+    static int[] reverse(int[] toReverse) {
+        int len = toReverse.length;
+        for (int i = 0; i < len; i++) {
+            int temp = toReverse[i];
+            toReverse[i] = toReverse[--len];
+            toReverse[len] = temp;
         }
+        return toReverse;
     }
 
     static char[] createSymbolArray(char start, char end, boolean ascending) {
@@ -117,7 +112,7 @@ public class Arrays {
         return symbols;
     }
 
-    public static String[] processString(String input) {
+    public static String[] modifyString(String input) {
         String[] parts = input.split("\n");
         String mainText = parts[0];
         String author = parts.length > 1 ? parts[1] : "";
@@ -156,5 +151,17 @@ public class Arrays {
                     processedText.toString(), author};
         }
         return new String[0];
+    }
+
+    static void sortArray(int[] array) {
+        for (int i = 0; i < array.length - 1; i++) {
+            for (int j = i + 1; j < array.length; j++) {
+                if (array[i] > array[j]) {
+                    int temp = array[i];
+                    array[i] = array[j];
+                    array[j] = temp;
+                }
+            }
+        }
     }
 }

@@ -55,18 +55,6 @@ public class Console {
         Console.printMessage("");
     }
 
-    static void sortArray(int[] array) {
-        for (int i = 0; i < array.length - 1; i++) {
-            for (int j = i + 1; j < array.length; j++) {
-                if (array[i] > array[j]) {
-                    int temp = array[i];
-                    array[i] = array[j];
-                    array[j] = temp;
-                }
-            }
-        }
-    }
-
     static void printArrayInt(String message, int[] toReverse) {
         System.out.print(message + "[");
         for (int i = 0; i < toReverse.length; i++) {
@@ -90,7 +78,7 @@ public class Console {
         }
     }
 
-    static void displayProcessedText(String shortestWord, String longestWord, String processedText)
+    static void printProcessedText(String shortestWord, String longestWord, String processedText)
             throws InterruptedException {
         printMessage("Самое короткое слово: " + shortestWord + "\n" +
                 "Самое длинное слово: " + longestWord + "\n");
@@ -109,5 +97,11 @@ public class Console {
         if (numbers.length == 0) {
             Console.printMessage("Массив нулевой длины\n");
         }
+    }
+
+    static void formatReverse(int... reverse) {
+        Console.printArrayInt("   До реверса: ", reverse);
+        Arrays.reverse(reverse);
+        Console.printArrayInt("После реверса: ", reverse);
     }
 }

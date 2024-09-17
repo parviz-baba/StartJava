@@ -24,21 +24,21 @@ public class Main {
         Arrays.calculateFactorials(8, 0, 9);
         Arrays.calculateFactorials(-3, 1, 7, 13);
         Arrays.calculateFactorials(-22, -0);
-        Arrays.processRange(-10, 20, 23);
-        Arrays.processRange(-30, 10, 10);
-        Arrays.processRange(-34, -34, 0);
-        Arrays.processRange(1, 2, -3);
-        Arrays.processRange(5, -8, 2);
-        Arrays.reverse(new int[0]);
-        Arrays.reverse(null);
-        Arrays.reverse(new int[]{6, 8, 9, 1});
-        Arrays.reverse(new int[]{13, 8, 5, 3, 2, 1, 1});
-        char[] triangle1 = Arrays.createSymbolArray('0', '9', true);
-        Console.printTriangle(triangle1);
-        char[] triangle2 = Arrays.createSymbolArray('/', '!', false);
-        Console.printTriangle(triangle2);
-        char[] triangle3 = Arrays.createSymbolArray('A', 'J', false);
-        Console.printTriangle(triangle3);
+        Arrays.generateRange(-10, 20, 23);
+        Arrays.generateRange(-30, 10, 10);
+        Arrays.generateRange(-34, -34, 0);
+        Arrays.generateRange(1, 2, -3);
+        Arrays.generateRange(5, -8, 2);
+        Console.formatReverse(new int[0]);
+        Console.formatReverse(null);
+        Console.formatReverse(new int[]{6, 8, 9, 1});
+        Console.formatReverse(new int[]{13, 8, 5, 3, 2, 1, 1});
+        char[] triangle = Arrays.createSymbolArray('0', '9', true);
+        Console.printTriangle(triangle);
+        triangle = Arrays.createSymbolArray('/', '!', false);
+        Console.printTriangle(triangle);
+        triangle = Arrays.createSymbolArray('A', 'J', false);
+        Console.printTriangle(triangle);
         String[] inputs = {
                 "Java - это C++, из которого убрали все пистолеты, ножи и дубинки." +
                         "\n- James Gosling",
@@ -49,8 +49,8 @@ public class Main {
         };
         for (String input : inputs) {
             if (input != null && !input.isEmpty()) {
-                String[] processedResult = Arrays.processString(input);
-                Console.displayProcessedText(processedResult[0], processedResult[1], processedResult[2]);
+                String[] processedResult = Arrays.modifyString(input);
+                Console.printProcessedText(processedResult[0], processedResult[1], processedResult[2]);
             } else {
                 Console.printMessage("Пустая или нулевая строка");
             }
