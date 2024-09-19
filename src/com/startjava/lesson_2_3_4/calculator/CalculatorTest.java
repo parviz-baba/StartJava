@@ -1,25 +1,21 @@
 package com.startjava.lesson_2_3_4.calculator;
 
-import java.util.Scanner;
 import java.text.DecimalFormat;
+import java.util.Scanner;
 
 public class CalculatorTest {
-
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         String userChoice = "yes";
-
         while (userChoice.equalsIgnoreCase("yes")) {
             try {
                 System.out.println("Введите математическое выражение: ");
                 String expression = scanner.nextLine();
                 double result = Calculator.calculate(expression);
-
                 consoleResult(result);
             } catch (RuntimeException e) {
                 System.out.println(e.getMessage());
             }
-
             do {
                 System.out.println("Хотите продолжить вычисления? [yes/no]: ");
                 userChoice = scanner.nextLine();

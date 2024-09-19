@@ -3,9 +3,9 @@ package com.startjava.lesson_2_3_4.guess;
 import java.util.Arrays;
 
 public class Player {
-    private String name;
-    private int[] guesses = new int[10];
-    private int attempt = 0;
+    private final String name;
+    private final int[] guesses = new int[10];
+    private int attempt;
 
     public Player(String name) {
         this.name = name;
@@ -24,11 +24,10 @@ public class Player {
     }
 
     public void addGuess(int guess) {
-        if(attempt < guesses.length) {
-            guesses[attempt] = guess;
-            attempt++;
+        if (attempt < guesses.length) {
+            guesses[attempt++] = guess;
         } else {
-            System.out.println(" попытки закончились!");
+            System.out.println("Попытки закончились!");
         }
     }
 

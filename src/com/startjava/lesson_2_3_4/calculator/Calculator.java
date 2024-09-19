@@ -1,7 +1,6 @@
 package com.startjava.lesson_2_3_4.calculator;
 
 class Calculator {
-
     private static final int EXPECTED_PARTS_LENGTH = 2;
 
     public static double calculate(String expression) {
@@ -15,22 +14,23 @@ class Calculator {
             double num2 = Double.parseDouble(parts[1]);
             char operator = getOperator(expression);
             return switch (operator) {
-                case "+" -> num1 + num2;
-                case "-" -> num1 - num2;
-                case "*" -> num1 * num2;
-                case "/" -> {
+                case '+' -> num1 + num2;
+                case '-' -> num1 - num2;
+                case '*' -> num1 * num2;
+                case '/' -> {
                     if (num2 == 0) {
                         throw new RuntimeException("Ошибка: деление на ноль запрещено.");
                     }
                     yield num1 / num2;
                 }
-                case "^" -> {
+                case '^' -> {
                     if (num1 != (int) num1 || num2 != (int) num2) {
-                        throw new RuntimeException("Ошибка: числа для возведения в степень должны быть целыми.");
+                        throw new RuntimeException("Ошибка: " +
+                                "числа для возведения в степень должны быть целыми.");
                     }
                     yield Math.pow(num1, num2);
                 }
-                case "%" -> {
+                case '%' -> {
                     if (num2 == 0) {
                         throw new RuntimeException("Ошибка: деление на ноль запрещено.");
                     }

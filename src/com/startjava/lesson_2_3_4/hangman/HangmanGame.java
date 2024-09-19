@@ -2,6 +2,7 @@ package com.startjava.lesson_2_3_4.hangman;
 
 import java.util.Arrays;
 import java.util.Random;
+import java.util.Scanner;
 
 public class HangmanGame {
     private final String wordToGuess;
@@ -22,35 +23,44 @@ public class HangmanGame {
         attempts = 0;
     }
 
-    public String getWordToGuess() {
-        return wordToGuess;
+    public void play() {
+        Scanner scanner = new Scanner(System.in);
+        while (attempts < maxAttempts) {
+            System.out.println("Загаданное слово: " + String.valueOf(guessedWord));
+            System.out.print("Неправильно угаданные буквы: ");
+            for (int i = 0; i < wrongGuessCount; i++) {
+                System.out.print(wrongGuesses[i] + " ");
+            }
+            System.out.println("\nОсталось попыток: " + (maxAttempts - attempts));
+            System.out.print("Введите букву: ");
+            char guess = scanner.next().toUpperCase().charAt(0);
+            if (Character.isLetter(guess)) {
+                if (isAlreadyGuessed(guess)) {
+                    System.out.println("Вы уже вводили эту букву. Введите другую.");
+                } else if (wordToGuess.contains(String.valueOf(guess))) {
+                    for (int i = 0; i < wordToGuess.length(); i++) {
+                        if (wordToGuess.charAt(i) == guess) {
+                            guessedWord[i] = guess;
+                        }
+                    }
+                } else {
+                    wrongGuesses[wrongGuessCount] = guess;
+                    wrongGuessCount++;
+                    attempts++;
+                    System.out.println("Неправильно! Добавлена часть виселицы.");
+                }
+            } else {
+                System.out.println("Введите только букву!");
+            }
+            if (String.valueOf(guessedWord).equals(wordToGuess)) {
+                System.out.println("Поздравляем! Слово: " + wordToGuess);
+                return;
+            }
+        }
+        System.out.println("Вы проиграли! Загаданное слово: " + wordToGuess);
     }
 
-    public char[] getGuessedWord() {
-        return guessedWord;
-    }
-
-    public char[] getWrongGuesses() {
-        return wrongGuesses;
-    }
-
-    public int getWrongGuessCount() {
-        return wrongGuessCount;
-    }
-
-    public int getAttempts() {
-        return attempts;
-    }
-
-    public void incrementWrongGuessCount() {
-        wrongGuessCount++;
-    }
-
-    public void incrementAttempts() {
-        attempts++;
-    }
-
-    public boolean isAlreadyGuessed(char guess) {
+    private boolean isAlreadyGuessed(char guess) {
         for (int i = 0; i < wrongGuessCount; i++) {
             if (wrongGuesses[i] == guess) {
                 return true;
@@ -62,21 +72,5 @@ public class HangmanGame {
             }
         }
         return false;
-    }
-
-    public void updateGuessedWord(char guess) {
-        for (int i = 0; i < wordToGuess.length(); i++) {
-            if (wordToGuess.charAt(i) == guess) {
-                guessedWord[i] = guess;
-            }
-        }
-    }
-
-    public boolean isWordGuessed() {
-        return String.valueOf(guessedWord).equals(wordToGuess);
-    }
-
-    public int getMaxAttempts() {
-        return maxAttempts;
     }
 }

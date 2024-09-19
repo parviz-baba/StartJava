@@ -12,14 +12,14 @@ public class GuessNumberTest {
         String name2 = scanner.nextLine();
         Player player2 = new Player(name2);
         GuessNumber game = new GuessNumber(player1, player2);
-        String userChoice = "yes";
-        while (userChoice.equalsIgnoreCase("yes")) {
+        String playerChoice = "yes";
+        while (playerChoice.equalsIgnoreCase("yes")) {
             game.start();
             System.out.println("Хотите продолжить игру? [yes/no]: ");
-            userChoice = scanner.next();
-            while (!userChoice.equalsIgnoreCase("yes") && !userChoice.equalsIgnoreCase("no")) {
+            playerChoice = scanner.next();
+            if (!playerChoice.equalsIgnoreCase("yes") && !playerChoice.equalsIgnoreCase("no")) {
                 System.out.println("Пожалуйста, введите 'yes' или 'no'.");
-                userChoice = scanner.next();
+                playerChoice = scanner.nextLine();
             }
         }
         System.out.println("Игра завершена. Спасибо за игру!");
