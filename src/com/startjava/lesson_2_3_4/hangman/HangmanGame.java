@@ -6,57 +6,83 @@ import java.util.Scanner;
 
 public class HangmanGame {
     private final String wordToGuess;
-    private final char[] guessedWord;
+    private final char[] guessedLetter;
     private final char[] wrongGuesses;
     private int wrongGuessCount;
-    private int attempts;
+    private int remainingAttempts;
     private final int maxAttempts = 6;
+    private final String[] HANGMAN_STAGES = {
+            " +---+\n |   |\n     |\n     |\n     |\n    ===",
+            " +---+\n |   |\n O   |\n     |\n     |\n    ===",
+            " +---+\n |   |\n O   |\n |   |\n     |\n    ===",
+            " +---+\n |   |\n O   |\n/|   |\n     |\n    ===",
+            " +---+\n |   |\n O   |\n/|\\  |\n     |\n    ===",
+            " +---+\n |   |\n O   |\n/|\\  |\n/    |\n    ===",
+            " +---+\n |   |\n O   |\n/|\\  |\n/ \\  |\n    ==="
+    };
 
     public HangmanGame() {
         Random rand = new Random();
-        String[] wordList = {"PACKAGE", "ARRAYS", "RANDOM", "SCANNER"};
+        String[] wordList = {"ВИСЕЛИЦА", "КАЛЬКУЛЯТОР", "МАССИВ", "ПРОГРАМИРОВАНИЕ"};
         wordToGuess = wordList[rand.nextInt(wordList.length)];
-        guessedWord = new char[wordToGuess.length()];
-        Arrays.fill(guessedWord, '_');
+        guessedLetter = new char[wordToGuess.length()];
+        Arrays.fill(guessedLetter, '_');
         wrongGuesses = new char[maxAttempts];
         wrongGuessCount = 0;
-        attempts = 0;
+        remainingAttempts = maxAttempts;
     }
 
     public void play() {
-        Scanner scanner = new Scanner(System.in);
-        while (attempts < maxAttempts) {
-            System.out.println("Загаданное слово: " + String.valueOf(guessedWord));
+        Scanner scanner = new Scanner(System.in, "CP866");
+        while (remainingAttempts > 0) {
+            System.out.println(HANGMAN_STAGES[wrongGuessCount]);
+            System.out.println("Загаданное слово: " + String.valueOf(guessedLetter));
             System.out.print("Неправильно угаданные буквы: ");
             for (int i = 0; i < wrongGuessCount; i++) {
                 System.out.print(wrongGuesses[i] + " ");
             }
-            System.out.println("\nОсталось попыток: " + (maxAttempts - attempts));
+            System.out.println("\nОсталось попыток: " + remainingAttempts);
             System.out.print("Введите букву: ");
             char guess = scanner.next().toUpperCase().charAt(0);
+
+            if (!isCyrillicLetter(guess)) {
+                System.out.println("ВЫ МОЖЕТЕ ИСПОЛЬЗОВАТЬ ТОЛЬКО КИРИЛЛИЧЕСКИЙ АЛФАВИТ.");
+                continue;
+            }
+
             if (Character.isLetter(guess)) {
                 if (isAlreadyGuessed(guess)) {
                     System.out.println("Вы уже вводили эту букву. Введите другую.");
                 } else if (wordToGuess.contains(String.valueOf(guess))) {
+                    boolean found = false;
                     for (int i = 0; i < wordToGuess.length(); i++) {
                         if (wordToGuess.charAt(i) == guess) {
-                            guessedWord[i] = guess;
+                            guessedLetter[i] = guess;
+                            found = true;
                         }
+                    }
+                    if (found) {
+                        if (wrongGuessCount > 0) {
+                            wrongGuessCount--;
+                        }
+                        remainingAttempts = Math.min(maxAttempts, remainingAttempts + 1);
+                        System.out.println("Правильно! Удалена часть виселицы.");
                     }
                 } else {
                     wrongGuesses[wrongGuessCount] = guess;
                     wrongGuessCount++;
-                    attempts++;
+                    remainingAttempts--;
                     System.out.println("Неправильно! Добавлена часть виселицы.");
                 }
             } else {
                 System.out.println("Введите только букву!");
             }
-            if (String.valueOf(guessedWord).equals(wordToGuess)) {
+            if (String.valueOf(guessedLetter).equals(wordToGuess)) {
                 System.out.println("Поздравляем! Слово: " + wordToGuess);
                 return;
             }
         }
+        System.out.println(HANGMAN_STAGES[maxAttempts]);
         System.out.println("Вы проиграли! Загаданное слово: " + wordToGuess);
     }
 
@@ -66,11 +92,15 @@ public class HangmanGame {
                 return true;
             }
         }
-        for (char c : guessedWord) {
+        for (char c : guessedLetter) {
             if (c == guess) {
                 return true;
             }
         }
         return false;
+    }
+
+    private boolean isCyrillicLetter(char letter) {
+        return letter >= 'А' && letter <= 'Я';
     }
 }
