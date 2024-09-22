@@ -11,34 +11,26 @@ public class CalculatorTest {
             if (userChoice.equals("yes")) {
                 System.out.println("Введите математическое выражение: ");
                 String expression = scanner.nextLine();
-                double result = Calculator.calculate(expression);
-                if (!Double.isNaN(result)) {
-                    consoleResult(result, expression);
+                try {
+                    double result = Calculator.calculate(expression);
+                    printResult(result, expression);
+                } catch (RuntimeException e) {
+                    System.out.println(e.getMessage());
                 }
                 System.out.println("Хотите продолжить вычисления? [yes/no]: ");
                 userChoice = scanner.nextLine();
-            }
-            if (userChoice.equals("no")) {
-                break;
-            }
-            if (!userChoice.equals("yes")) {
+            } else {
                 System.out.println("Введите корректный ответ [yes / no]: ");
                 userChoice = scanner.nextLine();
             }
         } while (!"no".equals(userChoice));
     }
 
-    private static void consoleResult(double result, String expression) {
-        expression = expression.replaceAll("\\s+", "");
-        String[] parts = expression.split("[+\\-*/%^]");
-        double num1 = Double.parseDouble(parts[0]);
-        double num2 = Double.parseDouble(parts[1]);
+    private static void printResult(double result, String expression) {
+        expression = expression.replaceAll("\\s+", " ");
         DecimalFormat df = new DecimalFormat("#.###");
-        if (result == (int) result) {
-            System.out.println("Результат: " + df.format(num1) + " " +
-                    Calculator.getOperator(expression) + " " + df.format(num2) + " = " + (int) result);
-        } else {
-            System.out.println("Результат: " + df.format(result));
+        if (!Double.isNaN(result)) {
+            System.out.println("Результат: " + expression + " = " + df.format(result));
         }
     }
 }
