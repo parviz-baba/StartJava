@@ -1,49 +1,51 @@
 package com.startjava.lesson_2_3_4.calculator;
 
 class Calculator {
-    private static final int EXPECTED_PARTS_LENGTH = 2;
+    private static final int expectedPartsLength = 2;
 
     public static double calculate(String expression) {
         expression = expression.replaceAll("\\s+", "");
-        String[] parts = expression.split("[+\\-*/%^]");
-        if (parts.length != EXPECTED_PARTS_LENGTH) {
+        String[] parts = expression.split("(?<=[-+*/%^])|(?=[-+*/%^])");
+        if (parts.length != expectedPartsLength + 1) {
             throw new RuntimeException("Ошибка: выражение должно содержать два операнда и один оператор.");
         }
-        try {
-            double num1 = Double.parseDouble(parts[0]);
-            double num2 = Double.parseDouble(parts[1]);
-            char operator = getOperator(expression);
-            return switch (operator) {
-                case '+' -> num1 + num2;
-                case '-' -> num1 - num2;
-                case '*' -> num1 * num2;
-                case '/' -> {
-                    if (num2 == 0) {
-                        throw new RuntimeException("Ошибка: деление на ноль запрещено.");
-                    }
-                    yield num1 / num2;
+        double num1 = Double.parseDouble(parts[0]);
+        double num2 = Double.parseDouble(parts[2]);
+        char operator = parts[1].charAt(0);
+
+        return switch (operator) {
+            case '+' -> num1 + num2;
+            case '-' -> num1 - num2;
+            case '*' -> num1 * num2;
+            case '/' -> {
+                if (num2 == 0) {
+                    System.out.println("Ошибка: деление на ноль запрещено.");
+                    yield Double.NaN;
                 }
-                case '^' -> {
-                    if (num1 != (int) num1 || num2 != (int) num2) {
-                        throw new RuntimeException("Ошибка: " +
-                                "числа для возведения в степень должны быть целыми.");
-                    }
-                    yield Math.pow(num1, num2);
+                yield num1 / num2;
+            }
+            case '^' -> {
+                if (num1 != (int) num1 || num2 != (int) num2) {
+                    System.out.println("Ошибка: числа для возведения в степень должны быть целыми.");
+                    yield Double.NaN;
                 }
-                case '%' -> {
-                    if (num2 == 0) {
-                        throw new RuntimeException("Ошибка: деление на ноль запрещено.");
-                    }
-                    yield Math.IEEEremainder(num1, num2);
+                yield Math.pow(num1, num2);
+            }
+            case '%' -> {
+                if (num2 == 0) {
+                    System.out.println("Ошибка: деление на ноль запрещено.");
+                    yield Double.NaN;
                 }
-                default -> throw new RuntimeException("Ошибка: операция " + operator + " не поддерживается.");
-            };
-        } catch (NumberFormatException e) {
-            throw new RuntimeException("Ошибка: оба операнда должны быть числами.");
-        }
+                yield num1 % Math.abs(num2);
+            }
+            default -> {
+                System.out.println("Ошибка: операция " + operator + " не поддерживается.");
+                yield Double.NaN;
+            }
+        };
     }
 
-    private static char getOperator(String expression) {
+    static char getOperator(String expression) {
         for (char ch : expression.toCharArray()) {
             if ("+-*/%^".indexOf(ch) != -1) {
                 return ch;
