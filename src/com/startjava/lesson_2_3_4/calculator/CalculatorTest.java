@@ -8,7 +8,7 @@ public class CalculatorTest {
         Scanner scanner = new Scanner(System.in);
         String userChoice = "yes";
         do {
-            if (userChoice.equals("yes")) {
+            if ("yes".equals(userChoice)) {
                 System.out.println("Введите математическое выражение: ");
                 String expression = scanner.nextLine();
                 try {
@@ -18,19 +18,16 @@ public class CalculatorTest {
                     System.out.println(e.getMessage());
                 }
                 System.out.println("Хотите продолжить вычисления? [yes/no]: ");
-                userChoice = (scanner.nextLine()).toLowerCase();
             } else {
                 System.out.println("Введите корректный ответ [yes / no]: ");
-                userChoice = (scanner.nextLine()).toLowerCase();
             }
+            userChoice = scanner.nextLine().toLowerCase();
         } while (!"no".equals(userChoice));
     }
 
     private static void printResult(double result, String expression) {
         expression = expression.replaceAll("\\s+", " ");
         DecimalFormat df = new DecimalFormat("#.###");
-        if (!Double.isNaN(result)) {
-            System.out.println("Результат: " + expression + " = " + df.format(result));
-        }
+        System.out.println("Результат: " + expression + " = " + df.format(result));
     }
 }

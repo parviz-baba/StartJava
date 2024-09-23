@@ -1,12 +1,12 @@
 package com.startjava.lesson_2_3_4.calculator;
 
 class Calculator {
-    private static final int expectedPartsLength = 3;
+    private static final int EXPECTED_PARTS_LENGHT = 3;
 
     public static double calculate(String expression) {
-        expression = expression.replaceAll("\\s+", " ");
+        expression = expression.replaceAll("\\s+", " ").trim();
         String[] parts = expression.split(" ");
-        if (parts.length != expectedPartsLength) {
+        if (parts.length != EXPECTED_PARTS_LENGHT) {
             throw new RuntimeException("Ошибка: выражение должно содержать два операнда и один оператор.");
         }
         int num1;
@@ -29,7 +29,7 @@ class Calculator {
                 }
                 yield (operator == '/') ? ((double) num1 / num2) : (num1 % Math.abs(num2));
             }
-                default -> throw new RuntimeException("Ошибка: операция " + operator + " не поддерживается.");
+            default -> throw new RuntimeException("Ошибка: операция " + operator + " не поддерживается.");
         };
     }
 }
