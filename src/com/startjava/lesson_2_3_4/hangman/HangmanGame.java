@@ -10,15 +10,22 @@ public class HangmanGame {
     private final char[] wrongGuesses;
     private int wrongGuessCount;
     private int remainingAttempts;
-    private final int maxAttempts = 6;
-    private final String[] HANGMAN_STAGES = {
-            " +---+\n |   |\n     |\n     |\n     |\n    ===",
-            " +---+\n |   |\n O   |\n     |\n     |\n    ===",
-            " +---+\n |   |\n O   |\n |   |\n     |\n    ===",
-            " +---+\n |   |\n O   |\n/|   |\n     |\n    ===",
-            " +---+\n |   |\n O   |\n/|\\  |\n     |\n    ===",
-            " +---+\n |   |\n O   |\n/|\\  |\n/    |\n    ===",
-            " +---+\n |   |\n O   |\n/|\\  |\n/ \\  |\n    ==="
+    private final int maxAttempts;
+    private final String[] hangmanStages = {
+            "     +---+\n     |   |\n         |\n         |\n         |\n         |\n  " +
+                    "===============\n  В И С Е Л И Ц А",
+            "     +---+\n     |   |\n     O   |\n         |\n         |\n         |\n  " +
+                    "===============\n  В И С Е Л И Ц А",
+            "     +---+\n     |   |\n     O   |\n     |   |\n         |\n         |\n  " +
+                    "===============\n  В И С Е Л И Ц А",
+            "     +---+\n     |   |\n     O   |\n    /|   |\n         |\n         |\n  " +
+                    "===============\n  В И С Е Л И Ц А",
+            "     +---+\n     |   |\n     O   |\n    /|\\  |\n         |\n         |\n  " +
+                    "===============\n  В И С Е Л И Ц А",
+            "     +---+\n     |   |\n     O   |\n    /|\\  |\n    /    |\n         |\n  " +
+                    "===============\n  В И С Е Л И Ц А",
+            "     +---+\n     |   |\n     O   |\n    /|\\  |\n    / \\  |\n         |\n  " +
+                    "===============\n  В И С Е Л И Ц А"
     };
 
     public HangmanGame() {
@@ -27,15 +34,16 @@ public class HangmanGame {
         wordToGuess = wordList[rand.nextInt(wordList.length)];
         guessedLetter = new char[wordToGuess.length()];
         Arrays.fill(guessedLetter, '_');
+        maxAttempts = hangmanStages.length - 1;
         wrongGuesses = new char[maxAttempts];
         wrongGuessCount = 0;
         remainingAttempts = maxAttempts;
     }
 
-    public void play() {
+    void play() {
         Scanner scanner = new Scanner(System.in, "CP866");
         while (remainingAttempts > 0) {
-            System.out.println(HANGMAN_STAGES[wrongGuessCount]);
+            System.out.println(hangmanStages[wrongGuessCount]);
             System.out.println("Загаданное слово: " + String.valueOf(guessedLetter));
             System.out.print("Неправильно угаданные буквы: ");
             for (int i = 0; i < wrongGuessCount; i++) {
@@ -46,7 +54,7 @@ public class HangmanGame {
             char guess = scanner.next().toUpperCase().charAt(0);
 
             if (!isCyrillicLetter(guess)) {
-                System.out.println("ВЫ МОЖЕТЕ ИСПОЛЬЗОВАТЬ ТОЛЬКО КИРИЛЛИЧЕСКИЙ АЛФАВИТ.");
+                System.out.println("Вы можете использовать только кириллический алфавит.");
                 continue;
             }
 
@@ -82,7 +90,7 @@ public class HangmanGame {
                 return;
             }
         }
-        System.out.println(HANGMAN_STAGES[maxAttempts]);
+        System.out.println(hangmanStages[maxAttempts]);
         System.out.println("Вы проиграли! Загаданное слово: " + wordToGuess);
     }
 
