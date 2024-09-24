@@ -7,9 +7,6 @@ import java.util.Scanner;
 public class HangmanGame {
     private final String wordToGuess;
     private final char[] guessedLetter;
-    private final char[] wrongLetter;
-    private int wrongGuessCount;
-    private int remainingAttempts;
     private final int maxAttempts;
     private final String[] hangmanStages = {
             "     +---+\n     |   |\n         |\n         |\n         |\n         |\n  " +
@@ -35,13 +32,13 @@ public class HangmanGame {
         guessedLetter = new char[wordToGuess.length()];
         Arrays.fill(guessedLetter, '_');
         maxAttempts = hangmanStages.length - 1;
-        wrongLetter = new char[maxAttempts];
-        wrongGuessCount = 0;
-        remainingAttempts = maxAttempts;
     }
 
     void play() {
         Scanner scanner = new Scanner(System.in, "CP866");
+        char[] wrongLetter = new char[maxAttempts];
+        int wrongGuessCount = 0;
+        int remainingAttempts = maxAttempts;
         while (remainingAttempts > 0) {
             System.out.println(hangmanStages[wrongGuessCount]);
             System.out.println("Загаданное слово: " + String.valueOf(guessedLetter));
@@ -57,9 +54,8 @@ public class HangmanGame {
                 System.out.println("Вы можете использовать только кириллический алфавит.");
                 continue;
             }
-
             if (Character.isLetter(guess)) {
-                if (isAlreadyGuessed(guess)) {
+                if (isAlreadyGuessed(guess, wrongLetter, guessedLetter)) {
                     System.out.println("Вы уже вводили эту букву. Введите другую.");
                 } else if (wordToGuess.contains(String.valueOf(guess))) {
                     boolean found = false;
@@ -94,9 +90,9 @@ public class HangmanGame {
         System.out.println("Вы проиграли! Загаданное слово: " + wordToGuess);
     }
 
-    private boolean isAlreadyGuessed(char guess) {
-        for (int i = 0; i < wrongGuessCount; i++) {
-            if (wrongLetter[i] == guess) {
+    private boolean isAlreadyGuessed(char guess, char[] wrongLetter, char[] guessedLetter) {
+        for (char value : wrongLetter) {
+            if (value == guess) {
                 return true;
             }
         }
