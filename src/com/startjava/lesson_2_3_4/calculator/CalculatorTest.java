@@ -26,7 +26,7 @@ public class CalculatorTest {
     }
 
     private static void printResult(double result, String expression) {
-        expression = expression.replaceAll("\\s+", " ");
+        expression = expression.replaceAll("\\s+", " ").trim();
         DecimalFormat df = new DecimalFormat("#.###");
         System.out.println("Результат: " + expression + " = " + df.format(result));
     }

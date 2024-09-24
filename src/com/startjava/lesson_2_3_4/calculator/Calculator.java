@@ -27,7 +27,7 @@ class Calculator {
                 if (num2 == 0) {
                     throw new RuntimeException("Ошибка: деление на ноль запрещено.");
                 }
-                yield (operator == '/') ? ((double) num1 / num2) : (num1 % Math.abs(num2));
+                yield (operator == '/') ? ((double) num1 / num2) : (Math.floorMod(num1, num2));
             }
             default -> throw new RuntimeException("Ошибка: операция " + operator + " не поддерживается.");
         };

@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class HangmanGame {
     private final String wordToGuess;
     private final char[] guessedLetter;
-    private final char[] wrongGuesses;
+    private final char[] wrongLetter;
     private int wrongGuessCount;
     private int remainingAttempts;
     private final int maxAttempts;
@@ -30,12 +30,12 @@ public class HangmanGame {
 
     public HangmanGame() {
         Random rand = new Random();
-        String[] wordList = {"ВИСЕЛИЦА", "КАЛЬКУЛЯТОР", "МАССИВ", "ПРОГРАМИРОВАНИЕ"};
+        String[] wordList = {"ВИСЕЛИЦА", "КАЛЬКУЛЯТОР", "МАССИВ", "ПРОГРАММИРОВАНИЕ"};
         wordToGuess = wordList[rand.nextInt(wordList.length)];
         guessedLetter = new char[wordToGuess.length()];
         Arrays.fill(guessedLetter, '_');
         maxAttempts = hangmanStages.length - 1;
-        wrongGuesses = new char[maxAttempts];
+        wrongLetter = new char[maxAttempts];
         wrongGuessCount = 0;
         remainingAttempts = maxAttempts;
     }
@@ -47,7 +47,7 @@ public class HangmanGame {
             System.out.println("Загаданное слово: " + String.valueOf(guessedLetter));
             System.out.print("Неправильно угаданные буквы: ");
             for (int i = 0; i < wrongGuessCount; i++) {
-                System.out.print(wrongGuesses[i] + " ");
+                System.out.print(wrongLetter[i] + " ");
             }
             System.out.println("\nОсталось попыток: " + remainingAttempts);
             System.out.print("Введите букву: ");
@@ -77,7 +77,7 @@ public class HangmanGame {
                         System.out.println("Правильно! Удалена часть виселицы.");
                     }
                 } else {
-                    wrongGuesses[wrongGuessCount] = guess;
+                    wrongLetter[wrongGuessCount] = guess;
                     wrongGuessCount++;
                     remainingAttempts--;
                     System.out.println("Неправильно! Добавлена часть виселицы.");
@@ -96,7 +96,7 @@ public class HangmanGame {
 
     private boolean isAlreadyGuessed(char guess) {
         for (int i = 0; i < wrongGuessCount; i++) {
-            if (wrongGuesses[i] == guess) {
+            if (wrongLetter[i] == guess) {
                 return true;
             }
         }
