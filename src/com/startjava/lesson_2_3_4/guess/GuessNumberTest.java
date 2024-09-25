@@ -7,21 +7,22 @@ public class GuessNumberTest {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите имя первого игрока: ");
         String name1 = scanner.nextLine();
-        Player player1 = new Player(name1);
         System.out.println("Введите имя второго игрока: ");
         String name2 = scanner.nextLine();
-        Player player2 = new Player(name2);
-        GuessNumber game = new GuessNumber(player1, player2);
-        String playerChoice = "yes";
-        while (playerChoice.equalsIgnoreCase("yes")) {
-            game.start();
-            System.out.println("Хотите продолжить игру? [yes/no]: ");
-            playerChoice = scanner.next();
-            if (!playerChoice.equalsIgnoreCase("yes") && !playerChoice.equalsIgnoreCase("no")) {
-                System.out.println("Пожалуйста, введите 'yes' или 'no'.");
-                playerChoice = scanner.nextLine();
+        System.out.println("Введите имя третьего игрока: ");
+        String name3 = scanner.nextLine();
+        GuessNumber game = new GuessNumber(name1, name2, name3);
+        String userChoice = "yes";
+        do {
+            if (userChoice.equalsIgnoreCase("yes")) {
+                game.start();
+                System.out.println("Хотите продолжить игру? [yes/no]: ");
+                userChoice = scanner.nextLine().toLowerCase();
+            } else {
+                System.out.println("Введите корректный ответ [yes / no]: ");
+                userChoice = scanner.nextLine().toLowerCase();
             }
-        }
+        } while (!userChoice.equalsIgnoreCase("no"));
         System.out.println("Игра завершена. Спасибо за игру!");
     }
 }

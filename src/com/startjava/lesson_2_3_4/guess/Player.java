@@ -24,15 +24,14 @@ public class Player {
     }
 
     public void addGuess(int guess) {
-        if (attempt < guesses.length) {
-            guesses[attempt++] = guess;
-        } else {
-            System.out.println("Попытки закончились!");
+        if (attempt < 10) {
+            guesses[attempt] = guess;
+            attempt++;
         }
     }
 
-    public void resetGuesses() {
-        Arrays.fill(guesses, 0, attempt, 0);
+    public void reset() {
+        Arrays.fill(guesses, 0);  // Clear the array
         attempt = 0;
     }
 }
