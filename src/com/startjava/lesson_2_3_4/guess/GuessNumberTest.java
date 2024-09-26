@@ -5,24 +5,23 @@ import java.util.Scanner;
 public class GuessNumberTest {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите имя первого игрока: ");
-        String name1 = scanner.nextLine();
-        System.out.println("Введите имя второго игрока: ");
-        String name2 = scanner.nextLine();
-        System.out.println("Введите имя третьего игрока: ");
-        String name3 = scanner.nextLine();
-        GuessNumber game = new GuessNumber(name1, name2, name3);
-        String userChoice = "yes";
+        String[] playerNames = new String[3];
+        for (int i = 0; i < playerNames.length; i++) {
+            System.out.println("Введите имя " + (i + 1) + "-го игрока: ");
+            playerNames[i] = scanner.nextLine();
+        }
+        GuessNumber game = new GuessNumber(playerNames[0], playerNames[1], playerNames[2]);
+        String playerChoice = "yes";
         do {
-            if (userChoice.equalsIgnoreCase("yes")) {
+            if (playerChoice.equalsIgnoreCase("yes")) {
                 game.start();
                 System.out.println("Хотите продолжить игру? [yes/no]: ");
-                userChoice = scanner.nextLine().toLowerCase();
+                playerChoice = scanner.nextLine().toLowerCase();
             } else {
                 System.out.println("Введите корректный ответ [yes / no]: ");
-                userChoice = scanner.nextLine().toLowerCase();
+                playerChoice = scanner.nextLine().toLowerCase();
             }
-        } while (!userChoice.equalsIgnoreCase("no"));
+        } while (!playerChoice.equalsIgnoreCase("no"));
         System.out.println("Игра завершена. Спасибо за игру!");
     }
 }

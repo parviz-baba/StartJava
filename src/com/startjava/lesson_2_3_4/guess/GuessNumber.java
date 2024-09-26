@@ -49,7 +49,7 @@ public class GuessNumber {
             System.out.println("Количество раундов закончилось!");
         }
         printGuesses();
-        resetPlayers();
+        resetPlayerGuesses();
     }
 
     private void generateNewTarget() {
@@ -76,9 +76,12 @@ public class GuessNumber {
         }
     }
 
-    private void resetPlayers() {
+    private void resetPlayerGuesses() {
+        Scanner scanner = new Scanner(System.in);
         for (Player player : players) {
-            player.reset();
+            System.out.println(player.getName() + ", какой номер вы хотите удалить?");
+            int guessToClear = scanner.nextInt();
+            player.clearGuess(guessToClear);
         }
     }
 }
