@@ -5,6 +5,9 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class GuessNumber {
+    public static final int MIN_NUMBER = 1;
+    public static final int MAX_NUMBER = 100;
+    public static final int MAX_ATTEMPTS = 10;
     private final Player[] players = new Player[3];
     private int targetNumber;
 
@@ -20,18 +23,23 @@ public class GuessNumber {
         randomPlayersOrder();
         Scanner scanner = new Scanner(System.in);
         int round = 1;
-        while (round <= 3 && players[0].getAttempt() < 10 &&
-                players[1].getAttempt() < 10 && players[2].getAttempt() < 10) {
+        while (round <= 3 && players[0].getAttempt() < MAX_ATTEMPTS &&
+                players[1].getAttempt() < MAX_ATTEMPTS && players[2].getAttempt() < MAX_ATTEMPTS) {
             System.out.println("Раунд " + round + ":");
             for (Player currentPlayer : players) {
-                if (currentPlayer.getAttempt() < 10) {
-                    System.out.println(currentPlayer.getName() + ", угадай число: ");
-                    int guess = scanner.nextInt();
-                    if (guess < 1 || guess > 100) {
-                        System.out.println("Число должно входить в интервал [1, 100]. Попробуйте еще раз.");
-                        continue;
-                    }
+                if (currentPlayer.getAttempt() < MAX_ATTEMPTS) {
+                    int guess;
+                    do {
+                        System.out.println(currentPlayer.getName() + ", угадай число: ");
+                        guess = scanner.nextInt();
+                        if (guess < MIN_NUMBER || guess > MAX_NUMBER) {
+                            System.out.println("Число должно входить в интервал [" + MIN_NUMBER + ", " +
+                                    MAX_NUMBER + "]." + "\nПопробуйте еще раз: ");
+                        }
+                    } while (guess < MIN_NUMBER || guess > MAX_NUMBER);
+
                     currentPlayer.addGuess(guess);
+
                     if (guess == targetNumber) {
                         System.out.println(currentPlayer.getName() + " угадал число " + targetNumber +
                                 " с " + currentPlayer.getAttempt() + "-й попытки");
@@ -53,7 +61,7 @@ public class GuessNumber {
     }
 
     private void generateNewTarget() {
-        targetNumber = (int) (Math.random() * 100) + 1;
+        targetNumber = (int) (Math.random() * (MAX_NUMBER - MIN_NUMBER + 1)) + MIN_NUMBER;
     }
 
     private void randomPlayersOrder() {
