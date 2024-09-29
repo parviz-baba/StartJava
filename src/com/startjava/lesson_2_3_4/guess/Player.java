@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class Player {
     private final String name;
-    private final int[] guesses = new int[10];
+    private static final int[] GUESSES = new int[10];
     private int attempt;
 
     public Player(String name) {
@@ -20,13 +20,13 @@ public class Player {
     }
 
     public int[] getGuesses() {
-        return Arrays.copyOf(guesses, attempt);
+        return Arrays.copyOf(GUESSES, attempt);
     }
 
     public void addGuess(int guess) {
         if (guess >= GuessNumber.MIN_NUMBER && guess <= GuessNumber.MAX_NUMBER) {
             if (attempt < GuessNumber.MAX_ATTEMPTS) {
-                guesses[attempt] = guess;
+                GUESSES[attempt] = guess;
                 attempt++;
             }
         } else {
@@ -37,8 +37,8 @@ public class Player {
 
     public void clearGuess(int guess) {
         for (int i = 0; i < attempt; i++) {
-            if (guesses[i] == guess) {
-                guesses[i] = 0;
+            if (GUESSES[i] == guess) {
+                GUESSES[i] = 0;
                 break;
             }
         }

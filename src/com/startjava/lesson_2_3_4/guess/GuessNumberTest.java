@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class GuessNumberTest {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        String[] playerNames = new String[3];
+        final String[] playerNames = new String[3];
         for (int i = 0; i < playerNames.length; i++) {
             System.out.println("Введите имя " + (i + 1) + "-го игрока: ");
             playerNames[i] = scanner.nextLine();
