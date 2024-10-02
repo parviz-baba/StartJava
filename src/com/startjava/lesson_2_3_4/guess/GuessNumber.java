@@ -7,37 +7,37 @@ import java.util.Scanner;
 public class GuessNumber {
     public static final int MIN_NUMBER = 1;
     public static final int MAX_NUMBER = 100;
-    public static final int MAX_ATTEMPTS = 2;
+    public static final int MAX_ATTEMPTS = 10;
     private static final Player[] PLAYERS = new Player[3];
-    private int targetNumber = 0;
+    private static int targetNumber = 0;
 
     public GuessNumber(String name1, String name2, String name3) {
-        this.PLAYERS[0] = new Player(name1);
-        this.PLAYERS[1] = new Player(name2);
-        this.PLAYERS[2] = new Player(name3);
+        PLAYERS[0] = new Player(name1);
+        PLAYERS[1] = new Player(name2);
+        PLAYERS[2] = new Player(name3);
     }
 
     public void start() {
-        generateNewTarget(); // yeni reqem duzeldir
+        generateNewTarget();
         System.out.println("Игра началась! У каждого игрока по " + MAX_ATTEMPTS + " попыток.");
-        randomPlayersOrder(); // oyuncularin novbesini deyisdirir
+        randomPlayersOrder();
         Scanner scanner = new Scanner(System.in);
         int round = 1;
         while (round <= MAX_ATTEMPTS && PLAYERS[0].getAttempt() < MAX_ATTEMPTS &&
                 PLAYERS[1].getAttempt() < MAX_ATTEMPTS && PLAYERS[2].getAttempt() < MAX_ATTEMPTS) {
             System.out.println("Раунд " + round + ":");
-            for (Player currentPlayer : PLAYERS) { // currentPlayer = Player1, Player2, Player3
+            for (Player currentPlayer : PLAYERS) {
                 if (currentPlayer.getAttempt() < MAX_ATTEMPTS) {
-                    int guess; // guess-e bir azdan scan getirecek ve oyuncu reqem yazacaq.
-                    do { // do while burada intervaldan kenarda yigilan reqem ucun yeniden ceht etmesine imkan vermek ucundur.
+                    int guess;
+                    do {
                         System.out.println(currentPlayer.getName() + ", угадай число: ");
-                        guess = scanner.nextInt(); // yuxarida qeyd etdiyim.
+                        guess = scanner.nextInt();
                         if (guess < MIN_NUMBER || guess > MAX_NUMBER) {
                             System.out.println("Число должно входить в интервал [" + MIN_NUMBER + ", " +
                                     MAX_NUMBER + "]." + "\nПопробуйте еще раз: ");
                         }
-                    } while (guess < MIN_NUMBER || guess > MAX_NUMBER);// yeniden ceht bitdi.
-                    currentPlayer.addGuess(guess); // currentPlayer = Player1, Player2, Player3, guess = scanner
+                    } while (guess < MIN_NUMBER || guess > MAX_NUMBER);
+                    currentPlayer.addGuess(guess);
                     if (guess == targetNumber) {
                         System.out.println(currentPlayer.getName() + " угадал число " + targetNumber +
                                 " с " + currentPlayer.getAttempt() + "-й попытки");
@@ -58,11 +58,11 @@ public class GuessNumber {
         resetPlayerGuesses();
     }
 
-    private void generateNewTarget() {
+    private static void generateNewTarget() {
         targetNumber = (int) (Math.random() * (MAX_NUMBER - MIN_NUMBER + 1)) + MIN_NUMBER;
     }
 
-    private void randomPlayersOrder() {
+    private static void randomPlayersOrder() {
         Random random = new Random();
         for (int i = 0; i < PLAYERS.length; i++) {
             int randomIndex = random.nextInt(PLAYERS.length);
@@ -76,13 +76,13 @@ public class GuessNumber {
         }
     }
 
-    private void printGuesses() {
+    private static void printGuesses() {
         for (Player player : PLAYERS) {
             System.out.println(player.getName() + ": " + Arrays.toString(player.getGuesses()));
         }
     }
 
-    private void resetPlayerGuesses() {
+    private static void resetPlayerGuesses() {
         Scanner scanner = new Scanner(System.in);
         for (Player player : PLAYERS) {
             System.out.println(player.getName() + ", какой номер вы хотите удалить?");
