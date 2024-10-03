@@ -28,12 +28,13 @@ public class Player {
         attempt++;
     }
 
-    public void clearGuess(int guess) {
-        for (int i = 0; i < attempt; i++) {
-            if (guesses[i] == guess) {
-                guesses[i] = 0;
-                break;
-            }
-        }
+    public void clearAttempts() {
+        attempt = 0;
+        Arrays.fill(guesses, 0);
+    }
+
+    public void clear() {
+        attempt = 0;
+        Arrays.fill(guesses, 0);
     }
 }

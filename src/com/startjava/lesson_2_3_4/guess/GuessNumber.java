@@ -50,12 +50,15 @@ public class GuessNumber {
                 }
             }
             round++;
-        }
-        if (round == MAX_ATTEMPTS) {
-            System.out.println("Количество раундов закончилось!");
+            if (round > MAX_ATTEMPTS) {
+                System.out.println("Количество раундов закончилось!");
+            }
         }
         printGuesses();
         resetPlayerGuesses();
+        for (Player player : PLAYERS) {
+            player.clearAttempts();
+        }
     }
 
     private static void generateNewTarget() {
@@ -83,11 +86,8 @@ public class GuessNumber {
     }
 
     private static void resetPlayerGuesses() {
-        Scanner scanner = new Scanner(System.in);
         for (Player player : PLAYERS) {
-            System.out.println(player.getName() + ", какой номер вы хотите удалить?");
-            int guessToClear = scanner.nextInt();
-            player.clearGuess(guessToClear);
+            player.clear();
         }
     }
 }
