@@ -8,56 +8,44 @@ public class GuessNumber {
     public static final int MIN_NUMBER = 1;
     public static final int MAX_NUMBER = 100;
     public static final int MAX_ATTEMPTS = 10;
-    private static final Player[] PLAYERS = new Player[3];
-    private static int targetNumber = 0;
+    public static final int MAX_ROUND = 3;
+    static Player[] players = new Player[GuessNumberTest.count];
+    private static int targetNumber;
 
-    public GuessNumber(String name1, String name2, String name3) {
-        PLAYERS[0] = new Player(name1);
-        PLAYERS[1] = new Player(name2);
-        PLAYERS[2] = new Player(name3);
+    public GuessNumber(String[] playersNames) {
+        for (int i = 0; i < players.length; i++) {
+            players[i] = new Player(playersNames[i]);
+        }
     }
 
     public void start() {
         generateNewTarget();
-        System.out.println("Игра началась! У каждого игрока по " + MAX_ATTEMPTS + " попыток.");
-        randomPlayersOrder();
-        Scanner scanner = new Scanner(System.in);
+        System.out.println("\nИгра началась! У каждого игрока по " + MAX_ATTEMPTS + " попыток.");
+        shufflePlayers();
         int round = 1;
-        while (round <= MAX_ATTEMPTS && PLAYERS[0].getAttempt() < MAX_ATTEMPTS &&
-                PLAYERS[1].getAttempt() < MAX_ATTEMPTS && PLAYERS[2].getAttempt() < MAX_ATTEMPTS) {
-            System.out.println("Раунд " + round + ":");
-            for (Player currentPlayer : PLAYERS) {
-                if (currentPlayer.getAttempt() < MAX_ATTEMPTS) {
-                    int guess;
+        while (round <= MAX_ROUND) {
+            System.out.println("\nРаунд " + round + ":");
+            for (int i = 0; i < MAX_ATTEMPTS; i++) {
+                for (Player player : players) {
                     do {
-                        System.out.println(currentPlayer.getName() + ", угадай число: ");
-                        guess = scanner.nextInt();
-                        if (guess < MIN_NUMBER || guess > MAX_NUMBER) {
-                            System.out.println("Число должно входить в интервал [" + MIN_NUMBER + ", " +
-                                    MAX_NUMBER + "]." + "\nПопробуйте еще раз: ");
-                        }
-                    } while (guess < MIN_NUMBER || guess > MAX_NUMBER);
-                    currentPlayer.addGuess(guess);
-                    if (guess == targetNumber) {
-                        System.out.println(currentPlayer.getName() + " угадал число " + targetNumber +
-                                " с " + currentPlayer.getAttempt() + "-й попытки");
+                        player.setGuess(getPlayerGuess(player.getName()));
+                    } while (player.getGuess() < GuessNumber.MIN_NUMBER || player.getGuess() > MAX_NUMBER);
+                    player.addGuess(player.getGuess());
+                    if (checkGuess(player.getGuess(), targetNumber, player.getName(), player.getAttempt())) {
+                        System.out.println("Игра завершена. Победитель: " + player.getName() + "\n");
+                        resetPlayerGuesses();
                         return;
-                    } else if (guess > targetNumber) {
-                        System.out.println(guess + " больше того, что загадал компьютер");
-                    } else {
-                        System.out.println(guess + " меньше того, что загадал компьютер");
+                    }
+                    if (player.getAttempt() == MAX_ATTEMPTS) {
+                        System.out.println("У " + player.getName() + " закончились попытки!");
                     }
                 }
+                printGuesses();
+                System.out.println();
             }
+            System.out.println("Количество попыток закончилось!");
             round++;
-            if (round > MAX_ATTEMPTS) {
-                System.out.println("Количество раундов закончилось!");
-            }
-        }
-        printGuesses();
-        resetPlayerGuesses();
-        for (Player player : PLAYERS) {
-            player.clearAttempts();
+            resetPlayerGuesses();
         }
     }
 
@@ -65,29 +53,47 @@ public class GuessNumber {
         targetNumber = (int) (Math.random() * (MAX_NUMBER - MIN_NUMBER + 1)) + MIN_NUMBER;
     }
 
-    private static void randomPlayersOrder() {
+    private static void shufflePlayers() {
         Random random = new Random();
-        for (int i = 0; i < PLAYERS.length; i++) {
-            int randomIndex = random.nextInt(PLAYERS.length);
-            Player temp = PLAYERS[i];
-            PLAYERS[i] = PLAYERS[randomIndex];
-            PLAYERS[randomIndex] = temp;
+        for (int i = 0; i < players.length; i++) {
+            int randomIndex = random.nextInt(players.length);
+            Player temp = players[i];
+            players[i] = players[randomIndex];
+            players[randomIndex] = temp;
         }
         System.out.println("Порядок игроков случайно изменён:");
-        for (Player player : PLAYERS) {
+        for (Player player : players) {
             System.out.println(player.getName());
         }
     }
 
     private static void printGuesses() {
-        for (Player player : PLAYERS) {
+        for (Player player : players) {
             System.out.println(player.getName() + ": " + Arrays.toString(player.getGuesses()));
         }
     }
 
     private static void resetPlayerGuesses() {
-        for (Player player : PLAYERS) {
+        for (Player player : players) {
             player.clear();
         }
+    }
+
+    private String getPlayerGuess(String name) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println(name + ", угадай число: ");
+        return scanner.nextLine();
+    }
+
+    private boolean checkGuess(int guess, int targetNumber, String name, int attempt) {
+        if (guess == targetNumber) {
+            System.out.println(name + " угадал число " + targetNumber + " с " + attempt + "-й попытки");
+            return true;
+        } else if (guess > targetNumber) {
+            System.out.println(guess + " больше того, что загадал компьютер");
+        } else {
+            System.out.println(guess + " меньше того, что загадал компьютер");
+        }
+        return false;
     }
 }
