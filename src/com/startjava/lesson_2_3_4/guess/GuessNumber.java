@@ -9,12 +9,13 @@ public class GuessNumber {
     public static final int MAX_NUMBER = 100;
     public static final int MAX_ATTEMPTS = 10;
     public static final int MAX_ROUND = 3;
-    static Player[] players = new Player[GuessNumberTest.count];
+    static Player[] players;
     private static int targetNumber;
 
-    public GuessNumber(String[] playersNames) {
+    public GuessNumber(String[] playerNames) {
+        players = new Player[playerNames.length];
         for (int i = 0; i < players.length; i++) {
-            players[i] = new Player(playersNames[i]);
+            players[i] = new Player(playerNames[i]);
         }
     }
 
@@ -27,11 +28,12 @@ public class GuessNumber {
             System.out.println("\nРаунд " + round + ":");
             for (int i = 0; i < MAX_ATTEMPTS; i++) {
                 for (Player player : players) {
+                    int guess;
                     do {
-                        player.setGuess(getPlayerGuess(player.getName()));
-                    } while (player.getGuess() < GuessNumber.MIN_NUMBER || player.getGuess() > MAX_NUMBER);
-                    player.addGuess(player.getGuess());
-                    if (checkGuess(player.getGuess(), targetNumber, player.getName(), player.getAttempt())) {
+                        guess = player.setGuess(getPlayerGuess(player.getName()));
+                    } while (guess == 0);
+                    player.addGuess(guess);
+                    if (checkGuess(guess, targetNumber, player.getName(), player.getAttempt())) {
                         System.out.println("Игра завершена. Победитель: " + player.getName() + "\n");
                         resetPlayerGuesses();
                         return;
@@ -87,7 +89,8 @@ public class GuessNumber {
 
     private boolean checkGuess(int guess, int targetNumber, String name, int attempt) {
         if (guess == targetNumber) {
-            System.out.println(name + " угадал число " + targetNumber + " с " + attempt + "-й попытки");
+            System.out.println(name + " угадал число " + targetNumber +
+                    " с " + attempt + "-й попытки");
             return true;
         } else if (guess > targetNumber) {
             System.out.println(guess + " больше того, что загадал компьютер");

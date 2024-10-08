@@ -4,34 +4,30 @@ import java.util.Arrays;
 
 public class Player {
     private final String name;
-    private final int[] guesses = new int[10];
-    private int attempt = 0;
-    private static int guess;
+    private static final int[] GUESSES = new int[10];
+    private int attempt;
 
     public Player(String name) {
         this.name = name;
-    }
-
-    public int getGuess() {
-        return guess;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setGuess(String input) {
+    public int setGuess(String input) {
         try {
             int guess = Integer.parseInt(input);
             if (guess < GuessNumber.MIN_NUMBER || guess > GuessNumber.MAX_NUMBER) {
                 System.out.println("Число должно входить в отрезок [" + GuessNumber.MIN_NUMBER + ", " +
                         GuessNumber.MAX_NUMBER + "]." + "\nПопробуйте еще раз: ");
             } else {
-                Player.guess = guess;
+                return guess;
             }
         } catch (NumberFormatException e) {
             System.out.println("Введённая строка не является числом. Попробуйте ещё раз:");
         }
+        return 0;
     }
 
     public int getAttempt() {
@@ -39,18 +35,16 @@ public class Player {
     }
 
     public int[] getGuesses() {
-        return Arrays.copyOf(guesses, attempt);
+        return Arrays.copyOf(GUESSES, attempt);
     }
 
     public void addGuess(int guess) {
-        guesses[attempt] = guess;
+        GUESSES[attempt] = guess;
         attempt++;
     }
 
     public void clear() {
-        for (int i = 0; i < attempt; i++) {
-            guesses[i] = 0;
-        }
+        Arrays.fill(GUESSES, 0);
         attempt = 0;
     }
 }
