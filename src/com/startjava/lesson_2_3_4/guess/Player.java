@@ -4,7 +4,8 @@ import java.util.Arrays;
 
 public class Player {
     private final String name;
-    private static final int[] GUESSES = new int[10];
+    private static final int MAX_GUESSES = 10;
+    final int[] guesses = new int[MAX_GUESSES];
     private int attempt;
 
     public Player(String name) {
@@ -19,8 +20,8 @@ public class Player {
         try {
             int guess = Integer.parseInt(input);
             if (guess < GuessNumber.MIN_NUMBER || guess > GuessNumber.MAX_NUMBER) {
-                System.out.println("Число должно входить в отрезок [" + GuessNumber.MIN_NUMBER + ", " +
-                        GuessNumber.MAX_NUMBER + "]." + "\nПопробуйте еще раз: ");
+                System.out.println("Число должно входить в отрезок [" +
+                        GuessNumber.MIN_NUMBER + ", " + GuessNumber.MAX_NUMBER + "]." + "\nПопробуйте еще раз: ");
             } else {
                 return guess;
             }
@@ -35,16 +36,16 @@ public class Player {
     }
 
     public int[] getGuesses() {
-        return Arrays.copyOf(GUESSES, attempt);
+        return Arrays.copyOf(guesses, attempt);
     }
 
     public void addGuess(int guess) {
-        GUESSES[attempt] = guess;
+        guesses[attempt] = guess;
         attempt++;
     }
 
     public void clear() {
-        Arrays.fill(GUESSES, 0);
+        Arrays.fill(guesses, 0, attempt, 0);
         attempt = 0;
     }
 }
