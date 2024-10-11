@@ -10,7 +10,6 @@ public class GuessNumber {
     public static final int MAX_ROUNDS = 3;
     private Player[] players;
     private int targetNumber;
-    private int guess;
 
     public GuessNumber(String[] playerNames) {
         players = new Player[playerNames.length];
@@ -21,22 +20,24 @@ public class GuessNumber {
 
     public void start() {
         targetNumber = generateNewTarget();
-        System.out.println("\nИгра началась! У каждого игрока по " + MAX_ATTEMPTS + " попыток.");
+        System.out.println("Игра началась! У каждого игрока по " + MAX_ATTEMPTS + " попыток.");
         shufflePlayers(players);
         int round = 1;
         while (round <= MAX_ROUNDS) {
             System.out.println("\nРаунд " + round + ":");
             for (int i = 0; i < MAX_ATTEMPTS; i++) {
                 for (Player player : players) {
+                    int guess;
                     do {
-                        guess = player.setGuess(getPlayerGuess(player.getName()));
+                        guess = player.setGuess(inputGuess(player.getName()));
                     } while (guess == 0);
-                    player.addGuess(guess);
-                    if (checkGuess(player)) {
+
+                    if (isGuessed(player)) {
                         System.out.println("Игра завершена. Победитель: " + player.getName() + "\n");
                         resetPlayerGuesses(players);
                         return;
                     }
+
                     if (player.getAttempt() == MAX_ATTEMPTS) {
                         System.out.println("У " + player.getName() + " закончились попытки!");
                     }
@@ -45,6 +46,9 @@ public class GuessNumber {
                 System.out.println();
             }
             System.out.println("Количество попыток закончилось!");
+            if (round == MAX_ROUNDS) {
+                System.out.println("Игра завершилась ничьей.");
+            }
             round++;
             resetPlayerGuesses(players);
         }
@@ -68,18 +72,20 @@ public class GuessNumber {
         }
     }
 
-    private String getPlayerGuess(String name) {
+    private int inputGuess(String name) {
         Scanner scanner = new Scanner(System.in);
         System.out.println(name + ", угадай число: ");
-        return scanner.nextLine();
+        return scanner.nextInt();
     }
 
-    private boolean checkGuess(Player player) {
+    private boolean isGuessed(Player player) {
+        int guess = player.getGuesses()[player.getAttempt() - 1];
         if (guess == targetNumber) {
             System.out.println(player.getName() + " угадал число " + targetNumber +
                     " с " + player.getAttempt() + "-й попытки");
             return true;
-        } else if (guess > targetNumber) {
+        }
+        if (guess > targetNumber) {
             System.out.println(guess + " больше того, что загадал компьютер");
         } else {
             System.out.println(guess + " меньше того, что загадал компьютер");

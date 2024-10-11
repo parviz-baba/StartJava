@@ -21,21 +21,6 @@ public class GuessNumberTest {
         System.out.println("Игра завершена. Спасибо за игру!");
     }
 
-    private static void inputPlayerNames(String[] playerNames, Scanner scanner) {
-        for (int i = 0; i < playerNames.length; i++) {
-            while (true) {
-                System.out.println("Введите имя " + (i + 1) + "-го игрока: ");
-                String input = scanner.nextLine();
-                if (input.matches("[a-zA-Zа-яА-Я]+")) {
-                    playerNames[i] = input;
-                    break;
-                }
-                System.out.println("Ошибка: имя должно содержать только " +
-                        "буквы русского или английского алфавита. Попробуйте ещё раз.");
-            }
-        }
-    }
-
     private static int inputPlayerCount(Scanner scanner) {
         boolean isValidInput = false;
         int count = 0;
@@ -49,5 +34,20 @@ public class GuessNumberTest {
             }
         } while (!isValidInput);
         return count;
+    }
+
+    private static void inputPlayerNames(String[] playerNames, Scanner scanner) {
+        for (int i = 0; i < playerNames.length; i++) {
+            while (true) {
+                System.out.println("Введите имя " + (i + 1) + "-го игрока: ");
+                String input = scanner.nextLine();
+                if (input.matches("[a-zA-Zа-яА-Я]+")) {
+                    playerNames[i] = input;
+                    break;
+                }
+                System.out.println("Ошибка: имя должно содержать только " +
+                        "буквы русского или английского алфавита. Попробуйте ещё раз.");
+            }
+        }
     }
 }
