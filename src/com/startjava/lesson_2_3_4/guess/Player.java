@@ -15,10 +15,6 @@ public class Player {
         return name;
     }
 
-    public int[] getGuesses() {
-        return Arrays.copyOf(guesses, attempt);
-    }
-
     public int getAttempt() {
         return attempt;
     }
@@ -29,7 +25,8 @@ public class Player {
                 System.out.println("Число должно входить в отрезок [" +
                         GuessNumber.MIN_NUMBER + ", " + GuessNumber.MAX_NUMBER + "]." + "\nПопробуйте еще раз: ");
             } else {
-                addGuess(guess);
+                guesses[attempt] = guess;
+                attempt++;
                 return guess;
             }
         } catch (NumberFormatException e) {
@@ -38,9 +35,8 @@ public class Player {
         return 0;
     }
 
-    public void addGuess(int guess) {
-        guesses[attempt] = guess;
-        attempt++;
+    public int[] getGuesses() {
+        return Arrays.copyOf(guesses, attempt);
     }
 
     public void clear() {
