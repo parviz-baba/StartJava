@@ -10,7 +10,7 @@ public class GuessNumber {
     public static final int MAX_ATTEMPTS = 10;
     public static final int MAX_ROUNDS = 3;
     private Player[] players;
-    private final int[] playerWins;
+    private int[] playerWins;
     private int targetNumber;
 
     public GuessNumber(String[] playerNames) {
