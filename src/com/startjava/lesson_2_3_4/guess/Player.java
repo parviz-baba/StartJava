@@ -6,6 +6,7 @@ public class Player {
     private final String name;
     private final int[] guesses = new int[GuessNumber.MAX_ATTEMPTS];
     private int attempt;
+    private int wins;
 
     public Player(String name) {
         this.name = name;
@@ -19,20 +20,15 @@ public class Player {
         return attempt;
     }
 
-    public int setGuess(int guess) {
-        try {
-            if (guess < GuessNumber.MIN_NUMBER || guess > GuessNumber.MAX_NUMBER) {
-                System.out.println("Число должно входить в отрезок [" +
-                        GuessNumber.MIN_NUMBER + ", " + GuessNumber.MAX_NUMBER + "]." + "\nПопробуйте еще раз: ");
-            } else {
-                guesses[attempt] = guess;
-                attempt++;
-                return guess;
-            }
-        } catch (NumberFormatException e) {
-            System.out.println("Введённая строка не является числом. Попробуйте ещё раз:");
+    public int addGuess(int guess) {
+        if (guess < GuessNumber.MIN_NUMBER || guess > GuessNumber.MAX_NUMBER) {
+            System.out.println("Число должно входить в отрезок [" +
+                    GuessNumber.MIN_NUMBER + ", " + GuessNumber.MAX_NUMBER + "]." + "\nПопробуйте еще раз: ");
+            return 0;
         }
-        return 0;
+        guesses[attempt] = guess;
+        attempt++;
+        return guess;
     }
 
     public int[] getGuesses() {
@@ -42,5 +38,13 @@ public class Player {
     public void clear() {
         Arrays.fill(guesses, 0, attempt, 0);
         attempt = 0;
+    }
+
+    public void incrementWins() {
+        wins++;
+    }
+
+    public int getWins() {
+        return wins;
     }
 }

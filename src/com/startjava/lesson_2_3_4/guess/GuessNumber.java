@@ -1,21 +1,18 @@
 package com.startjava.lesson_2_3_4.guess;
 
-import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
 public class GuessNumber {
     public static final int MIN_NUMBER = 1;
     public static final int MAX_NUMBER = 100;
-    public static final int MAX_ATTEMPTS = 10;
+    public static final int MAX_ATTEMPTS = 2;
     public static final int MAX_ROUNDS = 3;
     private Player[] players;
-    private int[] playerWins;
     private int targetNumber;
 
     public GuessNumber(String[] playerNames) {
         players = new Player[playerNames.length];
-        playerWins = new int[playerNames.length];
         for (int i = 0; i < players.length; i++) {
             players[i] = new Player(playerNames[i]);
         }
@@ -33,12 +30,12 @@ public class GuessNumber {
                 for (Player player : players) {
                     int guess;
                     do {
-                        guess = player.setGuess(inputGuess(player.getName()));
+                        guess = player.addGuess(inputGuess(player.getName()));
                     } while (guess == 0);
 
                     if (isGuessed(player)) {
                         System.out.println("Раунд завершён. Победитель: " + player.getName() + "\n");
-                        playerWins[getPlayerIndex(player)]++;
+                        player.incrementWins();
                         isRoundWon = true;
                         break;
                     }
@@ -58,7 +55,7 @@ public class GuessNumber {
             round++;
             resetPlayerGuesses(players);
         }
-        printFinalWinner(playerWins, players);
+        printFinalWinner(players);
     }
 
     private static int generateNewTarget() {
@@ -116,32 +113,23 @@ public class GuessNumber {
         }
     }
 
-    private int getPlayerIndex(Player player) {
-        for (int i = 0; i < players.length; i++) {
-            if (players[i].equals(player)) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
-    private void printFinalWinner(int[] playerWins, Player[] players) {
-        int maxWins = playerWins[0];
-        int winnerIndex = 0;
+    private void printFinalWinner(Player[] players) {
+        int maxWins = players[0].getWins();
+        Player winner = players[0];
         boolean isDraw = false;
-        for (int i = 1; i < playerWins.length; i++) {
-            if (playerWins[i] > maxWins) {
-                maxWins = playerWins[i];
-                winnerIndex = i;
+        for (Player player : players) {
+            if (player.getWins() > maxWins) {
+                maxWins = player.getWins();
+                winner = player;
                 isDraw = false;
-            } else if (playerWins[i] == maxWins) {
+            } else if (player.getWins() == maxWins && player != winner) {
                 isDraw = true;
             }
         }
         if (isDraw) {
             System.out.println("После трёх раундов игра закончилась ничьёй.");
         } else {
-            System.out.println("Общий победитель: " + players[winnerIndex].getName() +
+            System.out.println("Общий победитель: " + winner.getName() +
                     " с " + maxWins + " победами.");
         }
     }
