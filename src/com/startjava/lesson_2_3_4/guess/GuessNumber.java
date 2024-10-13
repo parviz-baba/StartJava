@@ -103,7 +103,7 @@ public class GuessNumber {
         }
     }
 
-    private static void printGuesses() {
+    private void printGuesses() {
         for (Player player : players) {
             System.out.print(player.getName() + ": ");
             for (int guess : player.getGuesses()) {
