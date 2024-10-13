@@ -35,16 +35,16 @@ public class Player {
         return Arrays.copyOf(guesses, attempt);
     }
 
-    public void clear() {
-        Arrays.fill(guesses, 0, attempt, 0);
-        attempt = 0;
-    }
-
     public void incrementWins() {
         wins++;
     }
 
     public int getWins() {
         return wins;
+    }
+
+    public void clear() {
+        Arrays.fill(guesses, 0, attempt, 0);
+        attempt = 0;
     }
 }
