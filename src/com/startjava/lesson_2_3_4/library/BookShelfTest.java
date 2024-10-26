@@ -20,13 +20,13 @@ public class BookShelfTest {
                 switch (choice) {
                     case 1:
                         Book newBook = createBook(scanner);
-                        bookShelf.addBook(newBook);
+                        bookShelf.add(newBook);
                         updateShelfStatus(bookShelf);
                         break;
                     case 2:
                         System.out.print("\nВведите название книги для удаления: ");
                         String removeTitle = scanner.nextLine();
-                        bookShelf.removeBook(removeTitle);
+                        bookShelf.remove(removeTitle);
                         updateShelfStatus(bookShelf);
                         break;
                     case 3:
@@ -102,11 +102,16 @@ public class BookShelfTest {
     private static void searchBook(Scanner scanner, BookShelf bookShelf) {
         System.out.print("\nВведите название книги для поиска: ");
         String searchTitle = scanner.nextLine();
-        Book foundBook = bookShelf.findBook(searchTitle);
+        Book foundBook = bookShelf.find(searchTitle);
         if (foundBook == null) {
             System.out.println("Книга не найдена.");
         } else {
-            System.out.println("Книга найдена: \n" + foundBook);
+            System.out.println("Книга найдена:");
+            System.out.println("------------------------------------------------------");
+            System.out.printf("| %-15s | %-10s | %-4s |", "Автор", "Название", "Год");
+            System.out.println("\n══════════════════════════════════════════════════════");
+            System.out.printf("| %-15s | %-10s | %-4d |", foundBook.getAuthor(), foundBook.getTitle(), foundBook.getPublishYear());
+            System.out.println("\n------------------------------------------------------\n");
         }
     }
 }

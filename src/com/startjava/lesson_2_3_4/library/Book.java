@@ -3,12 +3,12 @@ package com.startjava.lesson_2_3_4.library;
 public class Book {
     private String author;
     private String title;
-    private int year;
+    private int publishYear;
 
     public Book(String author, String title, int year) {
         this.author = author;
         this.title = title;
-        this.year = year;
+        this.publishYear = year;
     }
 
     public String getAuthor() {
@@ -19,16 +19,16 @@ public class Book {
         return title;
     }
 
-    public int getYear() {
-        return year;
+    public int getPublishYear() {
+        return publishYear;
     }
 
     @Override
     public String toString() {
-        String header = String.format("| %-15s | %-10s | %-4s |", "Автор", "Название", "Год");
-        String separator = "══════════════════════════════════════════════════════";
-        String bookInfo = String.format("| %-15s | %-10s | %-4d |", author, title, year);
-        return header + "\n" + separator + "\n" + bookInfo +
-                "\n------------------------------------------------------";
+        return "Book{" +
+                "Автор='" + author + '\'' +
+                ", Название='" + title + '\'' +
+                ", Год=" + publishYear +
+                '}';
     }
 }

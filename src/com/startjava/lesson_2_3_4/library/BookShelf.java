@@ -7,10 +7,9 @@ public class BookShelf {
 
     public BookShelf() {
         books = new Book[TOTAL_SHELVES];
-        bookCount = 0;
     }
 
-    public void addBook(Book book) {
+    public void add(Book book) {
         if (bookCount < TOTAL_SHELVES) {
             books[bookCount] = book;
             bookCount++;
@@ -20,7 +19,7 @@ public class BookShelf {
         }
     }
 
-    public Book findBook(String title) {
+    public Book find(String title) {
         for (int i = 0; i < bookCount; i++) {
             if (books[i].getTitle().equalsIgnoreCase(title)) {
                 return books[i];
@@ -29,7 +28,7 @@ public class BookShelf {
         return null;
     }
 
-    public void removeBook(String title) {
+    public void remove(String title) {
         for (int i = 0; i < bookCount; i++) {
             if (books[i].getTitle().equalsIgnoreCase(title)) {
                 System.out.println("Книга удалена: " + books[i].getTitle() + "✕");
@@ -49,11 +48,13 @@ public class BookShelf {
             System.out.println("\nШкаф пуст. Вы можете добавить в него первую книгу.");
         } else {
             System.out.println("Книги в шкафу:");
-            System.out.println("----------------------------------------------------------------");
+            System.out.println("-----------------------------------------------------");
+            System.out.printf("| %-15s | %-10s | %-4s |", "Автор", "Название", "Год");
+            System.out.println("\n═════════════════════════════════════════════════════");
             for (int i = 0; i < bookCount; i++) {
                 Book book = books[i];
-                System.out.printf("| %-20s | %-30s | %-4s |\n", book.getAuthor(), book.getTitle(), book.getYear());
-                System.out.println("----------------------------------------------------------------");
+                System.out.printf("| %-15s | %-10s | %-4s |\n", book.getAuthor(), book.getTitle(), book.getPublishYear());
+                System.out.println("-----------------------------------------------------");
             }
         }
     }
