@@ -11,20 +11,12 @@ public class Book {
         this.publishYear = year;
     }
 
-    public String getAuthor() {
-        return author;
-    }
-
     public String getTitle() {
         return title;
     }
 
-    public int getPublishYear() {
-        return publishYear;
-    }
-
     @Override
     public String toString() {
-        return String.format("| %-15s | %-10s | %-4s |", getAuthor(), getTitle(), getPublishYear());
+        return author + ", " + title + ", " + publishYear;
     }
 }

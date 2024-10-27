@@ -1,14 +1,18 @@
 package com.startjava.lesson_2_3_4.library;
 
-import java.util.Scanner;
+import java.util.Arrays;
 
 public class BookShelf {
-    Book[] books;
+    private Book[] books;
     private int bookCount;
     private static final int TOTAL_SHELVES = 10;
 
     public BookShelf() {
         books = new Book[TOTAL_SHELVES];
+    }
+
+    public Book[] getBooks() {
+        return Arrays.copyOf(books, getBookCount());
     }
 
     public int getBookCount() {
@@ -29,9 +33,7 @@ public class BookShelf {
         }
     }
 
-    public BookShelf remove(Scanner scanner, BookShelf bookShelf) {
-        System.out.print("\nВведите название книги для удаления: ");
-        String title = scanner.nextLine();
+    public void remove(String title) {
         for (int i = 0; i < bookCount; i++) {
             if (books[i].getTitle().equalsIgnoreCase(title)) {
                 System.out.println("Книга удалена: " + books[i].getTitle());
@@ -40,11 +42,10 @@ public class BookShelf {
                 }
                 books[bookCount - 1] = null;
                 bookCount--;
-                return bookShelf;
+                return;
             }
         }
         System.out.println("Книга не найдена: " + title);
-        return bookShelf;
     }
 
     public Book find(String title) {
@@ -56,12 +57,11 @@ public class BookShelf {
         return null;
     }
 
-    public BookShelf clearShelf(BookShelf bookShelf) {
+    public void clear() {
         for (int i = 0; i < bookCount; i++) {
             books[i] = null;
         }
         bookCount = 0;
         System.out.println("Шкаф очищен.");
-        return bookShelf;
     }
 }
