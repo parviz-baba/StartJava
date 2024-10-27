@@ -1,9 +1,13 @@
 package com.startjava.lesson_2_3_4.library;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class BookShelfTest {
-    public static void main(String[] args) throws InterruptedException {
+    private static final int MIN_CHOICE_NUMBER = 0;
+    private static final int MAX_CHOICE_NUMBER = 5;
+
+    public static void main() throws InterruptedException {
         Scanner scanner = new Scanner(System.in);
         BookShelf bookShelf = new BookShelf();
         welcome();
@@ -12,46 +16,29 @@ public class BookShelfTest {
             if (bookShelf.getBookCount() == 0) {
                 System.out.println("\nШкаф пуст. Вы можете добавить в него первую книгу");
             }
-            System.out.print("Введите ваш выбор (0-5): ");
             int choice;
             do {
-                choice = scanner.nextInt();
-                scanner.nextLine();
-                switch (choice) {
-                    case 1:
-                        Book newBook = createBook(scanner);
-                        bookShelf.add(newBook);
-                        updateShelfStatus(bookShelf);
-                        break;
-                    case 2:
-                        System.out.print("\nВведите название книги для удаления: ");
-                        String removeTitle = scanner.nextLine();
-                        bookShelf.remove(removeTitle);
-                        updateShelfStatus(bookShelf);
-                        break;
-                    case 3:
-                        if (bookShelf.getBookCount() == 0) {
-                            System.out.println("\nШкаф пуст. Вы можете добавить в него первую книгу");
-                        } else {
-                            searchBook(scanner, bookShelf);
+                System.out.print("Введите ваш выбор (0-5): ");
+                try {
+                    choice = scanner.nextInt();
+                    scanner.nextLine();
+                    switch (choice) {
+                        case 1 -> createBook(scanner, bookShelf);
+                        case 2 -> showAllBooks(bookShelf.remove(scanner, bookShelf));
+                        case 3 -> searchBook(scanner, bookShelf);
+                        case 4 -> showAllBooks(bookShelf);
+                        case 5 -> showAllBooks(bookShelf.clearShelf(bookShelf));
+                        case 0 -> {
+                            return;
                         }
-                        break;
-                    case 4:
-                        updateShelfStatus(bookShelf);
-                        break;
-                    case 5:
-                        bookShelf.clearShelf();
-                        updateShelfStatus(bookShelf);
-                        break;
-                    case 0:
-                        System.out.println("Выход из программы.");
-                        scanner.close();
-                        System.exit(0);
-                        break;
-                    default:
-                        System.out.print("\nОшибка: введите номер из списка: ");
+                        default -> System.out.print("\nОшибка: введите номер из списка: ");
+                    }
+                } catch (InputMismatchException e) {
+                    System.out.println("\nОшибка: введите целое число от 0 до 5");
+                    scanner.nextLine();
+                    choice = -1;
                 }
-            } while (choice < 1 || choice > 6);
+            } while (choice < MIN_CHOICE_NUMBER || choice > MAX_CHOICE_NUMBER);
         }
     }
 
@@ -82,7 +69,7 @@ public class BookShelfTest {
         System.out.println("╚═══════════════════════════════════════════════╝");
     }
 
-    private static Book createBook(Scanner scanner) {
+    private static void createBook(Scanner scanner, BookShelf bookShelf) {
         System.out.print("\nВведите имя автора: ");
         String author = scanner.nextLine();
         System.out.print("Введите название книги: ");
@@ -90,28 +77,45 @@ public class BookShelfTest {
         System.out.print("Введите год издания: ");
         int year = scanner.nextInt();
         scanner.nextLine();
-        return new Book(author, title, year);
+        bookShelf.add(new Book(author, title, year));
+        showAllBooks(bookShelf);
     }
 
-    private static void updateShelfStatus(BookShelf bookShelf) {
-        System.out.println("\nВ шкафу книг - " + bookShelf.getBookCount() +
+    public static void showAllBooks(BookShelf bookShelf) {
+        System.out.println("В шкафу книг - " + bookShelf.getBookCount() +
                 ", свободно полок - " + bookShelf.getFreeShelves());
-        bookShelf.showAllBooks();
+        if (bookShelf.getBookCount() == 0) {
+            System.out.println("\nШкаф пуст. Вы можете добавить в него первую книгу.");
+        } else {
+            System.out.println("Книги в шкафу:");
+            System.out.println("-----------------------------------------------------");
+            System.out.printf("| %-15s | %-10s | %-4s |", "Автор", "Название", "Год");
+            System.out.println("\n═════════════════════════════════════════════════════");
+            for (int i = 0; i < bookShelf.getBookCount(); i++) {
+                Book book = bookShelf.books[i];
+                System.out.println(book.toString());
+                System.out.println("-----------------------------------------------------");
+            }
+        }
     }
 
     private static void searchBook(Scanner scanner, BookShelf bookShelf) {
-        System.out.print("\nВведите название книги для поиска: ");
-        String searchTitle = scanner.nextLine();
-        Book foundBook = bookShelf.find(searchTitle);
-        if (foundBook == null) {
-            System.out.println("Книга не найдена.");
+        if (bookShelf.getBookCount() == 0) {
+            System.out.println("\nШкаф пуст. Вы можете добавить в него первую книгу");
         } else {
-            System.out.println("Книга найдена:");
-            System.out.println("------------------------------------------------------");
-            System.out.printf("| %-15s | %-10s | %-4s |", "Автор", "Название", "Год");
-            System.out.println("\n══════════════════════════════════════════════════════");
-            System.out.printf("| %-15s | %-10s | %-4d |", foundBook.getAuthor(), foundBook.getTitle(), foundBook.getPublishYear());
-            System.out.println("\n------------------------------------------------------\n");
+            System.out.print("\nВведите название книги для поиска: ");
+            String searchTitle = scanner.nextLine();
+            Book foundBook = bookShelf.find(searchTitle);
+            if (foundBook == null) {
+                System.out.println("Книга не найдена.");
+            } else {
+                System.out.println("Книга найдена:");
+                System.out.println("------------------------------------------------------");
+                System.out.printf("| %-15s | %-10s | %-4s |", "Автор", "Название", "Год");
+                System.out.println("\n══════════════════════════════════════════════════════");
+                System.out.println(foundBook);
+                System.out.println("------------------------------------------------------\n");
+            }
         }
     }
 }
