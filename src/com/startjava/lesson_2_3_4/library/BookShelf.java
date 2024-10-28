@@ -3,30 +3,30 @@ package com.startjava.lesson_2_3_4.library;
 import java.util.Arrays;
 
 public class BookShelf {
-    private Book[] books;
-    private int bookCount;
     private static final int TOTAL_SHELVES = 10;
+    private Book[] books;
+    private int count;
 
     public BookShelf() {
         books = new Book[TOTAL_SHELVES];
     }
 
     public Book[] getBooks() {
-        return Arrays.copyOf(books, getBookCount());
+        return Arrays.copyOf(books, count);
     }
 
-    public int getBookCount() {
-        return bookCount;
+    public int getCount() {
+        return count;
     }
 
     public int getFreeShelves() {
-        return TOTAL_SHELVES - bookCount;
+        return TOTAL_SHELVES - count;
     }
 
     public void add(Book book) {
-        if (bookCount < TOTAL_SHELVES) {
-            books[bookCount] = book;
-            bookCount++;
+        if (count < TOTAL_SHELVES) {
+            books[count] = book;
+            count++;
             System.out.println("Книга добавлена: " + book.getTitle() + " ✓");
         } else {
             System.out.println("Шкаф полон, невозможно добавить новую книгу.");
@@ -34,14 +34,14 @@ public class BookShelf {
     }
 
     public void remove(String title) {
-        for (int i = 0; i < bookCount; i++) {
+        for (int i = 0; i < count; i++) {
             if (books[i].getTitle().equalsIgnoreCase(title)) {
                 System.out.println("Книга удалена: " + books[i].getTitle());
-                if (i < bookCount - 1) {
-                    System.arraycopy(books, i + 1, books, i, bookCount - i - 1);
+                if (i < count - 1) {
+                    System.arraycopy(books, i + 1, books, i, count - i - 1);
                 }
-                books[bookCount - 1] = null;
-                bookCount--;
+                books[count - 1] = null;
+                count--;
                 return;
             }
         }
@@ -49,7 +49,7 @@ public class BookShelf {
     }
 
     public Book find(String title) {
-        for (int i = 0; i < bookCount; i++) {
+        for (int i = 0; i < count; i++) {
             if (books[i].getTitle().equalsIgnoreCase(title)) {
                 return books[i];
             }
@@ -58,10 +58,10 @@ public class BookShelf {
     }
 
     public void clear() {
-        for (int i = 0; i < bookCount; i++) {
+        for (int i = 0; i < count; i++) {
             books[i] = null;
         }
-        bookCount = 0;
+        count = 0;
         System.out.println("Шкаф очищен.");
     }
 }
