@@ -65,15 +65,20 @@ public class BookShelfTest {
     }
 
     private static void selectAction(int choice, Scanner scanner, BookShelf bookShelf) {
-        switch (choice) {
-            case 1 -> addBook(scanner, bookShelf);
-            case 2 -> removeBook(scanner, bookShelf);
-            case 3 -> searchBook(scanner, bookShelf);
-            case 4 -> showAllBooks(bookShelf);
-            case 5 -> clearShelf(bookShelf);
-            case 0 -> {
-            }
-            default -> System.out.print("\nОшибка: введите номер из списка: ");
+        Menu option;
+        try {
+            option = Menu.values()[choice];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.print("\nОшибка: введите номер из списка: ");
+            return;
+        }
+        switch (option) {
+            case ADD_BOOK -> addBook(scanner, bookShelf);
+            case REMOVE_BOOK -> removeBook(scanner, bookShelf);
+            case FIND_BOOK -> searchBook(scanner, bookShelf);
+            case SHOW_ALL -> showAllBooks(bookShelf);
+            case CLEAR_SHELF -> clearShelf(bookShelf);
+            case EXIT -> {}
         }
     }
 
@@ -85,23 +90,31 @@ public class BookShelfTest {
         System.out.print("Введите год издания: ");
         int year = scanner.nextInt();
         scanner.nextLine();
-        bookShelf.add(new Book(author, title, year));
-        showAllBooks(bookShelf);
+        try {
+            bookShelf.add(new Book(author, title, year));
+            showAllBooks(bookShelf);
+        } catch (ShelfFullException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     private static void showAllBooks(BookShelf bookShelf) {
+        int shelfWidth = bookShelf.getLongestBookLength() + 10;
         System.out.println("\nВ шкафу книг - " + bookShelf.getCount() +
                            ", свободно полок - " + bookShelf.getFreeShelves());
         if (bookShelf.getCount() == 0) {
             System.out.println("\nШкаф пуст. Вы можете добавить в него первую книгу.");
         } else {
-            System.out.println();
-            System.out.println("|-----------------------------------------------|");
+            printShelfBorder(shelfWidth);
             for (Book book : bookShelf.getBooks()) {
-                System.out.printf("| %-45s |\n", book.toString());
-                System.out.println("|-----------------------------------------------|");
+                System.out.printf("| %-" + (shelfWidth - 4) + "s |\n", book);
+                printShelfBorder(shelfWidth);
             }
         }
+    }
+
+    private static void printShelfBorder(int width) {
+        System.out.println("|" + "-".repeat(width - 2) + "|");
     }
 
     private static void removeBook(Scanner scanner, BookShelf bookShelf) {

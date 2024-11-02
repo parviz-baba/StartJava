@@ -3,7 +3,7 @@ package com.startjava.lesson_2_3_4.library;
 import java.util.Arrays;
 
 public class BookShelf {
-    private static final int TOTAL_SHELVES = 10;
+    private static final int TOTAL_SHELVES = 2;
     private Book[] books;
     private int count;
 
@@ -13,6 +13,14 @@ public class BookShelf {
 
     public Book[] getBooks() {
         return Arrays.copyOf(books, count);
+    }
+
+    public int getLongestBookLength() {
+        int maxLength = 0;
+        for (Book book : getBooks()) {
+            maxLength = Math.max(maxLength, book.toString().length());
+        }
+        return maxLength;
     }
 
     public int getCount() {
@@ -29,7 +37,7 @@ public class BookShelf {
             count++;
             System.out.println("Книга добавлена: " + book.getTitle() + " ✓");
         } else {
-            System.out.println("Шкаф полон, невозможно добавить новую книгу.");
+            throw new ShelfFullException("Шкаф полон, невозможно добавить новую книгу.");
         }
     }
 
