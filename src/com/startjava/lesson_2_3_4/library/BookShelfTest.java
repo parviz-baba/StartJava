@@ -99,15 +99,16 @@ public class BookShelfTest {
     }
 
     private static void showAllBooks(BookShelf bookShelf) {
-        int shelfWidth = bookShelf.getLongestBookLength() + 10;
+        bookShelf.updateLength();
+        int shelfWidth = bookShelf.getMaxLength() + 10;
         System.out.println("\nВ шкафу книг - " + bookShelf.getCount() +
-                           ", свободно полок - " + bookShelf.getFreeShelves());
+                ", свободно полок - " + bookShelf.getFreeShelves());
         if (bookShelf.getCount() == 0) {
             System.out.println("\nШкаф пуст. Вы можете добавить в него первую книгу.");
         } else {
             printShelfBorder(shelfWidth);
             for (Book book : bookShelf.getBooks()) {
-                System.out.printf("| %-" + (shelfWidth - 4) + "s |\n", book);
+                System.out.printf("| %-" + (shelfWidth - 4) + "s |%n", book);
                 printShelfBorder(shelfWidth);
             }
         }

@@ -6,21 +6,24 @@ public class BookShelf {
     private static final int TOTAL_SHELVES = 2;
     private Book[] books;
     private int count;
+    private int maxLength;
 
     public BookShelf() {
         books = new Book[TOTAL_SHELVES];
+    }
+
+    public int getMaxLength() {
+        return maxLength;
     }
 
     public Book[] getBooks() {
         return Arrays.copyOf(books, count);
     }
 
-    public int getLongestBookLength() {
-        int maxLength = 0;
+    public void updateLength() {
         for (Book book : getBooks()) {
             maxLength = Math.max(maxLength, book.toString().length());
         }
-        return maxLength;
     }
 
     public int getCount() {
@@ -66,9 +69,7 @@ public class BookShelf {
     }
 
     public void clear() {
-        for (int i = 0; i < count; i++) {
-            books[i] = null;
-        }
+        Arrays.fill(books, 0, count, null);
         count = 0;
         System.out.println("Шкаф очищен.");
     }
