@@ -1,4 +1,4 @@
-package com.startjava.lesson_2_3.method.naming;
+package com.startjava.lesson_2_3_4.method.naming;
 
 public class MethodDoTest {
     public static void main(String[] args) {
@@ -7,7 +7,7 @@ public class MethodDoTest {
         MethodDoTest.callBooleanMethods();
     }
 
-    public void callNonBooleanMethods() {
+    public static void callNonBooleanMethods() {
         NonBooleanMethods nonBm = new NonBooleanMethods();
         nonBm.findLongestWord();
         nonBm.selectMenuItem();
@@ -26,7 +26,7 @@ public class MethodDoTest {
         nonBm.saveClipboardToFile();
     }
 
-    public void callBooleanMethods() {
+    public static void callBooleanMethods() {
         BooleanMethods bm = new BooleanMethods();
         bm.isProgramRunning();
         bm.isFileDeleted();
