@@ -16,21 +16,27 @@ public class BookShelfTest {
             if (bookShelf.getCount() == 0) {
                 System.out.println("Шкаф пуст. Вы можете добавить в него первую книгу");
             }
-            int choice;
-            do {
-                System.out.print("Введите ваш выбор (0-5): ");
-                try {
-                    choice = scanner.nextInt();
-                    scanner.nextLine();
-                    selectAction(choice, scanner, bookShelf);
-                } catch (InputMismatchException e) {
-                    System.out.println("\nОшибка: введите целое число от 0 до 5");
-                    scanner.nextLine();
-                    choice = -1;
-                }
-                if (choice == 0) return;
-            } while (choice < MIN_CHOICE_NUMBER || choice > MAX_CHOICE_NUMBER);
+            int choice = getMenuChoice(scanner);
+            if (choice == 0) return;
+            selectAction(choice, scanner, bookShelf);
+            promptToContinue(scanner);
         }
+    }
+
+    private static int getMenuChoice(Scanner scanner) {
+        int choice;
+        do {
+            System.out.print("Введите ваш выбор (0-5): ");
+            try {
+                choice = scanner.nextInt();
+                scanner.nextLine();
+            } catch (InputMismatchException e) {
+                System.out.println("\nОшибка: введите целое число от 0 до 5");
+                scanner.nextLine();
+                choice = -1;
+            }
+        } while (choice < MIN_CHOICE_NUMBER || choice > MAX_CHOICE_NUMBER);
+        return choice;
     }
 
     private static void welcome() throws InterruptedException {
@@ -99,10 +105,9 @@ public class BookShelfTest {
     }
 
     private static void showAllBooks(BookShelf bookShelf) {
-        bookShelf.updateLength();
         int shelfWidth = bookShelf.getMaxLength() + 10;
         System.out.println("\nВ шкафу книг - " + bookShelf.getCount() +
-                ", свободно полок - " + bookShelf.getFreeShelves());
+                           ", свободно полок - " + bookShelf.getFreeShelves());
         if (bookShelf.getCount() == 0) {
             System.out.println("\nШкаф пуст. Вы можете добавить в него первую книгу.");
         } else {
@@ -146,5 +151,10 @@ public class BookShelfTest {
     private static void clearShelf(BookShelf bookShelf) {
         bookShelf.clear();
         showAllBooks(bookShelf);
+    }
+
+    private static void promptToContinue(Scanner scanner) {
+        System.out.println("\nДля продолжения работы нажмите клавишу <Enter>");
+        scanner.nextLine();
     }
 }

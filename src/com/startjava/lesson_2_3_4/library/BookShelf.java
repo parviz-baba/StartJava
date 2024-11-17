@@ -5,8 +5,8 @@ import java.util.Arrays;
 public class BookShelf {
     private static final int TOTAL_SHELVES = 2;
     private Book[] books;
-    private int count;
-    private int maxLength;
+    private int count = 0;
+    private static int maxLength;
 
     public BookShelf() {
         books = new Book[TOTAL_SHELVES];
@@ -20,7 +20,8 @@ public class BookShelf {
         return Arrays.copyOf(books, count);
     }
 
-    public void updateLength() {
+    private void updateLength() {
+        maxLength = 0;
         for (Book book : getBooks()) {
             maxLength = Math.max(maxLength, book.toString().length());
         }
@@ -38,6 +39,7 @@ public class BookShelf {
         if (count < TOTAL_SHELVES) {
             books[count] = book;
             count++;
+            updateLength();
             System.out.println("Книга добавлена: " + book.getTitle() + " ✓");
         } else {
             throw new ShelfFullException("Шкаф полон, невозможно добавить новую книгу.");
@@ -53,6 +55,7 @@ public class BookShelf {
                 }
                 books[count - 1] = null;
                 count--;
+                updateLength();
                 return;
             }
         }
@@ -71,6 +74,7 @@ public class BookShelf {
     public void clear() {
         Arrays.fill(books, 0, count, null);
         count = 0;
+        maxLength = 0;
         System.out.println("Шкаф очищен.");
     }
 }
