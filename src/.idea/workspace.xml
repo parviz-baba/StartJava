@@ -41,6 +41,7 @@
   <component name="ProjectViewState">
     <option name="autoscrollToSource" value="true" />
     <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="openDirectoriesWithSingleClick" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
@@ -52,10 +53,10 @@
     "Application.Unnamed.executor": "Run",
     "Application.VariableNamesTheme.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Merging main",
+    "git-widget-placeholder": "main",
     "ignore.preview.features.used": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/postgresql-42.7.4.jar",
+    "last_opened_file_path": "D:/git/StartJava",
     "onboarding.tips.debug.path": "D:/git/StartJava/untitled/src/Main.java",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",

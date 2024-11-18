@@ -5,8 +5,8 @@ import java.util.Arrays;
 public class BookShelf {
     private static final int TOTAL_SHELVES = 2;
     private Book[] books;
-    private int count = 0;
-    private static int maxLength;
+    private int count;
+    private int maxLength;
 
     public BookShelf() {
         books = new Book[TOTAL_SHELVES];
@@ -18,13 +18,6 @@ public class BookShelf {
 
     public Book[] getBooks() {
         return Arrays.copyOf(books, count);
-    }
-
-    private void updateLength() {
-        maxLength = 0;
-        for (Book book : getBooks()) {
-            maxLength = Math.max(maxLength, book.toString().length());
-        }
     }
 
     public int getCount() {
@@ -39,7 +32,7 @@ public class BookShelf {
         if (count < TOTAL_SHELVES) {
             books[count] = book;
             count++;
-            updateLength();
+            maxLength = Math.max(maxLength, book.toString().length());
             System.out.println("Книга добавлена: " + book.getTitle() + " ✓");
         } else {
             throw new ShelfFullException("Шкаф полон, невозможно добавить новую книгу.");
@@ -49,17 +42,17 @@ public class BookShelf {
     public void remove(String title) {
         for (int i = 0; i < count; i++) {
             if (books[i].getTitle().equalsIgnoreCase(title)) {
-                System.out.println("Книга удалена: " + books[i].getTitle());
+                System.out.println("Kitab silindi: " + books[i].getTitle());
                 if (i < count - 1) {
                     System.arraycopy(books, i + 1, books, i, count - i - 1);
                 }
-                books[count - 1] = null;
+                books[count - 1] = null; // Sonuncu kitabı təmizlə
                 count--;
-                updateLength();
+                updateLength(); // Kitabların yeni uzunluğunu yenilə
                 return;
             }
         }
-        System.out.println("Книга не найдена: " + title);
+        System.out.println("Kitab tapılmadı: " + title);
     }
 
     public Book find(String title) {
@@ -76,5 +69,12 @@ public class BookShelf {
         count = 0;
         maxLength = 0;
         System.out.println("Шкаф очищен.");
+    }
+
+    private void updateLength() {
+        maxLength = 0;
+        for (Book book : getBooks()) {
+            maxLength = Math.max(maxLength, book.toString().length());
+        }
     }
 }

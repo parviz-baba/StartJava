@@ -16,14 +16,14 @@ public class BookShelfTest {
             if (bookShelf.getCount() == 0) {
                 System.out.println("Шкаф пуст. Вы можете добавить в него первую книгу");
             }
-            int choice = getMenuChoice(scanner);
+            int choice = selectMenuItem(scanner);
             if (choice == 0) return;
             selectAction(choice, scanner, bookShelf);
             promptToContinue(scanner);
         }
     }
 
-    private static int getMenuChoice(Scanner scanner) {
+    private static int selectMenuItem(Scanner scanner) {
         int choice;
         do {
             System.out.print("Введите ваш выбор (0-5): ");
@@ -155,6 +155,8 @@ public class BookShelfTest {
 
     private static void promptToContinue(Scanner scanner) {
         System.out.println("\nДля продолжения работы нажмите клавишу <Enter>");
-        scanner.nextLine();
+        while (!scanner.nextLine().isEmpty()) {
+            System.out.println("Нажмите только <Enter> для продолжения.");
+        }
     }
 }
