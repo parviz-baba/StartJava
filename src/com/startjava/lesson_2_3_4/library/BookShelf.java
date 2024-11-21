@@ -29,30 +29,32 @@ public class BookShelf {
     }
 
     public void add(Book book) {
-        if (count < TOTAL_SHELVES) {
-            books[count] = book;
-            count++;
-            maxLength = Math.max(maxLength, book.toString().length());
-            System.out.println("Книга добавлена: " + book.getTitle() + " ✓");
-        } else {
+        if (count >= TOTAL_SHELVES) {
             throw new ShelfFullException("Шкаф полон, невозможно добавить новую книгу.");
         }
+        books[count] = book;
+        count++;
+        maxLength = Math.max(maxLength, book.toString().length());
+        System.out.println("Книга добавлена: " + book.getTitle() + " ✓");
     }
 
     public void remove(String title) {
         for (int i = 0; i < count; i++) {
             if (books[i].getTitle().equalsIgnoreCase(title)) {
-                System.out.println("Kitab silindi: " + books[i].getTitle());
+                System.out.println("Книга удалена: " + books[i].getTitle());
+                int removedBookLength = books[i].toString().length();
                 if (i < count - 1) {
                     System.arraycopy(books, i + 1, books, i, count - i - 1);
                 }
-                books[count - 1] = null; // Sonuncu kitabı təmizlə
+                books[count - 1] = null;
                 count--;
-                updateLength(); // Kitabların yeni uzunluğunu yenilə
+                if (removedBookLength == maxLength) {
+                    updateLength();
+                }
                 return;
             }
         }
-        System.out.println("Kitab tapılmadı: " + title);
+        System.out.println("Книга не найдена: " + title);
     }
 
     public Book find(String title) {
