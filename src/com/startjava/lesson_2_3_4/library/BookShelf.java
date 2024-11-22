@@ -34,7 +34,7 @@ public class BookShelf {
         }
         books[count] = book;
         count++;
-        maxLength = Math.max(maxLength, book.toString().length());
+        calculateMaxLength(maxLength, book);
         System.out.println("Книга добавлена: " + book.getTitle() + " ✓");
     }
 
@@ -76,7 +76,11 @@ public class BookShelf {
     private void updateLength() {
         maxLength = 0;
         for (Book book : getBooks()) {
-            maxLength = Math.max(maxLength, book.toString().length());
+            calculateMaxLength(maxLength, book);
         }
+    }
+
+    private int calculateMaxLength(int maxLength, Object book) {
+        return Math.max(maxLength, book.toString().length());
     }
 }
