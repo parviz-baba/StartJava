@@ -31,13 +31,13 @@ ORDER BY j.kaiju_kill DESC
 LIMIT 1;
 
 -- Вывести средний вес роботов, округлив до трёх знаков после запятой
-  SELECT ROUND(AVG(j.weight), 3) AS avg_weight
-    FROM jaegers AS j;
+  SELECT ROUND(CAST(AVG(j.weight) AS NUMERIC), 3) AS avg_weight
+	FROM jaegers AS j;
 
 -- Увеличить количество уничтоженных kaiju для уничтоженных роботов на единицу
-  UPDATE jaegers AS j
-     SET j.kaiju_kill = j.kaiju_kill + 1
-   WHERE j.status = 'Destroyed';
+  UPDATE jaegers
+     SET kaiju_kill = kaiju_kill + 1
+   WHERE status = 'Destroyed';
 
 -- Показать обновлённую таблицу
   SELECT j.model_name AS mn, j.mark, j.launch
