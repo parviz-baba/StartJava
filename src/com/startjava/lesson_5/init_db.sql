@@ -1,24 +1,24 @@
 -- Подключение к базе данных robots
 \c robots
 
--- Удалите существующую таблицу, чтобы можно было создать новую
+-- Удалить существующую таблицу, если она есть, чтобы создать новую
 DROP TABLE IF EXISTS jaegers;
 
--- Создание таблицы
+-- Создать таблицу jaegers, если она ещё не существует
 CREATE TABLE IF NOT EXISTS jaegers (
-    id SERIAL PRIMARY KEY,
-    model_name VARCHAR(50) NOT NULL,
-    mark VARCHAR(50) NOT NULL,
-    height REAL NOT NULL,
-    weight REAL NOT NULL,
-    status VARCHAR(20),
-    origin VARCHAR(50),
-    launch DATE,
-    kaiju_kill INTEGER
+    jaeger_id     SERIAL       PRIMARY KEY,
+    model_name    VARCHAR(50)  NOT NULL,
+    mark          VARCHAR(50)  NOT NULL,
+    height        REAL         NOT NULL,
+    weight        REAL         NOT NULL,
+    status        VARCHAR(20),
+    origin        VARCHAR(50),
+    launch        DATE,
+    kaiju_kill    INTEGER
 );
 
--- Включение файла populate.sql (добавление данных)
+-- Включение файла для добавления данных (populate.sql)
 \i D:/git/StartJava/src/com/startjava/lesson_5/populate.sql
 
--- Включение файла queries.sql (выполнение запросов)
+-- Включение файла для выполнения запросов (queries.sql)
 \i D:/git/StartJava/src/com/startjava/lesson_5/queries.sql
