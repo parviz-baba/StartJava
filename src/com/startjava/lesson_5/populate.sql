@@ -9,5 +9,4 @@ VALUES ('Gipsy Avenger', 'Mark-6', 81.77, 2.004, 'Active', 'USA', '2020-01-01', 
 	   ('Valor Omega', 'Mark-6', 80.0, 2.15, 'Active', 'Japan', '2022-01-20', 9),
 	   ('Titan Redeemer', 'Mark-5', 78.0, 1.9, 'Destroyed','Germany', '2018-12-14', 3),
 	   ('November Ajax', 'Mark-6', 79.5, 2.05, 'Active', 'Canada', '2022-04-11', 7),
-	   ('Horizon Brave', 'Mark-2', 70.0, 1.8, 'Inactive', 'China', '2017-09-15', 4)
-);
+	   ('Horizon Brave', 'Mark-2', 70.0, 1.8, 'Inactive', 'China', '2017-09-15', 4);
