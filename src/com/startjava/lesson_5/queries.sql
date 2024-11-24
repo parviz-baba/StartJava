@@ -50,4 +50,3 @@ DELETE FROM jaegers
 -- Показать оставшихся роботов
 SELECT j.jaeger_id, j.model_name AS mn, j.mark, j.height, j.weight, j.status, j.origin, j.launch, j.kaiju_kill AS kk
   FROM jaegers AS j;
-s
