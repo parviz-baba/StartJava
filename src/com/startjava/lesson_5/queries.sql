@@ -21,17 +21,17 @@ SELECT *, j.model_name AS mn, j.kaiju_kill AS kk
  WHERE j.mark NOT IN ('Mark-1', 'Mark-4')
  ORDER BY j.mark DESC, j.model_name ASC;
 
--- Показать информацию о самом старом роботе
+-- Показать информацию о самом старом роботах
 SELECT *, j.model_name AS mn, j.kaiju_kill AS kk
   FROM jaegers AS j
- ORDER BY j.launch ASC
- LIMIT 1;
+ WHERE j.launch = (SELECT MIN(launch) FROM jaegers)
+ ORDER BY j.launch ASC;
 
 -- Показать информацию о роботе, который уничтожил больше всего kaiju
 SELECT *, j.model_name AS mn, j.kaiju_kill AS kk
   FROM jaegers AS j
- ORDER BY j.kaiju_kill DESC
- LIMIT 1;
+ WHERE j.kaiju_kill = (SELECT MAX(kaiju_kill) FROM jaegers)
+ ORDER BY j.kaiju_kill DESC, j.model_name ASC;
 
 -- Вывести средний вес роботов, округлив до трёх знаков после запятой
 SELECT ROUND(AVG(j.weight), 3) AS avg_weight
